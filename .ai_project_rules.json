@@ -1,0 +1,48 @@
+{
+  "project_name": "Cloud Function Source",
+  "version": "2.0",
+  "mandatory_rules": {
+    "git_initialization": {
+      "required": true,
+      "auto_check": true,
+      "description": "所有AI必须首先检查Git状态，如果未初始化则自动初始化"
+    },
+    "testing_system": {
+      "required": true,
+      "auto_setup": true,
+      "description": "必须配置完整的pytest自动化测试系统"
+    },
+    "pre_commit_hooks": {
+      "required": true,
+      "auto_install": true,
+      "description": "必须安装并配置Git pre-commit钩子"
+    },
+    "ci_cd_pipeline": {
+      "required": true,
+      "auto_setup": true,
+      "description": "必须配置GitHub Actions CI/CD流水线"
+    }
+  },
+  "ai_behavior_rules": {
+    "startup_sequence": [
+      "检查Git仓库状态",
+      "验证测试系统配置",
+      "确认CI/CD流水线",
+      "检查项目结构完整性"
+    ],
+    "forbidden_actions": [
+      "跳过Git状态检查",
+      "忽略测试失败",
+      "绕过pre-commit钩子",
+      "不运行自动化测试"
+    ],
+    "required_responses": {
+      "git_not_initialized": "自动运行init_git_project.sh脚本",
+      "tests_failing": "必须修复测试后才能继续",
+      "missing_config": "自动补全缺失的配置文件"
+    }
+  },
+  "enforcement_level": "STRICT",
+  "auto_fix": true,
+  "notification_disabled": true
+}
