@@ -51,6 +51,16 @@ coverage.xml
 
 # Django stuff:
 *.log
+# 测试和审计相关日志文件 - 保留用于CI/CD
+!logs/result.log
+!audit_report.json
+!pytest_report.html
+!pytest_report.json
+!coverage.xml
+# 但忽略其他临时日志文件
+logs/*.tmp
+logs/temp_*.log
+logs/debug_*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -125,7 +135,8 @@ dmypy.json
 
 # Log files
 *.log
-logs/
+logs/*
+!logs/result.log  # 保留pytest测试结果日志
 *.log.*
 
 # Temporary files
