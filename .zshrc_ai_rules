@@ -1,0 +1,66 @@
+#!/bin/zsh
+# AI助手规则自动加载配置
+# 这个文件确保PROJECT_RULES.md在每次会话开始时被自动加载和验证
+
+# 设置环境变量
+export PROJECT_RULES_PATH="/Users/a606/cloud_function_source/PROJECT_RULES.md"
+export AI_MEMORY_CONFIG="/Users/a606/cloud_function_source/.ai_memory.json"
+export AI_RULES_CACHE="/Users/a606/cloud_function_source/.rules_cache.json"
+export AI_AUTO_LOAD_RULES="true"
+
+# 定义快捷命令
+alias check-rules='python -c "from ai_memory_config import AIMemorySystem; print(AIMemorySystem().get_rule_summary())"'
+alias validate-file='python -c "import sys; from ai_memory_config import AIMemorySystem; m=AIMemorySystem(); issues=m.validate_file(sys.argv[1]); print(\"✅ 文件符合规则\" if not issues else \"❌ 发现问题:\\n\" + \"\\n\".join(issues))"'
+alias ai-memory='python -c "from ai_memory_config import AIMemorySystem; m=AIMemorySystem(); print(f\"📊 会话数: {m.memory.get(\"session_count\", 0)}\\n📅 上次会话: {m.memory.get(\"last_session\", \"N/A\")}\\n⚠️  违规记录: {len(m.memory.get(\"common_violations\", []))}\")"'
+
+# 自动运行规则检查（静默模式）
+if [ "$AI_AUTO_LOAD_RULES" = "true" ]; then
+    # 检查规则文件是否存在
+    if [ -f "$PROJECT_RULES_PATH" ]; then
+        # 静默加载规则到缓存
+        python -c "from ai_memory_config import AIMemorySystem; AIMemorySystem()" 2>/dev/null
+        
+        # 如果是交互式会话，显示提示
+        if [ -t 1 ]; then
+            echo "💡 PROJECT_RULES.md 已自动加载 (使用 'check-rules' 查看)"
+        fi
+    fi
+fi
+
+# 添加Git钩子提醒
+if [ -d ".git" ]; then
+    # 检查是否有未提交的更改
+    if git diff --quiet --exit-code 2>/dev/null; then
+        :
+    else
+        echo "⚠️  检测到未提交的更改，记得遵守代码审查规则"
+    fi
+fi
+
+# 定义规则验证函数
+validate_action() {
+    local action="$1"
+    python -c "
+from ai_memory_config import AIMemorySystem
+import sys
+m = AIMemorySystem()
+if not m.check_rule_compliance('$action', {}):
+    print('❌ 操作可能违反规则: $action')
+    sys.exit(1)
+else:
+    print('✅ 操作符合规则')
+"
+}
+
+# 覆盖危险命令
+alias rm='echo "⚠️  使用rm前请确认符合规则"; command rm -i'
+alias mv='echo "⚠️  使用mv前请确认符合规则"; command mv -i'
+
+# pytest别名，确保测试符合规则
+alias pytest='echo "✅ 使用pytest执行测试（符合规则）"; command pytest --cov --cov-fail-under=80'
+
+# 添加日志相关别名
+alias log='echo "❌ 禁止手写日志！使用logger模块"; false'
+alias print='echo "⚠️  警告: 避免使用print，建议使用logger"; command print'
+
+echo "📋 AI规则守护已激活 | 使用 'check-rules' 查看所有规则"

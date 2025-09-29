@@ -1,0 +1,46 @@
+{
+  "hash": "47af8f1b18cef44330565788336d70f3a2246d4f14dd0ef95cdd994bf3a0ee78",
+  "timestamp": "2025-09-29T19:42:21.845352",
+  "rules": {
+    "no_manual_logs": {
+      "category": "日志与证据要求",
+      "rule_id": "no_manual_logs",
+      "content": "禁止手写日志**: 所有日志必须通过自动化系统生成",
+      "severity": "critical",
+      "auto_check": true,
+      "validation_method": null
+    },
+    "test_coverage_min": {
+      "category": "代码质量要求",
+      "rule_id": "test_coverage_min",
+      "content": "代码测试覆盖率不得低于80%",
+      "severity": "high",
+      "auto_check": true,
+      "validation_method": null
+    },
+    "auto_testing": {
+      "category": "测试执行要求",
+      "rule_id": "auto_testing",
+      "content": "所有测试必须通过pytest等自动化工具执行",
+      "severity": "critical",
+      "auto_check": true,
+      "validation_method": null
+    },
+    "git_required": {
+      "category": "开发流程要求",
+      "rule_id": "git_required",
+      "content": "必须使用Git进行版本控制",
+      "severity": "critical",
+      "auto_check": true,
+      "validation_method": null
+    },
+    "code_review": {
+      "category": "代码审查",
+      "rule_id": "code_review",
+      "content": "所有代码变更必须经过审查",
+      "severity": "high",
+      "auto_check": true,
+      "validation_method": null
+    }
+  }
+}

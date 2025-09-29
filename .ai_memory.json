@@ -1,0 +1,12 @@
+{
+  "session_count": 2,
+  "last_session": "2025-09-29T19:42:21.845634",
+  "common_violations": [],
+  "important_reminders": [
+    "必须遵守PROJECT_RULES.md中的所有规则",
+    "禁止手写日志，所有日志必须通过自动化系统生成",
+    "所有测试必须通过pytest执行",
+    "代码覆盖率不得低于80%"
+  ],
+  "last_updated": "2025-09-29T19:42:21.845637"
+}

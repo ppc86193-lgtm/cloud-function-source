@@ -1,0 +1,286 @@
+name: Pytest Automated Testing and Audit
+
+on:
+  push:
+    branches: [ main, develop, feature/* ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动触发
+
+env:
+  PYTEST_LOG_RETENTION_DAYS: 30
+  AUDIT_ENABLED: true
+  
+jobs:
+  pytest-with-audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # 获取完整历史记录以支持审计
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov pytest-html pytest-json-report
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Pre-test audit
+      run: |
+        echo "=== Pre-test Audit ==="
+        echo "Timestamp: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+        echo "Git Branch: ${{ github.ref_name }}"
+        echo "Git Commit: ${{ github.sha }}"
+        echo "Git Author: ${{ github.actor }}"
+        echo "Event: ${{ github.event_name }}"
+        
+        # 验证pytest配置
+        if [ -f pytest.ini ]; then
+          echo "pytest.ini exists"
+          cat pytest.ini
+        fi
+    
+    - name: Run pytest with full logging
+      id: pytest
+      run: |
+        # 创建测试报告目录
+        mkdir -p test-reports
+        
+        # 运行pytest并生成多种格式的报告
+        pytest -v \
+          --tb=short \
+          --html=test-reports/pytest_report.html \
+          --self-contained-html \
+          --json-report \
+          --json-report-file=test-reports/pytest_report.json \
+          --junitxml=test-reports/pytest_junit.xml \
+          --cov=. \
+          --cov-report=html:test-reports/htmlcov \
+          --cov-report=xml:test-reports/coverage.xml \
+          --cov-report=term \
+          2>&1 | tee test-reports/pytest_complete_log.txt
+        
+        # 保存退出码
+        echo "PYTEST_EXIT_CODE=$?" >> $GITHUB_ENV
+    
+    - name: Generate test summary
+      if: always()
+      run: |
+        python << 'EOF'
+        import json
+        import os
+        from datetime import datetime
+        
+        # 读取测试结果
+        try:
+            with open('test-reports/pytest_report.json', 'r') as f:
+                report = json.load(f)
+            
+            summary = {
+                "timestamp": datetime.utcnow().isoformat(),
+                "git_commit": os.environ.get('GITHUB_SHA'),
+                "git_branch": os.environ.get('GITHUB_REF_NAME'),
+                "git_author": os.environ.get('GITHUB_ACTOR'),
+                "test_stats": {
+                    "total": report['summary']['total'],
+                    "passed": report['summary'].get('passed', 0),
+                    "failed": report['summary'].get('failed', 0),
+                    "skipped": report['summary'].get('skipped', 0),
+                    "errors": report['summary'].get('error', 0)
+                },
+                "duration": report.get('duration', 0),
+                "exit_code": int(os.environ.get('PYTEST_EXIT_CODE', 1))
+            }
+            
+            # 写入摘要文件
+            with open('test-reports/test_summary.json', 'w') as f:
+                json.dump(summary, f, indent=2)
+            
+            # 输出到GitHub Actions summary
+            with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+                f.write("\n## 📊 Pytest Test Results\n")
+                f.write(f"- **Total Tests**: {summary['test_stats']['total']}\n")
+                f.write(f"- **✅ Passed**: {summary['test_stats']['passed']}\n")
+                f.write(f"- **❌ Failed**: {summary['test_stats']['failed']}\n")
+                f.write(f"- **⏭️ Skipped**: {summary['test_stats']['skipped']}\n")
+                f.write(f"- **🚫 Errors**: {summary['test_stats']['errors']}\n")
+                f.write(f"- **⏱️ Duration**: {summary['duration']:.2f}s\n")
+                
+        except Exception as e:
+            print(f"Error generating summary: {e}")
+        EOF
+    
+    - name: Audit test execution
+      if: always()
+      run: |
+        python << 'EOF'
+        import hashlib
+        import json
+        import os
+        from datetime import datetime
+        
+        # 创建审计记录
+        audit_record = {
+            "audit_timestamp": datetime.utcnow().isoformat(),
+            "git_info": {
+                "commit": os.environ.get('GITHUB_SHA'),
+                "branch": os.environ.get('GITHUB_REF_NAME'),
+                "author": os.environ.get('GITHUB_ACTOR'),
+                "event": os.environ.get('GITHUB_EVENT_NAME')
+            },
+            "test_files_hash": {},
+            "report_files_hash": {},
+            "compliance_status": "PENDING"
+        }
+        
+        # 计算测试文件哈希值
+        import glob
+        for test_file in glob.glob('test_*.py'):
+            with open(test_file, 'rb') as f:
+                audit_record['test_files_hash'][test_file] = hashlib.sha256(f.read()).hexdigest()
+        
+        # 计算报告文件哈希值
+        report_files = [
+            'test-reports/pytest_complete_log.txt',
+            'test-reports/pytest_report.json',
+            'test-reports/pytest_report.html'
+        ]
+        
+        for report_file in report_files:
+            if os.path.exists(report_file):
+                with open(report_file, 'rb') as f:
+                    audit_record['report_files_hash'][report_file] = hashlib.sha256(f.read()).hexdigest()
+        
+        # 验证合规性
+        exit_code = int(os.environ.get('PYTEST_EXIT_CODE', 1))
+        has_reports = all(os.path.exists(f) for f in report_files)
+        
+        if exit_code == 0 and has_reports:
+            audit_record['compliance_status'] = 'COMPLIANT'
+        elif has_reports:
+            audit_record['compliance_status'] = 'PARTIAL_COMPLIANT'
+        else:
+            audit_record['compliance_status'] = 'NON_COMPLIANT'
+        
+        # 保存审计记录
+        with open('test-reports/audit_record.json', 'w') as f:
+            json.dump(audit_record, f, indent=2)
+        
+        print(f"Audit Status: {audit_record['compliance_status']}")
+        EOF
+    
+    - name: Upload test reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-reports-${{ github.sha }}
+        path: test-reports/
+        retention-days: ${{ env.PYTEST_LOG_RETENTION_DAYS }}
+    
+    - name: Commit test logs to repository
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 创建测试日志目录
+        mkdir -p test-logs/${{ github.sha }}
+        
+        # 复制关键测试日志
+        cp test-reports/pytest_complete_log.txt test-logs/${{ github.sha }}/
+        cp test-reports/test_summary.json test-logs/${{ github.sha }}/
+        cp test-reports/audit_record.json test-logs/${{ github.sha }}/
+        
+        # 提交到Git
+        git add test-logs/
+        git commit -m "[CI] Add test logs for commit ${{ github.sha }}" || echo "No changes to commit"
+        git push || echo "Push failed, continuing"
+    
+    - name: Comment PR with test results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          try {
+            const summary = JSON.parse(fs.readFileSync('test-reports/test_summary.json', 'utf8'));
+            const body = `## 🧪 Pytest Test Results\n\n` +
+              `| Metric | Value |\n` +
+              `|--------|-------|\n` +
+              `| Total Tests | ${summary.test_stats.total} |\n` +
+              `| ✅ Passed | ${summary.test_stats.passed} |\n` +
+              `| ❌ Failed | ${summary.test_stats.failed} |\n` +
+              `| ⏭️ Skipped | ${summary.test_stats.skipped} |\n` +
+              `| 🚫 Errors | ${summary.test_stats.errors} |\n` +
+              `| ⏱️ Duration | ${summary.duration.toFixed(2)}s |\n\n` +
+              `📋 [View Full Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+          } catch (error) {
+            console.error('Failed to post comment:', error);
+          }
+    
+    - name: Fail if tests failed
+      if: env.PYTEST_EXIT_CODE != '0'
+      run: |
+        echo "❌ Tests failed with exit code: $PYTEST_EXIT_CODE"
+        exit $PYTEST_EXIT_CODE
+
+  validate-test-coverage:
+    needs: pytest-with-audit
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download test reports
+      uses: actions/download-artifact@v3
+      with:
+        name: pytest-reports-${{ github.sha }}
+        path: test-reports/
+    
+    - name: Check coverage threshold
+      run: |
+        python << 'EOF'
+        import xml.etree.ElementTree as ET
+        import sys
+        
+        # 设置覆盖率阈值
+        COVERAGE_THRESHOLD = 70
+        
+        try:
+            tree = ET.parse('test-reports/coverage.xml')
+            root = tree.getroot()
+            
+            # 获取覆盖率百分比
+            coverage = float(root.attrib.get('line-rate', 0)) * 100
+            
+            print(f"Code Coverage: {coverage:.2f}%")
+            print(f"Threshold: {COVERAGE_THRESHOLD}%")
+            
+            if coverage < COVERAGE_THRESHOLD:
+                print(f"❌ Coverage {coverage:.2f}% is below threshold {COVERAGE_THRESHOLD}%")
+                sys.exit(1)
+            else:
+                print(f"✅ Coverage {coverage:.2f}% meets threshold")
+        except Exception as e:
+            print(f"Warning: Could not parse coverage report: {e}")
+        EOF

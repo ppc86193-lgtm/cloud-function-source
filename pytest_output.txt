@@ -1,0 +1,57 @@
+
+---------------------------- live log sessionstart -----------------------------
+INFO     conftest:conftest.py:84 ✅ pytest会话已开始 - 合规性验证通过
+============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /Users/a606/Documents/9999/deploy_package/venv/bin/python3.13
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.7', 'Platform': 'macOS-14.5-arm64-arm-64bit-Mach-O', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'mock': '3.15.1', 'asyncio': '1.2.0', 'anyio': '4.11.0', 'html': '4.1.1', 'xdist': '3.8.0', 'json-report': '1.5.0', 'timeout': '2.4.0', 'metadata': '3.1.1', 'cov': '7.0.0'}}
+rootdir: /Users/a606/cloud_function_source
+configfile: pytest.ini
+plugins: mock-3.15.1, asyncio-1.2.0, anyio-4.11.0, html-4.1.1, xdist-3.8.0, json-report-1.5.0, timeout-2.4.0, metadata-3.1.1, cov-7.0.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 0 items
+✅ pytest会话完成 - 总计 0 个测试
+---------------------------- live log sessionfinish ----------------------------
+INFO     conftest:conftest.py:151 ================================================================================
+INFO     conftest:conftest.py:152 pytest测试结束时间: 2025-09-29 19:19:43
+INFO     conftest:conftest.py:153 退出状态码: 4
+INFO     conftest:conftest.py:154 ================================================================================
+INFO     conftest:conftest.py:155 ✅ pytest会话结束 - 合规性报告已生成
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:conftest:================================================================================
+INFO:conftest:pytest测试开始时间: 2025-09-29 19:19:42
+INFO:conftest:================================================================================
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:pytest_compliance_plugin:✅ pytest合规性插件已激活 - 只认可pytest自动化日志
+INFO:conftest:✅ pytest合规性配置完成 - 只认可pytest自动化日志
+INFO:conftest:日志输出路径: result.log
+INFO:conftest:✅ pytest会话已开始 - 合规性验证通过
+INFO:conftest:================================================================================
+INFO:conftest:pytest测试结束时间: 2025-09-29 19:19:43
+INFO:conftest:退出状态码: 4
+INFO:conftest:================================================================================
+INFO:conftest:✅ pytest会话结束 - 合规性报告已生成
+ERROR: file or directory not found: tests/unit/test_config.py
+
+✅ pytest会话结束 - 合规性报告已生成
+完整日志已保存到: result.log
+
+=============================== warnings summary ===============================
+../Documents/9999/deploy_package/venv/lib/python3.13/site-packages/coverage/inorout.py:473
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/coverage/inorout.py:473: CoverageWarning: --include is ignored because --source is set (include-ignored); see https://coverage.readthedocs.io/en/7.10.7/messages.html#warning-include-ignored
+    self.warn("--include is ignored because --source is set", slug="include-ignored")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---- generated xml file: /Users/a606/cloud_function_source/pytest_junit.xml ----
+- Generated html report: file:///Users/a606/cloud_function_source/pytest_report.html -
+============================== 1 warning in 0.01s ==============================

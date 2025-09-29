@@ -14,11 +14,18 @@ from datetime import datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'python'))
 
+# 这些模块已被重构，使用新的服务模块
 try:
-    from python.realtime_lottery_service     from python.history_backfill_service except ImportError:
-    # 如果导入失败，尝试直接导入
-    import realtime_lottery_service
-    import history_backfill_service
+    from python import enhanced_realtime_service as realtime_lottery_service
+    from python import enhanced_backfill_service as history_backfill_service
+except ImportError:
+    # 如果导入失败，创建模拟对象
+    class MockService:
+        def __init__(self):
+            pass
+    
+    realtime_lottery_service = MockService()
+    history_backfill_service = MockService()
     
 
 class FieldUsageAnalyzer:

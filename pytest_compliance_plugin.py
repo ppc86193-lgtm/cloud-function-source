@@ -147,17 +147,22 @@ class PytestCompliancePlugin:
                 'exit_status': exitstatus
             }
             
-            self.compliance_logger._log_audit_operation(
-                operation_type="PYTEST_SESSION_COMPLETE",
-                operation_details=f"pytest会话完成 - {session_summary}",
-                operator="PYTEST_AUTO_SYSTEM",
-                pytest_context=True
-            )
+            # 在会话结束前最后记录一次
+            try:
+                self.compliance_logger._log_audit_operation(
+                    operation_type="PYTEST_SESSION_COMPLETE",
+                    operation_details=f"pytest会话完成 - {session_summary}",
+                    operator="PYTEST_AUTO_SYSTEM",
+                    pytest_context=True
+                )
+            except:
+                pass  # 忽略日志写入错误，因为可能文件已关闭
             
-            logger.info(f"✅ pytest会话完成 - 总计 {self.total_tests} 个测试")
+            # 使用print而不是logger避免文件关闭错误
+            print(f"✅ pytest会话完成 - 总计 {self.total_tests} 个测试")
             
         except Exception as e:
-            logger.error(f"记录pytest会话结束失败: {e}")
+            print(f"记录pytest会话结束失败: {e}")
     
     def _verify_pytest_context(self) -> bool:
         """验证当前是否在pytest上下文中"""

@@ -1,0 +1,838 @@
+{
+  "git_version_control": {
+    "repository_info": {
+      "remotes": "origin\thttps://github.com/your-username/your-repo-name.git (fetch)\norigin\thttps://github.com/your-username/your-repo-name.git (push)\n"
+    },
+    "commit_history": [
+      "9d249b5 智能合约履行评估报告 - 系统基本符合要求但需修复关键问题",
+      "83634e1 自动化测试证据 - 2025-09-29 18:46:22",
+      "5e8e6b5 🎉 最终合规验证完成: A级合规(90/100分) - 2862条pytest自动化日志，63个测试全部通过，违规记录已清理至3个",
+      "466fd12 🎯 最终提交: 完整修复工作供审计团队审核",
+      "5acc054 🚨 紧急修复: 解决所有审计发现的严重问题",
+      "0ee2bfe feat: 完成所有工作项目 - 最终合规性验证和系统完整性确认",
+      "5b5f079 feat: 紧急响应用户审计要求 - 重新验证并增强合规性",
+      "5cdcb99 feat: 完成pytest自动化日志系统修复与合规性验证",
+      "d86d1f3 feat: 补全pytest自动化日志系统 - 新增关键组件合规性测试",
+      "287a9be feat: 实现pytest自动化日志系统 - 符合合约条款要求",
+      "1b181d2 feat: 更新智能合约为服务提供方单方面承诺 - 保障付费用户权益",
+      "fe27f7b feat: 添加智能合约条款和数字签名机制 - 版本2.0",
+      "caef34e 数据同步推送 - 完成 Supabase 表结构创建和同步配置"
+    ],
+    "branch_info": {
+      "branches": "* main\n"
+    },
+    "contract_commits": [
+      "5cdcb99 feat: 完成pytest自动化日志系统修复与合规性验证",
+      "1b181d2 feat: 更新智能合约为服务提供方单方面承诺 - 保障付费用户权益",
+      "fe27f7b feat: 添加智能合约条款和数字签名机制 - 版本2.0"
+    ],
+    "file_hashes": {
+      "智能合约条款更新报告.md": "4e896c43759d4546636c7882ebf1848008afaa02d4cf3ea01cbc97f85847835f",
+      "PROJECT_RULES.md": "47af8f1b18cef44330565788336d70f3a2246d4f14dd0ef95cdd994bf3a0ee78"
+    }
+  },
+  "automated_testing": {
+    "pytest_results": {},
+    "test_files": [
+      "test_bigquery_full_repair.py",
+      "test_monitoring_system.py",
+      "test_api_connection.py",
+      "test_optimizer.py",
+      "test_performance_optimizer.py",
+      "test_pc28_system.py",
+      "test_data_sync_system_compliance.py",
+      "test_ops_system.py",
+      "test_database_compliance.py",
+      "test_data_quality_system.py",
+      "test_suite_manager.py",
+      "test_sync_reports_compliance.py",
+      "test_data_sync_compliance.py",
+      "test_migration_generator.py",
+      "test_supabase_sync.py",
+      "test_scaffold_optimization.py",
+      "test_monitoring_compliance.py",
+      "test_repair_system_compliance.py",
+      "test_data_sync.py",
+      "test_api_compliance.py",
+      "test_e2e.py",
+      "test_database_optimizer.py",
+      "test_field_usage_analysis.py",
+      "test_api.py",
+      "test_e2e_system.py",
+      "test_supabase_config_compliance.py",
+      "test_pytest_compliance.py",
+      "test_table_creation_compliance.py"
+    ],
+    "coverage_info": {},
+    "test_reports": [
+      {
+        "name": "pytest_report.json",
+        "size": 2493,
+        "modified": "2025-09-29T18:46:22.517567"
+      },
+      {
+        "name": "pytest_report.html",
+        "size": 50399,
+        "modified": "2025-09-29T17:58:15.188931"
+      },
+      {
+        "name": "pytest_results.xml",
+        "size": 4970,
+        "modified": "2025-09-29T17:58:15.180471"
+      },
+      {
+        "name": "cloud_testing_report.json",
+        "size": 2041,
+        "modified": "2025-09-29T17:36:40.239449"
+      }
+    ],
+    "pytest_config": "[tool:pytest]\nmarkers =\n    pytest_compliant: 标记测试为pytest合规性测试\n    slow: 标记慢速测试\n    integration: 标记集成测试\n    unit: 标记单元测试\n    contract_compliance: 标记合约合规性相关测试\n\naddopts = \n    -v\n    --tb=short\n    --strict-markers\n    --disable-warnings\n\ntestpaths = \n    .\n    tests\n\npython_files = test_*.py *_test.py\npython_classes = Test*\npython_functions = test_*\n\nfilterwarnings =\n    ignore::pytest.PytestUnknownMarkWarning\n    ignore::DeprecationWarning\n    ignore::PendingDeprecationWarning",
+    "coverage_config": "[run]\n# 源代码目录\nsource = .\n\n# 包含的文件模式\ninclude = \n    local_system/*.py\n    test_suite/*.py\n    python/*.py\n    *.py\n\n# 排除的文件模式\nomit = \n    */venv/*\n    */env/*\n    */.venv/*\n    */site-packages/*\n    */tests/*\n    */test_*\n    */__pycache__/*\n    */migrations/*\n    */node_modules/*\n    setup.py\n    conftest.py\n    */conftest.py\n\n# 并行处理\nparallel = true\n\n# 分支覆盖\nbranch = true\n\n[report]\n# 报告精度\nprecision = 2\n\n# 显示缺失的行\nshow_missing = true\n\n# 跳过覆盖的文件\nskip_covered = false\n\n# 排序方式\nsort = Cover\n\n# 排除的行\nexclude_lines =\n    pragma: no cover\n    def __repr__\n    if self.debug:\n    if settings.DEBUG\n    raise AssertionError\n    raise NotImplementedError\n    if 0:\n    if __name__ == .__main__.:\n    class .*\\bProtocol\\):\n    @(abc\\.)?abstractmethod\n\n[html]\n# HTML报告目录\ndirectory = htmlcov\n\n# 额外的CSS\nextra_css = \n\n# 标题\ntitle = PC28 System Coverage Report\n\n[xml]\n# XML报告文件\noutput = coverage.xml\n\n[json]\n# JSON报告文件\noutput = coverage.json\npretty_print = true"
+  },
+  "code_modularity": {
+    "modules": {
+      "automated_test_evidence.py": {
+        "classes": 1,
+        "functions": 9,
+        "imports": 9,
+        "lines": 413
+      },
+      "deploy_ops_system.py": {
+        "classes": 2,
+        "functions": 18,
+        "imports": 17,
+        "lines": 824
+      },
+      "test_bigquery_full_repair.py": {
+        "classes": 1,
+        "functions": 14,
+        "imports": 11,
+        "lines": 555
+      },
+      "test_monitoring_system.py": {
+        "classes": 6,
+        "functions": 22,
+        "imports": 13,
+        "lines": 412
+      },
+      "cleanup_api_references.py": {
+        "classes": 1,
+        "functions": 6,
+        "imports": 6,
+        "lines": 172
+      },
+      "test_api_connection.py": {
+        "classes": 0,
+        "functions": 1,
+        "imports": 4,
+        "lines": 80
+      },
+      "system_health_checker.py": {
+        "classes": 2,
+        "functions": 11,
+        "imports": 10,
+        "lines": 448
+      },
+      "test_optimizer.py": {
+        "classes": 0,
+        "functions": 1,
+        "imports": 5,
+        "lines": 78
+      },
+      "pc28_business_logic_fixer.py": {
+        "classes": 1,
+        "functions": 6,
+        "imports": 6,
+        "lines": 305
+      },
+      "system_monitor.py": {
+        "classes": 6,
+        "functions": 19,
+        "imports": 12,
+        "lines": 773
+      },
+      "test_performance_optimizer.py": {
+        "classes": 0,
+        "functions": 1,
+        "imports": 3,
+        "lines": 88
+      },
+      "pc28_lab_push_candidates_fixer.py": {
+        "classes": 1,
+        "functions": 8,
+        "imports": 7,
+        "lines": 385
+      },
+      "pc28_final_system_report.py": {
+        "classes": 1,
+        "functions": 14,
+        "imports": 6,
+        "lines": 704
+      },
+      "test_pc28_system.py": {
+        "classes": 1,
+        "functions": 10,
+        "imports": 12,
+        "lines": 359
+      },
+      "automated_test_evidence_2.py": {
+        "classes": 0,
+        "functions": 2,
+        "imports": 0,
+        "lines": 146
+      },
+      "health_alert_system.py": {
+        "classes": 6,
+        "functions": 27,
+        "imports": 21,
+        "lines": 889
+      },
+      "conftest.py": {
+        "classes": 0,
+        "functions": 15,
+        "imports": 6,
+        "lines": 294
+      },
+      "system_status_summary.py": {
+        "classes": 1,
+        "functions": 8,
+        "imports": 7,
+        "lines": 484
+      },
+      "consumer_protection_system.py": {
+        "classes": 9,
+        "functions": 17,
+        "imports": 12,
+        "lines": 824
+      },
+      "comprehensive_cloud_export_system.py": {
+        "classes": 1,
+        "functions": 17,
+        "imports": 10,
+        "lines": 560
+      }
+    },
+    "structure": {
+      "directories": [
+        "receipts",
+        "pc28_business_logic_tests",
+        "tools",
+        "cache",
+        "htmlcov_final",
+        "bin",
+        "python",
+        "config",
+        "production_logs",
+        "field_archives"
+      ]
+    },
+    "dependencies": {
+      "python": [
+        "PyYAML>=6.0",
+        "requests>=2.28.0",
+        "google-cloud-monitoring>=2.15.0",
+        "google-cloud-bigquery>=3.11.0",
+        "google-cloud-functions>=1.13.0",
+        "google-cloud-logging>=3.5.0",
+        "google-auth>=2.20.0",
+        "google-api-core>=2.11.0",
+        "functions-framework>=3.0.0",
+        "",
+        "# Testing dependencies",
+        "pytest>=7.4.0",
+        "pytest-cov>=4.1.0",
+        "pytest-mock>=3.11.0",
+        "pytest-html>=3.2.0",
+        "pytest-xdist>=3.3.0",
+        "unittest-xml-reporting>=3.2.0",
+        "coverage>=7.2.0",
+        "tox>=4.6.0",
+        "pytest-asyncio>=0.21.0",
+        "pytest-timeout>=2.1.0"
+      ]
+    },
+    "architecture": {
+      "config/component_config.json": "exists",
+      "sync_config.json": "exists",
+      "monitoring_config.yaml": "exists"
+    }
+  },
+  "logic_audit": {
+    "logging_system": {
+      "optimized_lottery.db": [
+        "performance_logs"
+      ],
+      "test_cloud.db": [
+        "data_flow_logs",
+        "business_logic_tests"
+      ],
+      "system_integration.db": [
+        "alert_log"
+      ],
+      "local_experiment.db": [
+        "sync_logs"
+      ],
+      "contract_compliance.db": [
+        "pytest_logs",
+        "audit_logs",
+        "compliance_logs"
+      ],
+      "test_execution_logs.db": [
+        "test_execution_logs"
+      ],
+      "pc28_logic_protection.db": [
+        "business_logic_rules",
+        "logic_test_results",
+        "logic_change_history"
+      ],
+      "realtime_cache.db": [
+        "notification_log",
+        "metrics_log"
+      ],
+      "local_sync.db": [
+        "conflict_resolution_logs"
+      ]
+    },
+    "audit_files": [
+      "automated_test_logger.py",
+      "contract_compliance_logger.py",
+      "data_audit_system.py",
+      "automated_technical_audit.py",
+      "test_data_sync_system_compliance.py",
+      "generate_pytest_compliance_report.py",
+      "smart_contract_compliance_system.py",
+      "test_database_compliance.py",
+      "automated_compliance_checker.py",
+      "test_sync_reports_compliance.py",
+      "test_data_sync_compliance.py",
+      "pytest_compliance_plugin.py",
+      "test_monitoring_compliance.py",
+      "test_repair_system_compliance.py",
+      "test_api_compliance.py",
+      "smart_contract_compliance_report.py",
+      "test_supabase_config_compliance.py",
+      "test_pytest_compliance.py",
+      "contract_compliance_logger.py",
+      "test_table_creation_compliance.py",
+      "test_monitoring_system.py",
+      "system_monitor.py",
+      "monitoring_script.py",
+      "test_monitoring_compliance.py",
+      "pc28_performance_monitor.py",
+      "monitoring_system.py"
+    ],
+    "compliance_reports": [
+      {
+        "name": "contract_compliance_report_20250929_162117.json",
+        "size": 18247,
+        "modified": "2025-09-29T16:21:17.713670"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_123101.json",
+        "size": 14395,
+        "modified": "2025-09-29T12:31:01.302291"
+      },
+      {
+        "name": "contract_compliance_report_20250929_123620.json",
+        "size": 9123,
+        "modified": "2025-09-29T12:36:20.796469"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112311.json",
+        "size": 16735,
+        "modified": "2025-09-29T11:23:11.062294"
+      },
+      {
+        "name": "contract_compliance_report_20250929_182841.json",
+        "size": 18250,
+        "modified": "2025-09-29T18:28:41.202287"
+      },
+      {
+        "name": "contract_compliance_report_20250929_151155.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:11:55.863336"
+      },
+      {
+        "name": "contract_compliance_report_20250929_145454.json",
+        "size": 18246,
+        "modified": "2025-09-29T14:54:54.210094"
+      },
+      {
+        "name": "contract_compliance_report_20250929_135756.json",
+        "size": 19666,
+        "modified": "2025-09-29T13:57:56.766724"
+      },
+      {
+        "name": "contract_compliance_report_20250929_145655.json",
+        "size": 18246,
+        "modified": "2025-09-29T14:56:55.854311"
+      },
+      {
+        "name": "contract_compliance_report_20250929_153152.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:31:52.837299"
+      },
+      {
+        "name": "contract_compliance_report_20250929_114027.json",
+        "size": 19121,
+        "modified": "2025-09-29T11:40:27.503510"
+      },
+      {
+        "name": "contract_compliance_report_20250929_154157.json",
+        "size": 18248,
+        "modified": "2025-09-29T15:41:57.127353"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112035.json",
+        "size": 6192,
+        "modified": "2025-09-29T11:20:35.657815"
+      },
+      {
+        "name": "contract_compliance_report_20250929_160648.json",
+        "size": 18249,
+        "modified": "2025-09-29T16:06:48.639407"
+      },
+      {
+        "name": "contract_compliance_report_20250929_113809.json",
+        "size": 19386,
+        "modified": "2025-09-29T11:38:09.768387"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112916.json",
+        "size": 18514,
+        "modified": "2025-09-29T11:29:16.191747"
+      },
+      {
+        "name": "contract_compliance_report_20250929_144730.json",
+        "size": 18247,
+        "modified": "2025-09-29T14:47:30.787452"
+      },
+      {
+        "name": "contract_compliance_report_20250929_144209.json",
+        "size": 18247,
+        "modified": "2025-09-29T14:42:09.810978"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_123157.json",
+        "size": 9706,
+        "modified": "2025-09-29T12:31:57.465271"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_111938.json",
+        "size": 3808,
+        "modified": "2025-09-29T11:19:38.956308"
+      },
+      {
+        "name": "contract_compliance_report_20250929_153656.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:36:56.742063"
+      },
+      {
+        "name": "contract_compliance_report_20250929_120728.json",
+        "size": 18247,
+        "modified": "2025-09-29T12:07:28.261455"
+      },
+      {
+        "name": "contract_compliance_report_20250929_121640.json",
+        "size": 18247,
+        "modified": "2025-09-29T12:16:40.618132"
+      },
+      {
+        "name": "contract_compliance_report_20250929_142155.json",
+        "size": 18244,
+        "modified": "2025-09-29T14:21:55.975078"
+      },
+      {
+        "name": "contract_compliance_report_20250929_181733.json",
+        "size": 18249,
+        "modified": "2025-09-29T18:17:33.471965"
+      },
+      {
+        "name": "contract_compliance_report_20250929_155653.json",
+        "size": 18249,
+        "modified": "2025-09-29T15:56:53.047533"
+      },
+      {
+        "name": "contract_compliance_report_20250929_151651.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:16:51.668489"
+      },
+      {
+        "name": "contract_compliance_report_20250929_144424.json",
+        "size": 18248,
+        "modified": "2025-09-29T14:44:24.652614"
+      },
+      {
+        "name": "contract_compliance_report_20250929_181206.json",
+        "size": 18249,
+        "modified": "2025-09-29T18:12:06.124251"
+      },
+      {
+        "name": "contract_compliance_report_20250929_121836.json",
+        "size": 18247,
+        "modified": "2025-09-29T12:18:36.832084"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_115035.json",
+        "size": 14455,
+        "modified": "2025-09-29T11:50:35.631087"
+      },
+      {
+        "name": "contract_compliance_report_20250929_143158.json",
+        "size": 18244,
+        "modified": "2025-09-29T14:31:58.314856"
+      },
+      {
+        "name": "contract_compliance_report_20250929_164552.json",
+        "size": 18250,
+        "modified": "2025-09-29T16:45:52.396989"
+      },
+      {
+        "name": "contract_compliance_report_20250929_150221.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:02:21.362871"
+      },
+      {
+        "name": "contract_compliance_report_20250929_123021.json",
+        "size": 18247,
+        "modified": "2025-09-29T12:30:21.096227"
+      },
+      {
+        "name": "contract_compliance_report_20250929_170052.json",
+        "size": 18249,
+        "modified": "2025-09-29T17:00:52.202400"
+      },
+      {
+        "name": "contract_compliance_report_20250929_114104.json",
+        "size": 18246,
+        "modified": "2025-09-29T11:41:04.091597"
+      },
+      {
+        "name": "contract_compliance_report_20250929_165552.json",
+        "size": 18250,
+        "modified": "2025-09-29T16:55:52.364827"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_112933.json",
+        "size": 12913,
+        "modified": "2025-09-29T11:29:33.573766"
+      },
+      {
+        "name": "contract_compliance_report_20250929_161116.json",
+        "size": 18249,
+        "modified": "2025-09-29T16:11:16.510844"
+      },
+      {
+        "name": "contract_compliance_report_20250929_142656.json",
+        "size": 18244,
+        "modified": "2025-09-29T14:26:56.947124"
+      },
+      {
+        "name": "contract_compliance_report_20250929_114523.json",
+        "size": 18246,
+        "modified": "2025-09-29T11:45:23.438878"
+      },
+      {
+        "name": "contract_compliance_report_20250929_152154.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:21:54.364265"
+      },
+      {
+        "name": "contract_compliance_report_20250929_143657.json",
+        "size": 18245,
+        "modified": "2025-09-29T14:36:57.633590"
+      },
+      {
+        "name": "contract_compliance_report_20250929_150651.json",
+        "size": 18248,
+        "modified": "2025-09-29T15:06:51.191715"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112118.json",
+        "size": 9706,
+        "modified": "2025-09-29T11:21:18.136640"
+      },
+      {
+        "name": "contract_compliance_report_20250929_141653.json",
+        "size": 19119,
+        "modified": "2025-09-29T14:16:53.832982"
+      },
+      {
+        "name": "contract_compliance_report_20250929_111958.json",
+        "size": 4401,
+        "modified": "2025-09-29T11:19:58.321852"
+      },
+      {
+        "name": "contract_compliance_report_20250929_115825.json",
+        "size": 18246,
+        "modified": "2025-09-29T11:58:25.959727"
+      },
+      {
+        "name": "contract_compliance_report_20250929_120045.json",
+        "size": 18246,
+        "modified": "2025-09-29T12:00:45.834284"
+      },
+      {
+        "name": "contract_compliance_report_20250929_170552.json",
+        "size": 18249,
+        "modified": "2025-09-29T17:05:52.255858"
+      },
+      {
+        "name": "contract_compliance_report_20250929_113705.json",
+        "size": 19386,
+        "modified": "2025-09-29T11:37:05.734827"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_114535.json",
+        "size": 14401,
+        "modified": "2025-09-29T11:45:35.922797"
+      },
+      {
+        "name": "contract_compliance_report_20250929_154021.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:40:21.691709"
+      },
+      {
+        "name": "contract_compliance_report_20250929_181642.json",
+        "size": 18249,
+        "modified": "2025-09-29T18:16:42.121576"
+      },
+      {
+        "name": "contract_compliance_report_20250929_165053.json",
+        "size": 18250,
+        "modified": "2025-09-29T16:50:53.230477"
+      },
+      {
+        "name": "contract_compliance_report_20250929_113856.json",
+        "size": 19121,
+        "modified": "2025-09-29T11:38:56.018668"
+      },
+      {
+        "name": "contract_compliance_report_20250929_161616.json",
+        "size": 18250,
+        "modified": "2025-09-29T16:16:16.107830"
+      },
+      {
+        "name": "contract_compliance_report_20250929_164052.json",
+        "size": 18247,
+        "modified": "2025-09-29T16:40:52.653275"
+      },
+      {
+        "name": "contract_compliance_report_20250929_115218.json",
+        "size": 18246,
+        "modified": "2025-09-29T11:52:18.388316"
+      },
+      {
+        "name": "contract_compliance_report_20250929_154651.json",
+        "size": 18248,
+        "modified": "2025-09-29T15:46:51.141376"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112158.json",
+        "size": 13219,
+        "modified": "2025-09-29T11:21:58.856701"
+      },
+      {
+        "name": "contract_compliance_report_20250929_150151.json",
+        "size": 18246,
+        "modified": "2025-09-29T15:01:51.194662"
+      },
+      {
+        "name": "contract_compliance_report_20250929_155304.json",
+        "size": 18248,
+        "modified": "2025-09-29T15:53:04.530036"
+      },
+      {
+        "name": "contract_compliance_report_20250929_163051.json",
+        "size": 18247,
+        "modified": "2025-09-29T16:30:52.000109"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_115226.json",
+        "size": 14477,
+        "modified": "2025-09-29T11:52:26.225620"
+      },
+      {
+        "name": "contract_compliance_report_20250929_163552.json",
+        "size": 18247,
+        "modified": "2025-09-29T16:35:52.127026"
+      },
+      {
+        "name": "contract_compliance_report_20250929_162553.json",
+        "size": 18247,
+        "modified": "2025-09-29T16:25:53.307746"
+      },
+      {
+        "name": "contract_compliance_report_20250929_115028.json",
+        "size": 18245,
+        "modified": "2025-09-29T11:50:28.548817"
+      },
+      {
+        "name": "contract_compliance_report_20250929_152653.json",
+        "size": 18247,
+        "modified": "2025-09-29T15:26:53.717138"
+      },
+      {
+        "name": "contract_compliance_report_20250929_115659.json",
+        "size": 18246,
+        "modified": "2025-09-29T11:56:59.192347"
+      },
+      {
+        "name": "contract_compliance_report_20250929_130940.json",
+        "size": 12637,
+        "modified": "2025-09-29T13:09:40.938106"
+      },
+      {
+        "name": "contract_compliance_report_20250929_145154.json",
+        "size": 18246,
+        "modified": "2025-09-29T14:51:54.311177"
+      },
+      {
+        "name": "contract_compliance_report_20250929_131813.json",
+        "size": 16152,
+        "modified": "2025-09-29T13:18:13.663769"
+      },
+      {
+        "name": "contract_compliance_report_20250929_113831.json",
+        "size": 19389,
+        "modified": "2025-09-29T11:38:31.749748"
+      },
+      {
+        "name": "contract_compliance_report_20250929_120717.json",
+        "size": 18247,
+        "modified": "2025-09-29T12:07:17.076220"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_115817.json",
+        "size": 14477,
+        "modified": "2025-09-29T11:58:17.359116"
+      },
+      {
+        "name": "pytest_compliance_report_20250929_114119.json",
+        "size": 14363,
+        "modified": "2025-09-29T11:41:19.795588"
+      },
+      {
+        "name": "smart_contract_compliance_report_20250929_143849.json",
+        "size": 5252,
+        "modified": "2025-09-29T14:38:49.929058"
+      },
+      {
+        "name": "contract_compliance_report_20250929_112851.json",
+        "size": 18247,
+        "modified": "2025-09-29T11:28:51.409410"
+      },
+      {
+        "name": "contract_compliance_report_20250929_160152.json",
+        "size": 18249,
+        "modified": "2025-09-29T16:01:52.563534"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_112933.txt",
+        "size": 772,
+        "modified": "2025-09-29T11:29:33.573881"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_123157.txt",
+        "size": 725,
+        "modified": "2025-09-29T12:31:57.465347"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_115817.txt",
+        "size": 771,
+        "modified": "2025-09-29T11:58:17.359224"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_115035.txt",
+        "size": 771,
+        "modified": "2025-09-29T11:50:35.631345"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_111938.txt",
+        "size": 726,
+        "modified": "2025-09-29T11:19:38.956389"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_115226.txt",
+        "size": 771,
+        "modified": "2025-09-29T11:52:26.225733"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_114535.txt",
+        "size": 771,
+        "modified": "2025-09-29T11:45:35.922920"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_114119.txt",
+        "size": 770,
+        "modified": "2025-09-29T11:41:19.795909"
+      },
+      {
+        "name": "pytest_compliance_summary_20250929_123101.txt",
+        "size": 771,
+        "modified": "2025-09-29T12:31:01.302583"
+      },
+      {
+        "name": "technical_audit_report_20250929_152803.json",
+        "size": 3404,
+        "modified": "2025-09-29T15:28:03.914474"
+      }
+    ],
+    "monitoring_systems": [
+      "monitoring_system.py",
+      "system_monitor.py",
+      "health_alert_system.py",
+      "monitoring/system_monitor.py"
+    ]
+  },
+  "supabase_integration": {
+    "integration_files": [
+      "supabase_sync_manager.py",
+      "simple_supabase_test.py",
+      "test_supabase_sync.py",
+      "test_supabase_config_compliance.py",
+      "supabase_config.py",
+      "supabase_sync_manager.py",
+      "test_data_sync_system_compliance.py",
+      "cloud_to_local_sync_system.py",
+      "test_sync_reports_compliance.py",
+      "test_data_sync_compliance.py",
+      "test_supabase_sync.py",
+      "sync_execution_script.py",
+      "incremental_sync_system.py",
+      "cloud_to_local_sync.py",
+      "test_data_sync.py",
+      "cloud_automated_testing.py",
+      "cloud_to_local_sync_system.py",
+      "cloud_export_status_checker.py",
+      "cloud_export_verification.py",
+      "cloud_production_repair.py",
+      "cloud_production_system.py",
+      "cloud_to_local_sync.py",
+      "cloud_data_repair_system.py"
+    ],
+    "sync_system": {
+      "config": "configured",
+      "supabase_sync_manager.py": "exists",
+      "incremental_sync_system.py": "exists",
+      "cloud_to_local_sync.py": "exists"
+    },
+    "cloud_systems": [
+      "cloud_production_system.py",
+      "cloud_data_repair_system.py",
+      "cloud_automated_testing.py"
+    ],
+    "database_sync": {
+      "metrics": {
+        "last_sync_time": "2025-09-29T18:12:13.870756",
+        "total_records_synced": 20,
+        "sync_success_count": 2,
+        "sync_error_count": 0,
+        "last_error_message": null,
+        "data_consistency_score": 1.0,
+        "sync_duration_seconds": 0.0018801689147949219
+      }
+    }
+  },
+  "timestamp": "2025-09-29T19:01:26.966856"
+}
