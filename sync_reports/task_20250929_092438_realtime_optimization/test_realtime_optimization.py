@@ -65,10 +65,10 @@ class TestSmartRealtimeOptimizer:
         """优化器配置"""
         return PollingConfig(
             normal_interval=60,
-            pre_draw_interval=10,
-            draw_time_interval=3,
-            post_draw_interval=5,
-            pre_draw_threshold=30
+            approaching_interval=10,
+            critical_interval=3,
+            immediate_interval=5,
+            approaching_threshold=30
         )
     
     @pytest.fixture

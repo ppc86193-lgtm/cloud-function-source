@@ -477,4 +477,5 @@ def main():
     else:
         print("⚠️ 字段优化部分失败，请检查日志")
 
-if __name__ == "__main
+if __name__ == "__main__":
+    main()
