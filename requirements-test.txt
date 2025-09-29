@@ -1,0 +1,41 @@
+# Testing Dependencies
+# 测试相关依赖包
+
+# Core Testing Framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-html>=3.2.0
+pytest-timeout>=2.1.0
+pytest-xdist>=3.3.0  # 并行测试
+pytest-mock>=3.11.0  # Mock支持
+pytest-env>=0.8.0  # 环境变量管理
+
+# Code Quality
+black>=23.0.0  # 代码格式化
+flake8>=6.0.0  # 代码检查
+isort>=5.12.0  # import排序
+mypy>=1.4.0  # 类型检查
+pylint>=2.17.0  # 代码分析
+
+# Security
+bandit>=1.7.0  # 安全检查
+safety>=2.3.0  # 依赖安全检查
+
+# Coverage
+coverage>=7.2.0
+coverage-badge>=1.1.0
+
+# Documentation
+sphinx>=6.0.0
+sphinx-rtd-theme>=1.2.0
+
+# Utilities
+python-dotenv>=1.0.0  # 环境变量管理
+colorama>=0.4.6  # 彩色输出
+tabulate>=0.9.0  # 表格输出
+click>=8.1.0  # CLI工具
+
+# Development
+ipython>=8.14.0
+ipdb>=0.13.0
+pre-commit>=3.3.0  # Git钩子管理

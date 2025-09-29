@@ -1,0 +1,190 @@
+name: Python Test and Audit
+
+on:
+  push:
+    branches: [ main, develop, feature/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov pytest-html pytest-timeout
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+    
+    - name: Create logs directory
+      run: mkdir -p logs
+    
+    - name: Run tests with coverage
+      run: |
+        pytest -v \
+          --log-cli-level=INFO \
+          --log-file=logs/result.log \
+          --log-file-level=DEBUG \
+          --cov=. \
+          --cov-report=term-missing \
+          --cov-report=html:htmlcov \
+          --cov-report=xml \
+          --html=logs/report.html \
+          --self-contained-html \
+          --timeout=300
+      continue-on-error: true
+    
+    - name: Display test results summary
+      run: |
+        echo "Test Results Summary:"
+        tail -n 50 logs/result.log
+    
+    - name: Run audit script
+      run: |
+        python audit_test_log.py
+      continue-on-error: true
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-${{ matrix.python-version }}
+        path: |
+          logs/result.log
+          logs/report.html
+          audit_report.json
+          audit_report.log
+        retention-days: 30
+    
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: coverage-report-${{ matrix.python-version }}
+        path: |
+          htmlcov/
+          coverage.xml
+        retention-days: 30
+    
+    - name: Coverage Comment
+      uses: py-cov-action/python-coverage-comment-action@v3
+      if: github.event_name == 'pull_request'
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MINIMUM_GREEN: 80
+        MINIMUM_ORANGE: 60
+    
+    - name: Check test results
+      run: |
+        # 检查是否有失败的测试
+        if grep -q "FAILED" logs/result.log; then
+          echo "❌ Tests failed!"
+          exit 1
+        fi
+        
+        # 检查审计结果
+        if [ -f audit_report.json ]; then
+          status=$(python -c "import json; data=json.load(open('audit_report.json')); print(data.get('status', 'unknown'))")
+          if [ "$status" != "passed" ]; then
+            echo "❌ Audit failed with status: $status"
+            exit 1
+          fi
+        fi
+        
+        echo "✅ All tests and audits passed!"
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 black isort mypy
+    
+    - name: Run Black formatter check
+      run: |
+        black --check --diff .
+      continue-on-error: true
+    
+    - name: Run isort import sorting check
+      run: |
+        isort --check-only --diff .
+      continue-on-error: true
+    
+    - name: Run Flake8 linting
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      continue-on-error: true
+    
+    - name: Run MyPy type checking
+      run: |
+        mypy . --ignore-missing-imports
+      continue-on-error: true
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+    
+    - name: Run Bandit security linting
+      run: |
+        bandit -r . -f json -o bandit-report.json
+      continue-on-error: true
+    
+    - name: Run Safety dependency check
+      run: |
+        safety check --json > safety-report.json
+      continue-on-error: true
+    
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+        retention-days: 30

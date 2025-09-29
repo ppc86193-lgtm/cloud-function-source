@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-09-29T20:12:11.629957",
+  "log_path": "logs/result.log",
+  "status": "error",
+  "details": {
+    "test_files_count": 24,
+    "test_files": [
+      "tests/test_simple.py",
+      "tests/test_data_flow_system.py",
+      "tests/test_example.py",
+      "tests/unit/test_monitoring_system.py",
+      "tests/unit/test_api_connection.py",
+      "tests/unit/test_optimizer.py",
+      "tests/unit/test_performance_optimizer.py",
+      "tests/unit/test_data_processing.py",
+      "tests/unit/test_database_compliance.py",
+      "tests/unit/test_data_quality_system.py",
+      "tests/unit/test_suite_manager.py",
+      "tests/unit/test_migration_generator.py",
+      "tests/unit/test_database_optimizer.py",
+      "tests/unit/test_field_usage_analysis.py",
+      "tests/unit/test_table_creation_compliance.py",
+      "tests/integration/test_bigquery_full_repair.py",
+      "tests/integration/test_data_sync_system_compliance.py",
+      "tests/integration/test_sync_reports_compliance.py",
+      "tests/integration/test_api_integration.py",
+      "tests/integration/test_data_sync.py",
+      "tests/e2e/test_pc28_system.py",
+      "tests/e2e/test_ops_system.py",
+      "tests/e2e/test_e2e.py",
+      "tests/e2e/test_e2e_system.py"
+    ],
+    "pytest_configs": [
+      "pytest.ini"
+    ],
+    "log_exists": true,
+    "has_failures": true,
+    "failed_tests": [
+      "ERROR    supabase_sync_manager:supabase_sync_manager.py:380 Full sync failed for runtime_params: {'message': 'column runtime_params.id does not exist', 'code': '42703', 'hint': None, 'details': None}",
+      "INFO     supabase_sync_manager:supabase_sync_manager.py:176 Updated sync status for runtime_params: failed",
+      "2025-09-29 20:12:10 - supabase_sync_manager - ERROR - supabase_sync_manager.py:380 - Full sync failed for runtime_params: {'message': 'column runtime_params.id does not exist', 'code': '42703', 'hint': None, 'details': None}",
+      "2025-09-29 20:12:11 - supabase_sync_manager - INFO - supabase_sync_manager.py:176 - Updated sync status for runtime_params: failed"
+    ],
+    "error": "cannot access local variable 're' where it is not associated with a value"
+  }
+}

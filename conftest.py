@@ -6,18 +6,50 @@ pytest配置文件 - 强制执行pytest合规性
 import pytest
 import sys
 import os
+import json
+from pathlib import Path
 from contract_compliance_logger import ContractComplianceLogger, ContractViolationType, ViolationSeverity
 from pytest_compliance_plugin import PytestCompliancePlugin
 import logging
+from datetime import datetime
 
-logger = logging.getLogger(__name__)
+# 确保日志目录存在
+logs_dir = Path(__file__).parent / "logs"
+logs_dir.mkdir(exist_ok=True)
+
+# 尝试导入增强配置
+try:
+    from tests.pytest_config import setup_logging, log_test_metadata
+    logger = setup_logging()
+    logger.info("增强日志系统已启用")
+except ImportError:
+    # 如果增强配置不可用，使用基础配置
+    logging.basicConfig(
+        level=logging.DEBUG,  # 设置为DEBUG以捕获所有日志
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(logs_dir / 'result.log', mode='a', encoding='utf-8'),  # 追加模式写入文件
+            logging.StreamHandler()  # 同时输出到控制台
+        ]
+    )
+    logger = logging.getLogger(__name__)
 
 # 全局合规性检查器
 compliance_logger = ContractComplianceLogger()
 
 def pytest_configure(config):
-    """pytest配置 - 强制合规性检查"""
+    """pytest配置 - 强制合规性检查和增强日志集成"""
     try:
+        # 记录测试开始时间和元数据
+        logger.info("="*80)
+        logger.info("PYTEST 测试会话开始 - 增强日志系统")
+        logger.info(f"pytest测试开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info(f"配置文件: {__file__}")
+        logger.info(f"工作目录: {os.getcwd()}")
+        logger.info(f"Python版本: {sys.version}")
+        logger.info(f"用户: {os.environ.get('USER', 'unknown')}")
+        logger.info("="*80)
+        
         # 验证这是真正的pytest执行
         if not _is_genuine_pytest_execution():
             raise ValueError("❌ 严重违规：检测到非pytest执行尝试")
@@ -35,7 +67,20 @@ def pytest_configure(config):
             config._compliance_plugin = PytestCompliancePlugin()
             config.pluginmanager.register(config._compliance_plugin, "compliance_plugin")
         
+        # 设置pytest日志捕获
+        config.option.log_cli = True
+        config.option.log_cli_level = "DEBUG"
+        config.option.log_file = str(logs_dir / "result.log")
+        config.option.log_file_level = "DEBUG"
+        
+        # 添加自定义标记
+        config.addinivalue_line("markers", "unit: 单元测试")
+        config.addinivalue_line("markers", "integration: 集成测试")
+        config.addinivalue_line("markers", "e2e: 端到端测试")
+        config.addinivalue_line("markers", "pytest_compliant: pytest合规性标记")
+        
         logger.info("✅ pytest合规性配置完成 - 只认可pytest自动化日志")
+        logger.info(f"日志输出路径: {logs_dir / 'result.log'}")
         
     except Exception as e:
         logger.error(f"pytest配置失败: {e}")
@@ -106,22 +151,38 @@ def pytest_runtest_setup(item):
         _log_setup_violation(item.nodeid, str(e))
 
 def pytest_sessionfinish(session, exitstatus):
-    """pytest会话结束 - 生成合规性报告"""
+    """pytest会话结束 - 生成合规性报告和增强日志汇总"""
     try:
         # 记录会话结束
-        compliance_logger._log_audit_operation(
-            operation_type="PYTEST_SESSION_FINISH",
-            operation_details=f"pytest会话结束 - 退出状态: {exitstatus}",
-            operator="PYTEST_AUTO_SYSTEM",
-            pytest_context=True
-        )
+        try:
+            compliance_logger._log_audit_operation(
+                operation_type="PYTEST_SESSION_FINISH",
+                operation_details=f"pytest会话结束 - 退出状态: {exitstatus}",
+                operator="PYTEST_AUTO_SYSTEM",
+                pytest_context=True
+            )
+        except (ValueError, OSError) as e:
+            # 忽略文件已关闭的错误
+            if "closed file" not in str(e):
+                print(f"日志记录失败: {e}")
         
         # 生成合规性报告
         _generate_compliance_report(session, exitstatus)
         
+        # 记录测试结束信息和汇总
+        logger.info("="*80)
+        logger.info("PYTEST 测试会话结束 - 增强日志汇总")
+        logger.info(f"pytest测试结束时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info(f"退出状态码: {exitstatus}")
+        logger.info(f"测试状态: {'成功' if exitstatus == 0 else '失败'}")
+        logger.info("="*80)
         logger.info("✅ pytest会话结束 - 合规性报告已生成")
         
+        print("✅ pytest会话结束 - 合规性报告已生成")
+        print(f"完整日志已保存到: {logs_dir / 'result.log'}")
+        
     except Exception as e:
+        print(f"pytest会话结束处理失败: {e}")
         logger.error(f"pytest会话结束处理失败: {e}")
 
 def _is_genuine_pytest_execution() -> bool:
@@ -271,7 +332,7 @@ def _log_setup_violation(test_name: str, error_message: str):
         logger.error(f"记录设置违规失败: {e}")
 
 def _generate_compliance_report(session, exitstatus):
-    """生成合规性报告"""
+    """生成增强合规性报告"""
     try:
         report_data = {
             'session_id': id(session),
@@ -280,8 +341,17 @@ def _generate_compliance_report(session, exitstatus):
             'python_version': sys.version,
             'working_directory': os.getcwd(),
             'command_line': ' '.join(sys.argv),
-            'compliance_status': 'COMPLIANT' if exitstatus == 0 else 'NON_COMPLIANT'
+            'compliance_status': 'COMPLIANT' if exitstatus == 0 else 'NON_COMPLIANT',
+            'timestamp': datetime.now().isoformat(),
+            'user': os.environ.get('USER', 'unknown'),
+            'log_file': str(logs_dir / 'result.log')
         }
+        
+        # 保存JSON格式的报告
+        report_file = logs_dir / f"compliance_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        with open(report_file, 'w', encoding='utf-8') as f:
+            json.dump(report_data, f, indent=2, ensure_ascii=False)
+        logger.info(f"合规性报告已保存到: {report_file}")
         
         compliance_logger._log_audit_operation(
             operation_type="PYTEST_COMPLIANCE_REPORT",
