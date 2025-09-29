@@ -9,6 +9,10 @@ from typing import Optional, Dict, Any
 from supabase import create_client, Client
 from datetime import datetime
 import json
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -80,8 +84,8 @@ class SupabaseConnectionManager:
             连接测试结果
         """
         try:
-            # 测试基本连接
-            response = self.client.table('_test_connection').select('*').limit(1).execute()
+            # 测试基本连接 - 使用现有的表
+            response = self.client.table('users').select('id').limit(1).execute()
             
             result = {
                 'status': 'success',

@@ -177,14 +177,14 @@ class CloudSyncManager:
                 if last_sync:
                     query = f"""
                         SELECT * FROM `{cloud_table}`
-                        WHERE created_at > '{last_sync}'
+                        WHERE created_at > TIMESTAMP('{last_sync}')
                         ORDER BY created_at
                     """
                 else:
                     # 如果没有同步记录，获取最近24小时的数据
                     query = f"""
                         SELECT * FROM `{cloud_table}`
-                        WHERE created_at >= DATETIME_SUB(CURRENT_DATETIME(), INTERVAL 24 HOUR)
+                        WHERE created_at >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR)
                         ORDER BY created_at
                     """
             else:
@@ -194,10 +194,29 @@ class CloudSyncManager:
             query_job = self.bq_client.query(query)
             results = query_job.result()
             
-            # 转换为字典列表
+            # 转换为字典列表，处理数据类型转换
             cloud_data = []
             for row in results:
-                cloud_data.append(dict(row))
+                row_dict = dict(row)
+                # 处理特殊数据类型转换
+                for key, value in row_dict.items():
+                    if value is not None:
+                        # 将datetime对象转换为字符串
+                        if hasattr(value, 'strftime'):
+                            row_dict[key] = value.strftime('%Y-%m-%d %H:%M:%S')
+                        # 将date对象转换为字符串
+                        elif hasattr(value, 'isoformat') and hasattr(value, 'year'):
+                            row_dict[key] = value.strftime('%Y-%m-%d %H:%M:%S') if hasattr(value, 'hour') else value.strftime('%Y-%m-%d') + ' 00:00:00'
+                        # 将int转换为float（为了兼容SQLite的REAL类型）
+                        elif isinstance(value, int) and key in ['period']:
+                            row_dict[key] = float(value)
+                        # 将Decimal转换为float
+                        elif hasattr(value, '__float__'):
+                            try:
+                                row_dict[key] = float(value)
+                            except (ValueError, TypeError):
+                                row_dict[key] = str(value)
+                cloud_data.append(row_dict)
             
             if not cloud_data:
                 logger.info(f"云端表 {table_name} 无新数据")

@@ -33,14 +33,14 @@ class SupabaseSyncManager:
             'sync_mode': 'incremental'
         },
         'cloud_pred_today_norm': {
-            'primary_key': 'draw_id',
+            'primary_key': 'id',
             'timestamp_column': 'created_at',
             'batch_size': 1000,
             'sync_mode': 'incremental'
         },
         'signal_pool_union_v3': {
-            'primary_key': 'signal_id',
-            'timestamp_column': 'last_seen',
+            'primary_key': 'id',
+            'timestamp_column': 'created_at',  # 修正时间戳列
             'batch_size': 500,
             'sync_mode': 'incremental'
         },
@@ -246,11 +246,18 @@ class SupabaseSyncManager:
                             postgres_type = data_type_mapper.map_sqlite_type(schema[column])
                             converted_row[column] = data_type_mapper.convert_value(value, postgres_type)
                         else:
-                            converted_row[column] = value
+                            # 处理 datetime 对象的 JSON 序列化
+                            if isinstance(value, datetime):
+                                converted_row[column] = value.isoformat()
+                            else:
+                                converted_row[column] = value
                     
-                    # 添加同步元数据
-                    converted_row['sync_source'] = 'sqlite'
-                    converted_row['sync_timestamp'] = datetime.now().isoformat()
+                    # 只为支持同步元数据的表添加这些字段
+                    # 检查表是否有这些列
+                    if 'sync_source' in schema or table_name in ['sync_status', 'system_logs']:
+                        converted_row['sync_source'] = 'sqlite'
+                    if 'sync_timestamp' in schema or table_name in ['sync_status', 'system_logs']:
+                        converted_row['sync_timestamp'] = datetime.now().isoformat()
                     
                     batch_data.append(converted_row)
                     
@@ -299,9 +306,15 @@ class SupabaseSyncManager:
         try:
             table_config = self.CORE_TABLES.get(table_name, {})
             batch_size = table_config.get('batch_size', 1000)
+            primary_key = table_config.get('primary_key', 'id')
             
-            # 清空目标表
-            self.supabase_client.table(table_name).delete().neq('id', '00000000-0000-0000-0000-000000000000').execute()
+            # 清空目标表 - 根据主键类型使用不同的清空策略
+            if primary_key == 'id' and table_name == 'cloud_pred_today_norm':
+                # 对于自增ID，使用不等于0的条件
+                self.supabase_client.table(table_name).delete().neq(primary_key, 0).execute()
+            else:
+                # 对于其他类型的主键，使用字符串条件
+                self.supabase_client.table(table_name).delete().neq(primary_key, '00000000-0000-0000-0000-000000000000').execute()
             logger.info(f"Cleared existing data in {table_name}")
             
             # 从 SQLite 读取所有数据
@@ -327,11 +340,18 @@ class SupabaseSyncManager:
                             postgres_type = data_type_mapper.map_sqlite_type(schema[column])
                             converted_row[column] = data_type_mapper.convert_value(value, postgres_type)
                         else:
-                            converted_row[column] = value
+                            # 处理 datetime 对象的 JSON 序列化
+                            if isinstance(value, datetime):
+                                converted_row[column] = value.isoformat()
+                            else:
+                                converted_row[column] = value
                     
-                    # 添加同步元数据
-                    converted_row['sync_source'] = 'sqlite'
-                    converted_row['sync_timestamp'] = datetime.now().isoformat()
+                    # 只为支持同步元数据的表添加这些字段
+                    # 检查表是否有这些列
+                    if 'sync_source' in schema or table_name in ['sync_status', 'system_logs']:
+                        converted_row['sync_source'] = 'sqlite'
+                    if 'sync_timestamp' in schema or table_name in ['sync_status', 'system_logs']:
+                        converted_row['sync_timestamp'] = datetime.now().isoformat()
                     
                     batch_data.append(converted_row)
                     
@@ -398,7 +418,15 @@ class SupabaseSyncManager:
         
         for record in records:
             try:
-                self.supabase_client.table(table_name).upsert([record]).execute()
+                # 处理 datetime 对象的 JSON 序列化
+                processed_record = {}
+                for key, value in record.items():
+                    if isinstance(value, datetime):
+                        processed_record[key] = value.isoformat()
+                    else:
+                        processed_record[key] = value
+                
+                self.supabase_client.table(table_name).upsert([processed_record]).execute()
                 successful_inserts += 1
             except Exception as e:
                 failed_inserts += 1

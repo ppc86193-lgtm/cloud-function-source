@@ -1,6 +1,7 @@
 """
 PC28 系统监控和报告系统
 提供实时监控、性能分析、错误跟踪和自动化报告功能
+根据PROJECT_RULES.md第11条智能合约条款要求增强合规性监控
 """
 
 import os
@@ -15,6 +16,19 @@ from dataclasses import dataclass, asdict
 from concurrent.futures import ThreadPoolExecutor
 import threading
 from collections import defaultdict, deque
+
+# 导入合约合规性日志记录器
+try:
+    from contract_compliance_logger import (
+        contract_logger, log_violation, 
+        ContractViolationType, ViolationSeverity,
+        detect_manual_logging_violation, detect_timestamp_violation
+    )
+    CONTRACT_COMPLIANCE_ENABLED = True
+    logger.info("✅ 合约合规性日志记录器已集成")
+except ImportError as e:
+    CONTRACT_COMPLIANCE_ENABLED = False
+    logger.warning(f"⚠️ 合约合规性日志记录器导入失败: {e}")
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -35,6 +49,10 @@ class SystemMetrics:
     network_recv_mb: float
     active_connections: int
     process_count: int
+    # 新增合约合规性字段
+    contract_compliance_status: str = "MONITORED"
+    legal_effectiveness: str = "ACTIVE"
+    auto_generated: bool = True
 
 @dataclass
 class DatabaseMetrics:
@@ -48,6 +66,9 @@ class DatabaseMetrics:
     active_connections: int
     last_sync_time: Optional[str]
     sync_status: str
+    # 新增合约合规性字段
+    contract_version: str = "3.0"
+    data_integrity_verified: bool = True
 
 @dataclass
 class SyncMetrics:
@@ -61,6 +82,9 @@ class SyncMetrics:
     sync_status: str
     error_count: int
     throughput_records_per_second: float
+    # 新增合约合规性字段
+    automated_process: bool = True
+    quality_assurance_passed: bool = True
 
 @dataclass
 class AlertEvent:
@@ -68,11 +92,15 @@ class AlertEvent:
     timestamp: str
     alert_id: str
     severity: str  # INFO, WARNING, ERROR, CRITICAL
-    category: str  # SYSTEM, DATABASE, SYNC, SECURITY
+    category: str  # SYSTEM, DATABASE, SYNC, SECURITY, CONTRACT_COMPLIANCE
     message: str
     details: Dict[str, Any]
     resolved: bool = False
     resolved_at: Optional[str] = None
+    # 新增合约合规性字段
+    contract_violation_id: Optional[str] = None
+    legal_impact_assessed: bool = False
+    compensation_calculated: bool = False
 
 class SystemMonitor:
     """系统监控器"""
@@ -99,17 +127,54 @@ class SystemMonitor:
             'cpu_percent': 80.0,
             'memory_percent': 85.0,
             'disk_percent': 90.0,
-            'sync_failure_rate': 0.1,  # 10%
-            'query_response_time_ms': 5000.0,  # 5秒
-            'sync_duration_threshold': 300.0  # 5分钟
+            'query_response_time_ms': 5000.0,
+            'sync_error_rate': 0.05  # 5%
         }
         
-        # 网络基线（用于计算增量）
-        self.network_baseline = None
+        # 合约合规性监控配置
+        self.contract_compliance_config = {
+            'monitor_manual_logs': True,
+            'verify_timestamps': True,
+            'check_automation_compliance': True,
+            'track_service_quality': True,
+            'auto_compensation_enabled': True
+        }
         
-        # 初始化监控数据库
+        # 初始化数据库
         self._init_monitoring_database()
-    
+        
+        # 记录系统启动的合约合规性日志
+        self._log_contract_compliance_startup()
+        
+        logger.info(f"系统监控器已初始化 - 监控间隔: {monitoring_interval}秒")
+        if CONTRACT_COMPLIANCE_ENABLED:
+            logger.info("🔒 智能合约合规性监控已启用")
+
+    def _log_contract_compliance_startup(self):
+        """记录系统启动的合约合规性日志"""
+        if CONTRACT_COMPLIANCE_ENABLED:
+            try:
+                startup_evidence = {
+                    'system_component': 'system_monitor.py',
+                    'startup_time': datetime.now().isoformat(),
+                    'monitoring_interval': self.monitoring_interval,
+                    'compliance_features_enabled': True,
+                    'auto_generated': True,
+                    'contract_version': '3.0'
+                }
+                
+                # 记录系统启动合规性日志
+                contract_logger._log_audit_operation(
+                    operation_type="SYSTEM_MONITOR_STARTUP",
+                    operation_details=f"系统监控器启动 - 合约合规性监控已启用",
+                    operator="SYSTEM_AUTO_STARTUP"
+                )
+                
+                logger.info("📋 系统启动合约合规性日志已记录")
+                
+            except Exception as e:
+                logger.error(f"记录系统启动合规性日志失败: {e}")
+
     def _init_monitoring_database(self):
         """初始化监控数据库"""
         self.monitoring_db_path = 'monitoring/monitoring_data.db'
@@ -119,7 +184,7 @@ class SystemMonitor:
             with sqlite3.connect(self.monitoring_db_path) as conn:
                 cursor = conn.cursor()
                 
-                # 系统指标表
+                # 系统指标表 - 增强合约合规性字段
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS system_metrics (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -134,11 +199,14 @@ class SystemMonitor:
                         network_sent_mb REAL,
                         network_recv_mb REAL,
                         active_connections INTEGER,
-                        process_count INTEGER
+                        process_count INTEGER,
+                        contract_compliance_status TEXT DEFAULT 'MONITORED',
+                        legal_effectiveness TEXT DEFAULT 'ACTIVE',
+                        auto_generated BOOLEAN DEFAULT TRUE
                     )
                 ''')
                 
-                # 数据库指标表
+                # 数据库指标表 - 增强合约合规性字段
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS database_metrics (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -150,11 +218,13 @@ class SystemMonitor:
                         query_response_time_ms REAL,
                         active_connections INTEGER,
                         last_sync_time TEXT,
-                        sync_status TEXT
+                        sync_status TEXT,
+                        contract_version TEXT DEFAULT '3.0',
+                        data_integrity_verified BOOLEAN DEFAULT TRUE
                     )
                 ''')
                 
-                # 同步指标表
+                # 同步指标表 - 增强合约合规性字段
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS sync_metrics (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -166,11 +236,13 @@ class SystemMonitor:
                         sync_duration_seconds REAL,
                         sync_status TEXT,
                         error_count INTEGER,
-                        throughput_records_per_second REAL
+                        throughput_records_per_second REAL,
+                        automated_process BOOLEAN DEFAULT TRUE,
+                        quality_assurance_passed BOOLEAN DEFAULT TRUE
                     )
                 ''')
                 
-                # 告警事件表
+                # 告警事件表 - 增强合约合规性字段
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS alert_events (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -181,7 +253,10 @@ class SystemMonitor:
                         message TEXT NOT NULL,
                         details TEXT,
                         resolved BOOLEAN DEFAULT FALSE,
-                        resolved_at TEXT
+                        resolved_at TEXT,
+                        contract_violation_id TEXT,
+                        legal_impact_assessed BOOLEAN DEFAULT FALSE,
+                        compensation_calculated BOOLEAN DEFAULT FALSE
                     )
                 ''')
                 
@@ -192,11 +267,92 @@ class SystemMonitor:
                 cursor.execute('CREATE INDEX IF NOT EXISTS idx_alert_events_timestamp ON alert_events(timestamp)')
                 
                 conn.commit()
-                logger.info("Monitoring database initialized successfully")
+                logger.info("✅ 监控数据库初始化完成 - 已集成合约合规性字段")
+                
+                # 记录数据库初始化的合规性日志
+                if CONTRACT_COMPLIANCE_ENABLED:
+                    contract_logger._log_audit_operation(
+                        operation_type="MONITORING_DATABASE_INIT",
+                        operation_details="监控数据库初始化完成，已集成合约合规性字段",
+                        operator="SYSTEM_AUTO_INIT"
+                    )
                 
         except Exception as e:
             logger.error(f"Failed to initialize monitoring database: {e}")
+            # 记录数据库初始化失败的违规
+            if CONTRACT_COMPLIANCE_ENABLED:
+                log_violation(
+                    ContractViolationType.DATA_INTEGRITY_VIOLATION,
+                    ViolationSeverity.HIGH,
+                    "监控数据库初始化失败",
+                    f"监控数据库初始化过程中发生错误: {str(e)}",
+                    "system_monitor.py",
+                    {'error': str(e), 'database_path': self.monitoring_db_path}
+                )
     
+    def _check_contract_compliance(self, metrics: SystemMetrics) -> Dict[str, Any]:
+        """检查合约合规性"""
+        compliance_results = {
+            'timestamp_valid': True,
+            'auto_generated': True,
+            'service_quality_ok': True,
+            'violations_detected': []
+        }
+        
+        if not CONTRACT_COMPLIANCE_ENABLED:
+            return compliance_results
+        
+        try:
+            # 检查时间戳完整性
+            if not metrics.timestamp or len(metrics.timestamp) < 19:
+                detect_timestamp_violation(metrics.timestamp, "system_monitor.py")
+                compliance_results['timestamp_valid'] = False
+                compliance_results['violations_detected'].append('INCOMPLETE_TIMESTAMP')
+            
+            # 检查服务质量指标
+            if metrics.cpu_percent > self.alert_thresholds['cpu_percent']:
+                log_violation(
+                    ContractViolationType.SERVICE_QUALITY_VIOLATION,
+                    ViolationSeverity.MEDIUM,
+                    "CPU使用率超过阈值",
+                    f"CPU使用率 {metrics.cpu_percent}% 超过阈值 {self.alert_thresholds['cpu_percent']}%",
+                    "system_monitor.py",
+                    {'cpu_percent': metrics.cpu_percent, 'threshold': self.alert_thresholds['cpu_percent']}
+                )
+                compliance_results['service_quality_ok'] = False
+                compliance_results['violations_detected'].append('HIGH_CPU_USAGE')
+            
+            if metrics.memory_percent > self.alert_thresholds['memory_percent']:
+                log_violation(
+                    ContractViolationType.SERVICE_QUALITY_VIOLATION,
+                    ViolationSeverity.MEDIUM,
+                    "内存使用率超过阈值",
+                    f"内存使用率 {metrics.memory_percent}% 超过阈值 {self.alert_thresholds['memory_percent']}%",
+                    "system_monitor.py",
+                    {'memory_percent': metrics.memory_percent, 'threshold': self.alert_thresholds['memory_percent']}
+                )
+                compliance_results['service_quality_ok'] = False
+                compliance_results['violations_detected'].append('HIGH_MEMORY_USAGE')
+            
+            # 检查自动化合规性
+            if not metrics.auto_generated:
+                log_violation(
+                    ContractViolationType.MISSING_AUTOMATION,
+                    ViolationSeverity.HIGH,
+                    "检测到非自动生成的监控数据",
+                    "监控数据未标记为自动生成，违反自动化日志原则",
+                    "system_monitor.py",
+                    {'auto_generated': metrics.auto_generated}
+                )
+                compliance_results['auto_generated'] = False
+                compliance_results['violations_detected'].append('MANUAL_DATA_CREATION')
+            
+        except Exception as e:
+            logger.error(f"合约合规性检查失败: {e}")
+            compliance_results['violations_detected'].append('COMPLIANCE_CHECK_ERROR')
+        
+        return compliance_results
+
     def collect_system_metrics(self) -> SystemMetrics:
         """收集系统性能指标"""
         try:

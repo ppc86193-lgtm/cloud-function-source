@@ -21,6 +21,9 @@ on:
 
 env:
   PYTHON_VERSION: '3.9'
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
 jobs:
   detect-changes:
@@ -53,11 +56,79 @@ jobs:
         fi
         
         # 检测代码变更
-        if git diff --name-only HEAD~1 HEAD | grep -E '\.(py|js|ts)$'; then
+        if git diff --name-only HEAD~1 HEAD | grep -E '\.py$'; then
           echo "code=true" >> $GITHUB_OUTPUT
         else
           echo "code=false" >> $GITHUB_OUTPUT
         fi
+
+  sync-to-supabase:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: needs.detect-changes.outputs.has_data_changes == 'true' || needs.detect-changes.outputs.has_schema_changes == 'true' || github.event.inputs.force_full_sync == 'true'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Verify environment variables
+      run: |
+        if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+          echo "Error: Missing required Supabase environment variables"
+          exit 1
+        fi
+        echo "Environment variables verified successfully"
+    
+    - name: Create missing tables
+      run: |
+        echo "Creating missing local database tables..."
+        python create_all_tables.py
+        echo "Local tables created successfully"
+    
+    - name: Run Supabase sync
+      id: sync
+      run: |
+        echo "Starting Supabase synchronization..."
+        python supabase_sync_manager.py > sync_output.log 2>&1
+        
+        # 检查同步结果
+        if [ $? -eq 0 ]; then
+          echo "sync_status=success" >> $GITHUB_OUTPUT
+          echo "Synchronization completed successfully"
+        else
+          echo "sync_status=failed" >> $GITHUB_OUTPUT
+          echo "Synchronization failed"
+          cat sync_output.log
+          exit 1
+        fi
+    
+    - name: Upload sync logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: sync-logs-${{ github.run_number }}
+        path: |
+          sync_output.log
+          sync_reports/
+        retention-days: 30
+    
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "Sync failed. Check the logs for details."
+        echo "Failed sync details:" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        tail -50 sync_output.log >> $GITHUB_STEP_SUMMARY || echo "No log file found" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
 
   schema-migration:
     runs-on: ubuntu-latest

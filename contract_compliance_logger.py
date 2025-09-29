@@ -169,6 +169,9 @@ class ContractComplianceLogger:
         # pytest验证器
         self.pytest_validator = PytestLogValidator()
         
+        # 初始化pytest日志列表
+        self.pytest_logs = []
+        
         # 生成或加载密钥对
         self.private_key, self.public_key = self._init_cryptographic_keys()
         
@@ -382,6 +385,9 @@ class ContractComplianceLogger:
                 # 保存到数据库
                 self._save_pytest_log_to_db(pytest_log)
                 
+                # 添加到内存列表
+                self.pytest_logs.append(pytest_log)
+                
                 # 记录审计日志
                 self._log_audit_operation(
                     operation_type="PYTEST_TEST_EXECUTION",
@@ -398,6 +404,23 @@ class ContractComplianceLogger:
             # 记录pytest日志记录失败的违规
             self._log_pytest_failure_violation(str(e), test_name)
             raise
+    
+    def log_pytest_entry(self, 
+                        test_name: str,
+                        test_file: str = "unknown",
+                        test_result: str = "PASSED",
+                        execution_time: float = 0.0,
+                        pytest_version: str = "unknown",
+                        test_category: str = "general",
+                        **kwargs) -> str:
+        """记录pytest条目 - log_pytest_test_execution的别名方法，兼容额外参数"""
+        return self.log_pytest_test_execution(
+            test_name=test_name,
+            test_file=test_file,
+            test_result=test_result,
+            execution_time=execution_time,
+            pytest_version=pytest_version
+        )
     
     def _save_pytest_log_to_db(self, pytest_log: PytestLogEntry):
         """保存pytest日志到数据库"""

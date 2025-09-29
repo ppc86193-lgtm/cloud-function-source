@@ -124,7 +124,10 @@ class DataTypeMapper:
                 converted = int(float(value)) if value != '' else None
             
             elif target_type.startswith('DECIMAL') or target_type.startswith('NUMERIC'):
-                converted = decimal.Decimal(str(value)) if value != '' else None
+                if isinstance(value, decimal.Decimal):
+                    converted = float(value)  # 转换为 float 以避免 JSON 序列化问题
+                else:
+                    converted = float(value) if value != '' else None
             
             elif target_type.startswith('DOUBLE PRECISION') or target_type.startswith('REAL'):
                 converted = float(value) if value != '' else None

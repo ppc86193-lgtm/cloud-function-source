@@ -118,10 +118,10 @@ class LocalDatabase:
             # 信号池表
             "signal_pool_union_v3": """
                 CREATE TABLE IF NOT EXISTS signal_pool_union_v3 (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id TEXT PRIMARY KEY,
                     draw_id TEXT NOT NULL,
                     ts_utc TEXT NOT NULL,
-                    period TEXT,
+                    period INTEGER,
                     market TEXT,
                     pick TEXT,
                     p_win REAL,
@@ -315,19 +315,55 @@ class LocalDatabase:
             action = "INSERT OR REPLACE" if replace else "INSERT OR IGNORE"
             sql = f"{action} INTO {table_name} ({columns_str}) VALUES ({placeholders})"
             
-            # 准备数据
-            values = [[row.get(col) for col in columns] for row in data]
+            # 准备数据，确保数据类型正确
+            values = []
+            for row in data:
+                # 直接使用字典的值，按照columns的顺序
+                row_values = [row.get(col) for col in columns]
+                values.append(row_values)
             
             cursor = self.conn.cursor()
-            cursor.executemany(sql, values)
-            self.conn.commit()
             
-            inserted_count = cursor.rowcount
+            # 使用单条插入替代executemany来避免datatype mismatch问题
+            inserted_count = 0
+            for row_values in values:
+                try:
+                    # 调试：打印数据类型
+                    if inserted_count == 0:  # 只打印第一行用于调试
+                        logger.debug(f"插入数据类型: {[(type(v), v) for v in row_values]}")
+                    
+                    cursor.execute(sql, row_values)
+                    inserted_count += 1
+                except Exception as row_error:
+                    logger.warning(f"单行插入失败: {row_error}, 数据: {row_values}")
+                    # 尝试转换数据类型后重试
+                    try:
+                        converted_values = []
+                        for i, value in enumerate(row_values):
+                            if columns[i] == 'period' and isinstance(value, str):
+                                # 将period字符串转为整数
+                                converted_values.append(int(value))
+                            elif columns[i] in ['p_win', 'vote_ratio'] and isinstance(value, str):
+                                # 将数值字符串转为浮点数
+                                converted_values.append(float(value))
+                            else:
+                                converted_values.append(value)
+                        
+                        cursor.execute(sql, converted_values)
+                        inserted_count += 1
+                        logger.debug(f"数据类型转换后插入成功")
+                    except Exception as retry_error:
+                        logger.warning(f"重试插入也失败: {retry_error}")
+                        continue
+            
+            self.conn.commit()
             logger.info(f"批量插入 {table_name}: {inserted_count} 行")
             return inserted_count
             
         except Exception as e:
             logger.error(f"批量插入失败: {e}")
+            logger.error(f"SQL: {sql}")
+            logger.error(f"数据示例: {data[0] if data else 'None'}")
             self.conn.rollback()
             raise
     

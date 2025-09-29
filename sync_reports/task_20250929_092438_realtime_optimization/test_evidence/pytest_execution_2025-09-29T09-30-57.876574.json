@@ -1,0 +1,33 @@
+{
+  "session_id": "30b7d87c-c797-4536-9f4a-4107eb1fdce6",
+  "timestamp": "2025-09-29T09:30:57.876574",
+  "test_type": "pytest_execution",
+  "data": {
+    "command": [
+      "/Users/a606/Documents/9999/deploy_package/venv/bin/python",
+      "-m",
+      "pytest",
+      "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py",
+      "-v",
+      "--tb=long",
+      "--junitxml=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/junit_report.xml",
+      "--html=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/html_report.html",
+      "--self-contained-html",
+      "--cov=/Users/a606/cloud_function_source",
+      "--cov-report=xml:/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage.xml",
+      "--cov-report=html:/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage_html",
+      "--cov-report=term-missing",
+      "--json-report=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/test_results.json",
+      "--json-report-summary",
+      "--timeout=300"
+    ],
+    "start_time": "2025-09-29T09:30:57.470562",
+    "end_time": "2025-09-29T09:30:57.876296",
+    "duration_seconds": 0.405734,
+    "return_code": 4,
+    "stdout": "",
+    "stderr": "ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]\n__main__.py: error: unrecognized arguments: --json-report=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/test_results.json --json-report-summary\n  inifile: /Users/a606/cloud_function_source/pytest.ini\n  rootdir: /Users/a606/cloud_function_source\n\n",
+    "success": false
+  },
+  "checksum": "aaca41ea2c693d618903bef64e904a6b395d0f61db298e9dd0ffc2357b3319c1"
+}

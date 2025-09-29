@@ -1,0 +1,33 @@
+{
+  "session_id": "813af9d8-1f5a-43db-bf6b-2746757fc86b",
+  "timestamp": "2025-09-29T09:31:14.472012",
+  "test_type": "pytest_execution",
+  "data": {
+    "command": [
+      "/Users/a606/Documents/9999/deploy_package/venv/bin/python",
+      "-m",
+      "pytest",
+      "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py",
+      "-v",
+      "--tb=long",
+      "--junitxml=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/junit_report.xml",
+      "--html=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/html_report.html",
+      "--self-contained-html",
+      "--cov=/Users/a606/cloud_function_source",
+      "--cov-report=xml:/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage.xml",
+      "--cov-report=html:/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage_html",
+      "--cov-report=term-missing",
+      "--json-report=/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/test_results.json",
+      "--json-report-summary",
+      "--timeout=300"
+    ],
+    "start_time": "2025-09-29T09:31:14.271628",
+    "end_time": "2025-09-29T09:31:14.471678",
+    "duration_seconds": 0.20005,
+    "return_code": 4,
+    "stdout": "",
+    "stderr": "ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]\n__main__.py: error: argument --json-report: ignored explicit argument '/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/test_results.json'\n\n",
+    "success": false
+  },
+  "checksum": "87b2d142c6c9f6cfb2844bd64ad8ad3ef3e553ad725c4548bad5d73e7e142aa0"
+}

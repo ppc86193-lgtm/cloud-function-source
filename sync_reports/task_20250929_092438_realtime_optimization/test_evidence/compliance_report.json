@@ -1,0 +1,42 @@
+{
+  "session_info": {
+    "session_id": "813af9d8-1f5a-43db-bf6b-2746757fc86b",
+    "start_time": "2025-09-29T09:31:14.271000",
+    "end_time": "2025-09-29T09:31:14.472716",
+    "total_duration_seconds": 0.201716
+  },
+  "compliance_checks": {
+    "automated_logging": true,
+    "complete_timestamps": true,
+    "tamper_proof_evidence": true,
+    "automated_testing": false,
+    "coverage_requirement": false,
+    "evidence_preservation": true
+  },
+  "test_summary": {
+    "success": false,
+    "return_code": 4,
+    "duration": 0.20005,
+    "evidence_file": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/pytest_execution_2025-09-29T09-31-14.472012.json",
+    "reports": {
+      "junit_xml": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/junit_report.xml",
+      "html_report": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/html_report.html",
+      "coverage_xml": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage.xml",
+      "coverage_html": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/coverage_html",
+      "json_report": "/Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_evidence/test_results.json"
+    }
+  },
+  "coverage_summary": {
+    "error": "coverage_report_not_found"
+  },
+  "violations": [
+    {
+      "type": "test_execution_failure",
+      "description": "自动化测试执行失败",
+      "severity": "critical"
+    }
+  ],
+  "recommendations": [
+    "立即修复所有违规项，确保符合PROJECT_RULES.md要求"
+  ]
+}

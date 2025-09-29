@@ -1,0 +1,87 @@
+{
+  "comparison_timestamp": "2025-09-29T09:04:14",
+  "sync_modes_tested": {
+    "incremental_sync": {
+      "execution_time": "2025-09-29T08:51:10",
+      "duration_seconds": 0.53,
+      "total_records_synced": 0,
+      "successful_tables": 6,
+      "failed_tables": 0,
+      "status": "completed_but_no_data_transferred",
+      "issues": [
+        "所有表报告成功但实际传输记录数为0",
+        "增量同步未检测到新数据"
+      ]
+    },
+    "full_sync": {
+      "execution_time": "2025-09-29T09:03:50",
+      "duration_seconds": 9.27,
+      "total_records_synced": 229,
+      "successful_tables": 6,
+      "failed_tables": 0,
+      "status": "reported_success_but_actual_failure",
+      "issues": [
+        "报告成功同步229条记录但远程表为空",
+        "表结构不匹配导致插入失败",
+        "datetime对象JSON序列化错误",
+        "列不存在错误频发"
+      ]
+    }
+  },
+  "performance_comparison": {
+    "speed": {
+      "incremental": "0.53秒 (快)",
+      "full": "9.27秒 (慢)"
+    },
+    "reliability": {
+      "incremental": "低 - 无数据传输",
+      "full": "极低 - 虚假成功报告"
+    },
+    "data_integrity": {
+      "incremental": "未验证 - 无数据",
+      "full": "失败 - 数据未传输"
+    }
+  },
+  "root_cause_analysis": {
+    "primary_issues": [
+      {
+        "issue": "表结构不匹配",
+        "description": "Supabase表缺少本地SQLite表中的多个列",
+        "impact": "导致所有数据插入操作失败",
+        "affected_tables": "所有核心表"
+      },
+      {
+        "issue": "数据类型转换问题", 
+        "description": "datetime对象无法直接序列化为JSON",
+        "impact": "阻止包含时间戳的记录插入",
+        "affected_tables": "draws_14w_dedup_v, score_ledger"
+      },
+      {
+        "issue": "错误处理机制缺陷",
+        "description": "同步管理器报告成功但实际操作失败",
+        "impact": "掩盖真实问题，误导用户",
+        "affected_tables": "所有核心表"
+      }
+    ],
+    "secondary_issues": [
+      {
+        "issue": "批量插入失败回退机制",
+        "description": "批量插入失败后的逐条插入也失败",
+        "impact": "无法恢复数据传输",
+        "affected_tables": "所有核心表"
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "完善表结构同步，确保Supabase表包含所有必需列",
+      "修复datetime对象序列化问题",
+      "改进错误处理和状态报告机制"
+    ],
+    "long_term_improvements": [
+      "实现表结构自动检测和同步",
+      "添加数据完整性验证步骤",
+      "建立更可靠的错误恢复机制"
+    ]
+  }
+}

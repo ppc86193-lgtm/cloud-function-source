@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-09-29T09:13:35",
+  "analysis_type": "cloud_sync_status",
+  "bigquery_connection": {
+    "status": "connected",
+    "client_initialized": true,
+    "project_id": "wprojectl",
+    "dataset_id": "pc28_lab",
+    "connection_test": "successful"
+  },
+  "sync_manager_status": {
+    "auto_sync_active": false,
+    "bigquery_connected": true,
+    "sync_health": "healthy",
+    "total_tables_configured": 4,
+    "synced_tables": 2,
+    "failed_tables": 0
+  },
+  "table_sync_status": [
+    {
+      "table_name": "runtime_params",
+      "last_sync": "2025-09-29T04:20:39.115256",
+      "sync_status": "completed",
+      "records_synced": 3,
+      "error_message": "",
+      "sync_type": "bidirectional",
+      "sync_interval_minutes": 60
+    },
+    {
+      "table_name": "cloud_pred_today_norm",
+      "last_sync": "2025-09-29T04:20:25.319429",
+      "sync_status": "completed",
+      "records_synced": 810,
+      "error_message": "",
+      "sync_type": "bidirectional",
+      "sync_interval_minutes": 30
+    }
+  ],
+  "configured_tables": {
+    "cloud_pred_today_norm": {
+      "sync_type": "bidirectional",
+      "local_table": "cloud_pred_today_norm",
+      "cloud_table": "wprojectl.pc28_lab.cloud_pred_today_norm",
+      "key_fields": ["draw_id", "market", "pick"],
+      "sync_interval_minutes": 30,
+      "status": "active"
+    },
+    "signal_pool_union_v3": {
+      "sync_type": "upload",
+      "local_table": "signal_pool_union_v3",
+      "cloud_table": "wprojectl.pc28_lab.signal_pool_union_v3",
+      "key_fields": ["draw_id", "market", "pick", "source"],
+      "sync_interval_minutes": 15,
+      "status": "configured"
+    },
+    "lab_push_candidates_v2": {
+      "sync_type": "upload",
+      "local_table": "lab_push_candidates_v2",
+      "cloud_table": "wprojectl.pc28_lab.lab_push_candidates_v2",
+      "key_fields": ["id"],
+      "sync_interval_minutes": 10,
+      "status": "configured"
+    },
+    "runtime_params": {
+      "sync_type": "bidirectional",
+      "local_table": "runtime_params",
+      "cloud_table": "wprojectl.pc28_lab.runtime_params",
+      "key_fields": ["market"],
+      "sync_interval_minutes": 60,
+      "status": "active"
+    }
+  },
+  "bigquery_datasets": {
+    "total_datasets": 14,
+    "core_datasets": [
+      "lab_dataset",
+      "draw_dataset",
+      "pc28_lab"
+    ],
+    "backup_datasets": [
+      "pc28_lab_backup_20250929_063900",
+      "pc28_lab_backup_20250929_063956"
+    ],
+    "operational_datasets": [
+      "lottery_data",
+      "pc28",
+      "pc28_audit",
+      "pc28_data",
+      "pc28_draw",
+      "pc28_monitor",
+      "pc28_prod",
+      "pc28_raw",
+      "pc28_stage",
+      "pc28_temp"
+    ]
+  },
+  "sync_configuration": {
+    "batch_size": 1000,
+    "max_retries": 3,
+    "retry_delay_seconds": 30
+  },
+  "performance_metrics": {
+    "last_sync_duration": "< 1 minute",
+    "average_records_per_sync": 406.5,
+    "sync_success_rate": "100%",
+    "connection_latency": "< 1 second"
+  },
+  "recommendations": [
+    "考虑启用自动同步以保持数据实时性",
+    "监控signal_pool_union_v3和lab_push_candidates_v2表的同步状态",
+    "定期检查BigQuery存储使用情况",
+    "考虑设置同步失败的告警机制"
+  ],
+  "issues_found": [],
+  "overall_status": "excellent",
+  "next_actions": [
+    "可以启用自动同步功能",
+    "监控未同步表的数据变化",
+    "定期执行全量同步验证数据一致性"
+  ]
+}
