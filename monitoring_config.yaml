@@ -1,0 +1,146 @@
+# PC28 监控配置文件
+# 包含API监控、数据质量监控和错误处理的配置
+
+# API监控配置
+api_monitoring:
+  health_check_interval: 300  # 健康检查间隔（秒）
+  timeout: 30  # API请求超时时间（秒）
+  retry_attempts: 3  # 重试次数
+  
+  # 健康状态阈值
+  thresholds:
+    response_time_warning: 5000  # 响应时间警告阈值（毫秒）
+    response_time_critical: 10000  # 响应时间严重阈值（毫秒）
+    error_rate_warning: 0.05  # 错误率警告阈值（5%）
+    error_rate_critical: 0.10  # 错误率严重阈值（10%）
+
+# 数据质量监控配置
+data_quality:
+  # 质量评分阈值
+  completeness_threshold: 0.95  # 完整性阈值
+  consistency_threshold: 0.90   # 一致性阈值
+  timeliness_threshold: 0.85    # 时效性阈值
+  accuracy_threshold: 0.90      # 准确性阈值
+  overall_threshold: 0.85       # 总体质量阈值
+  
+  # 必需字段定义
+  required_fields:
+    realtime:
+      - long_issue
+      - kjtime
+      - number
+      - next_issue
+      - next_time
+    historical:
+      - long_issue
+      - kjtime
+      - number
+  
+  # 数据验证规则
+  validation_rules:
+    issue_format: '^\d{6,8}$'  # 期号格式正则
+    number_range: [0, 27]      # 开奖号码范围
+    number_count: 3            # 开奖号码数量
+    time_format: '%Y-%m-%d %H:%M:%S'  # 时间格式
+
+# 错误处理配置
+error_handling:
+  # 日志级别
+  log_level: "INFO"
+  
+  # 错误分类阈值
+  thresholds:
+    api_error_threshold: 5      # API错误阈值（次数/小时）
+    data_quality_threshold: 3   # 数据质量错误阈值（次数/小时）
+    system_error_threshold: 2   # 系统错误阈值（次数/小时）
+  
+  # 告警配置
+  alerting:
+    enabled: true
+    channels:
+      - "cloud_logging"  # Google Cloud Logging
+      - "telegram"       # Telegram通知（如果配置）
+    
+    # 告警抑制（避免重复告警）
+    suppression:
+      enabled: true
+      window_minutes: 30  # 抑制窗口（分钟）
+  
+  # 重试配置
+  retry:
+    max_attempts: 3
+    backoff_factor: 2
+    max_delay: 300  # 最大延迟（秒）
+
+# 监控仪表板配置
+monitoring_dashboard:
+  # 历史数据保留
+  history:
+    max_records: 1000      # 最大历史记录数
+    retention_hours: 168   # 数据保留时间（小时，7天）
+  
+  # 性能指标配置
+  performance:
+    response_time_samples: 100  # 响应时间样本数
+    processing_time_samples: 100  # 处理时间样本数
+  
+  # 报告配置
+  reporting:
+    default_hours: 24      # 默认报告时间范围（小时）
+    summary_intervals: [1, 6, 24, 168]  # 摘要时间间隔（小时）
+
+# 通知配置
+notifications:
+  telegram:
+    enabled: false  # 默认禁用，需要配置token和chat_id
+    # bot_token: "YOUR_BOT_TOKEN"
+    # chat_id: "YOUR_CHAT_ID"
+    
+  # Google Cloud Logging
+  cloud_logging:
+    enabled: true
+    project_id: "wprojectl"  # 替换为实际的项目ID
+    log_name: "pc28-monitoring"
+
+# 上游API配置（从主配置继承，这里作为备份）
+upstream_api:
+  appid: "45928"
+  secret_key: "ca9edbfee35c22a0d6c4cf6722506af0"
+  base_url: "https://rijb.api.storeapi.net/api/119"
+  endpoints:
+    realtime: "/259"
+    historical: "/260"
+  
+  # 请求配置
+  request:
+    timeout: 30
+    retry_attempts: 3
+    retry_delay: 5
+    
+  # 签名配置
+  signature:
+    method: "md5"
+    include_timestamp: true
+
+# BigQuery配置（用于监控数据存储）
+bigquery:
+  project_id: "wprojectl"
+  dataset_id: "pc28_monitoring"
+  
+  # 监控表配置
+  tables:
+    api_health: "api_health_status"
+    data_quality: "data_quality_metrics"
+    system_health: "system_health_status"
+    error_logs: "error_logs"
+
+# 系统配置
+system:
+  timezone: "Asia/Shanghai"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  # 资源限制
+  limits:
+    max_memory_mb: 512
+    max_cpu_percent: 80
+    max_disk_usage_percent: 85

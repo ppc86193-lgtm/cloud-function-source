@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-09-29T07:10:28.257981",
+  "total_tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "skipped": 0,
+  "success_rate": 1.0,
+  "total_execution_time": 23.791972160339355,
+  "test_results": [
+    {
+      "test_name": "原始数据可用性测试",
+      "status": "pass",
+      "message": "cloud_pred_today_norm表有810行数据",
+      "execution_time": 2.380445957183838,
+      "data_count": 810,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_cloud_today_v",
+      "status": "pass",
+      "message": "p_cloud_today_v视图有1行数据",
+      "execution_time": 2.2575151920318604,
+      "data_count": 1,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_map_today_v",
+      "status": "pass",
+      "message": "p_map_today_v视图有838行数据",
+      "execution_time": 2.46828293800354,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_size_today_v",
+      "status": "pass",
+      "message": "p_size_today_v视图有838行数据",
+      "execution_time": 2.5965640544891357,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_map_today_canon_v",
+      "status": "pass",
+      "message": "p_map_today_canon_v视图有838行数据，数据结构正常",
+      "execution_time": 4.691324949264526,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_size_today_canon_v",
+      "status": "pass",
+      "message": "p_size_today_canon_v视图有838行数据，数据结构正常",
+      "execution_time": 4.533946990966797,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "信号池生成测试",
+      "status": "pass",
+      "message": "signal_pool_union_v3有1676行数据",
+      "execution_time": 2.361055850982666,
+      "data_count": 1676,
+      "error_details": null
+    },
+    {
+      "test_name": "决策管道测试",
+      "status": "pass",
+      "message": "lab_push_candidates_v2有78行候选决策",
+      "execution_time": 2.5020790100097656,
+      "data_count": 78,
+      "error_details": null
+    }
+  ]
+}

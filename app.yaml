@@ -1,0 +1,83 @@
+# Google App Engine 配置文件
+runtime: python39
+service: pc28-ops-system
+
+# 实例配置
+instance_class: F2
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.6
+  target_throughput_utilization: 0.6
+
+# 环境变量
+env_variables:
+  GOOGLE_CLOUD_PROJECT: pc28-ops-system
+  ENVIRONMENT: production
+  LOG_LEVEL: INFO
+  PYTHONPATH: /srv
+
+# 处理程序
+handlers:
+- url: /static
+  static_dir: static
+  secure: always
+
+- url: /api/.*
+  script: auto
+  secure: always
+
+- url: /monitoring/.*
+  script: auto
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always
+
+# 资源配置
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+
+# 网络配置
+network:
+  forwarded_ports:
+  - 8080
+  - 5000
+
+# 健康检查
+readiness_check:
+  path: "/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 300
+
+liveness_check:
+  path: "/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 4
+  success_threshold: 2
+
+# 跳过不需要的文件
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?\..*$
+- ^(.*/)?tests/.*$
+- ^(.*/)?test_.*\.py$
+- ^(.*/)?.*_test\.py$
+- ^(.*/)?README\..*$
+- ^(.*/)?Dockerfile.*$
+- ^(.*/)?docker-compose\..*$
+- ^(.*/)?\.dockerignore$
+- ^(.*/)?\.git/.*$
+- ^(.*/)?\.github/.*$
+- ^(.*/)?node_modules/.*$
+- ^(.*/)?venv/.*$
+- ^(.*/)?__pycache__/.*$

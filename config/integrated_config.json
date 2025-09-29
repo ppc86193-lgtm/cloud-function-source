@@ -1,0 +1,36 @@
+{
+  "bigquery": {
+    "project": "wprojectl",
+    "dataset_lab": "lab",
+    "dataset_draw": "draw",
+    "location": "US",
+    "timezone": "Asia/Shanghai"
+  },
+  "upstream_api": {
+    "appid": "45928",
+    "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0",
+    "realtime_url": "https://rijb.api.storeapi.net/api/119/259",
+    "history_url": "https://rijb.api.storeapi.net/api/119/260",
+    "timeout": 30,
+    "retry_attempts": 3,
+    "retry_delay": 1
+  },
+  "data_source": {
+    "use_upstream_api": true,
+    "fallback_to_bigquery": true,
+    "sync_to_bigquery": true,
+    "validation_enabled": true
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "enable_metrics": true,
+    "health_check_interval": 300,
+    "data_freshness_threshold": 600
+  },
+  "backfill": {
+    "batch_size": 100,
+    "max_days_per_request": 7,
+    "enable_deduplication": true,
+    "validate_data_integrity": true
+  }
+}

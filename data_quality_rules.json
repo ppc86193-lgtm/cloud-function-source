@@ -1,0 +1,165 @@
+{
+  "tables": {
+    "pc28_realtime_data": {
+      "required_fields": ["period_id", "draw_time", "numbers", "sum_value"],
+      "field_types": {
+        "period_id": "string",
+        "draw_time": "timestamp",
+        "numbers": "string",
+        "sum_value": "integer"
+      },
+      "constraints": {
+        "sum_value": {
+          "min": 0,
+          "max": 27
+        },
+        "numbers": {
+          "pattern": "^\\d+,\\d+,\\d+$"
+        }
+      },
+      "freshness_hours": 1,
+      "completeness_threshold": {
+        "warning": 0.95,
+        "critical": 0.80
+      },
+      "duplicate_threshold": {
+        "warning": 0.01,
+        "critical": 0.05
+      }
+    },
+    "pc28_historical_data": {
+      "required_fields": ["period_id", "draw_time", "numbers", "sum_value"],
+      "field_types": {
+        "period_id": "string",
+        "draw_time": "timestamp",
+        "numbers": "string",
+        "sum_value": "integer"
+      },
+      "constraints": {
+        "sum_value": {
+          "min": 0,
+          "max": 27
+        },
+        "numbers": {
+          "pattern": "^\\d+,\\d+,\\d+$"
+        }
+      },
+      "freshness_hours": 24,
+      "completeness_threshold": {
+        "warning": 0.98,
+        "critical": 0.90
+      },
+      "duplicate_threshold": {
+        "warning": 0.005,
+        "critical": 0.02
+      }
+    },
+    "api_logs": {
+      "required_fields": ["timestamp", "endpoint", "status_code", "response_time"],
+      "field_types": {
+        "timestamp": "timestamp",
+        "endpoint": "string",
+        "status_code": "integer",
+        "response_time": "float"
+      },
+      "constraints": {
+        "status_code": {
+          "min": 100,
+          "max": 599
+        },
+        "response_time": {
+          "min": 0,
+          "max": 30000
+        }
+      },
+      "freshness_hours": 0.5,
+      "completeness_threshold": {
+        "warning": 0.99,
+        "critical": 0.95
+      }
+    }
+  },
+  "cross_table_rules": {
+    "realtime_historical_consistency": {
+      "description": "实时数据与历史数据一致性检查",
+      "tables": ["pc28_realtime_data", "pc28_historical_data"],
+      "match_fields": ["period_id", "numbers", "sum_value"],
+      "tolerance_percentage": 0.01
+    }
+  },
+  "alert_thresholds": {
+    "critical_issues": {
+      "max_count": 0,
+      "description": "严重问题数量阈值"
+    },
+    "warning_issues": {
+      "hourly_max": 5,
+      "daily_max": 20,
+      "weekly_max": 50,
+      "description": "警告问题数量阈值"
+    },
+    "data_freshness": {
+      "realtime_hours": 1,
+      "historical_hours": 24,
+      "api_logs_hours": 0.5
+    },
+    "completeness_rate": {
+      "warning_threshold": 0.95,
+      "critical_threshold": 0.80
+    },
+    "duplicate_rate": {
+      "warning_threshold": 0.01,
+      "critical_threshold": 0.05
+    }
+  },
+  "notification_settings": {
+    "channels": ["email", "webhook"],
+    "escalation_rules": {
+      "critical": {
+        "immediate": true,
+        "repeat_minutes": 30
+      },
+      "warning": {
+        "immediate": false,
+        "batch_minutes": 60
+      }
+    },
+    "quiet_hours": {
+      "enabled": false,
+      "start_time": "22:00",
+      "end_time": "08:00"
+    }
+  },
+  "report_settings": {
+    "formats": ["json", "text"],
+    "retention_days": 30,
+    "summary_sections": [
+      "overview",
+      "critical_issues",
+      "warning_issues",
+      "table_statistics",
+      "recommendations"
+    ],
+    "export_options": {
+      "include_sample_data": true,
+      "max_sample_records": 10
+    }
+  },
+  "remediation_rules": {
+    "auto_fix_enabled": false,
+    "fix_actions": {
+      "duplicate_records": {
+        "action": "mark_for_review",
+        "auto_execute": false
+      },
+      "missing_required_fields": {
+        "action": "log_and_alert",
+        "auto_execute": true
+      },
+      "constraint_violations": {
+        "action": "quarantine",
+        "auto_execute": false
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# PC28缓存配置
+# Redis配置
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+  
+# 缓存策略
+cache_strategies:
+  draw_results:
+    ttl: 3600  # 1小时
+    key_pattern: "draw:{period}"
+    
+  user_balance:
+    ttl: 300   # 5分钟
+    key_pattern: "balance:{user_id}"
+    
+  betting_odds:
+    ttl: 1800  # 30分钟
+    key_pattern: "odds:{bet_type}"

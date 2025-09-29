@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-09-29T06:57:26.865043",
+  "total_tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "skipped": 0,
+  "success_rate": 1.0,
+  "total_execution_time": 22.88894510269165,
+  "test_results": [
+    {
+      "test_name": "原始数据可用性测试",
+      "status": "pass",
+      "message": "cloud_pred_today_norm表有810行数据",
+      "execution_time": 2.35400390625,
+      "data_count": 810,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_cloud_today_v",
+      "status": "pass",
+      "message": "p_cloud_today_v视图有1行数据",
+      "execution_time": 2.2104299068450928,
+      "data_count": 1,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_map_today_v",
+      "status": "pass",
+      "message": "p_map_today_v视图有838行数据",
+      "execution_time": 2.2972891330718994,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_size_today_v",
+      "status": "pass",
+      "message": "p_size_today_v视图有838行数据",
+      "execution_time": 2.3087990283966064,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_map_today_canon_v",
+      "status": "pass",
+      "message": "p_map_today_canon_v视图有838行数据，数据结构正常",
+      "execution_time": 4.575706958770752,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_size_today_canon_v",
+      "status": "pass",
+      "message": "p_size_today_canon_v视图有838行数据，数据结构正常",
+      "execution_time": 4.479382038116455,
+      "data_count": 838,
+      "error_details": null
+    },
+    {
+      "test_name": "信号池生成测试",
+      "status": "pass",
+      "message": "signal_pool_union_v3有1676行数据",
+      "execution_time": 2.3340158462524414,
+      "data_count": 1676,
+      "error_details": null
+    },
+    {
+      "test_name": "决策管道测试",
+      "status": "pass",
+      "message": "lab_push_candidates_v2有78行候选决策",
+      "execution_time": 2.3287532329559326,
+      "data_count": 78,
+      "error_details": null
+    }
+  ]
+}

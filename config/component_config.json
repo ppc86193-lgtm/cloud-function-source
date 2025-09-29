@@ -1,0 +1,85 @@
+{
+  "update_sources": {
+    "github": {
+      "enabled": true,
+      "api_url": "https://api.github.com",
+      "repositories": [
+        "pc28-system/api-client",
+        "pc28-system/data-processor",
+        "pc28-system/monitoring"
+      ]
+    },
+    "local": {
+      "enabled": true,
+      "update_server": "http://localhost:8080/updates"
+    }
+  },
+  "update_policy": {
+    "auto_check_enabled": true,
+    "check_interval_hours": 6,
+    "auto_update_enabled": false,
+    "auto_update_critical": true,
+    "backup_before_update": true,
+    "max_backup_count": 10,
+    "rollback_timeout_minutes": 30
+  },
+  "components": {
+    "api_client": {
+      "file_path": "python/api_client.py",
+      "description": "PC28 API客户端",
+      "critical": true,
+      "dependencies": ["requests", "urllib3"]
+    },
+    "data_processor": {
+      "file_path": "python/data_processor.py",
+      "description": "数据处理器",
+      "critical": true,
+      "dependencies": ["pandas", "numpy"]
+    },
+    "monitoring_dashboard": {
+      "file_path": "monitoring_dashboard.py",
+      "description": "监控仪表板",
+      "critical": false,
+      "dependencies": []
+    },
+    "bigquery_adapter": {
+      "file_path": "python/bigquery_client_adapter.py",
+      "description": "BigQuery适配器",
+      "critical": true,
+      "dependencies": ["google-cloud-bigquery"]
+    },
+    "api_monitor": {
+      "file_path": "python/api_monitor.py",
+      "description": "API监控器",
+      "critical": false,
+      "dependencies": []
+    },
+    "data_quality_checker": {
+      "file_path": "data_quality_checker.py",
+      "description": "数据质量检查器",
+      "critical": true,
+      "dependencies": []
+    },
+    "alert_notification_system": {
+      "file_path": "alert_notification_system.py",
+      "description": "告警通知系统",
+      "critical": false,
+      "dependencies": []
+    },
+    "concurrency_tuner": {
+      "file_path": "concurrency_tuner.py",
+      "description": "并发参数调优工具",
+      "critical": false,
+      "dependencies": []
+    }
+  },
+  "notification": {
+    "enabled": true,
+    "channels": ["log", "file"],
+    "email": {
+      "enabled": false,
+      "smtp_server": "",
+      "recipients": []
+    }
+  }
+}

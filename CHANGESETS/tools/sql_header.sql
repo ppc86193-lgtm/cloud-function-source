@@ -1,0 +1,3 @@
+-- 标准SQL Header
+DECLARE tz STRING DEFAULT 'Asia/Shanghai';
+DECLARE day_cst DATE DEFAULT CURRENT_DATE(tz);

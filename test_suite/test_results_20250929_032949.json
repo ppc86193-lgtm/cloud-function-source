@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-09-29T03:29:49.098732",
+  "total_tests": 8,
+  "passed": 5,
+  "failed": 3,
+  "skipped": 0,
+  "success_rate": 0.625,
+  "total_execution_time": 23.447280883789062,
+  "test_results": [
+    {
+      "test_name": "原始数据可用性测试",
+      "status": "pass",
+      "message": "cloud_pred_today_norm表有383行数据",
+      "execution_time": 1.9314351081848145,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_cloud_today_v",
+      "status": "pass",
+      "message": "p_cloud_today_v视图有383行数据",
+      "execution_time": 2.6539201736450195,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_map_today_v",
+      "status": "pass",
+      "message": "p_map_today_v视图有383行数据",
+      "execution_time": 2.4852418899536133,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_size_today_v",
+      "status": "fail",
+      "message": "p_size_today_v视图无数据",
+      "execution_time": 2.510833978652954,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_map_today_canon_v",
+      "status": "pass",
+      "message": "p_map_today_canon_v视图有383行数据，数据结构正常",
+      "execution_time": 5.043892860412598,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_size_today_canon_v",
+      "status": "fail",
+      "message": "p_size_today_canon_v视图无数据",
+      "execution_time": 2.5934338569641113,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "信号池生成测试",
+      "status": "pass",
+      "message": "signal_pool_union_v3有383行数据",
+      "execution_time": 3.259678840637207,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "决策管道测试",
+      "status": "fail",
+      "message": "lab_push_candidates_v2无候选决策",
+      "execution_time": 2.968230962753296,
+      "data_count": 0,
+      "error_details": null
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "comparison_result": {
+    "before_optimization": {
+      "test_name": "优化前",
+      "api_response_time": 11.751174926757812,
+      "memory_usage_mb": 0.0,
+      "storage_size_mb": 0.00024509429931640625,
+      "network_transfer_kb": 0.2509765625,
+      "cpu_usage_percent": 0.4,
+      "timestamp": "2025-09-29T06:09:39.254446",
+      "fields_count": 12,
+      "response_size_bytes": 257,
+      "processing_time_ms": 11.751174926757812
+    },
+    "after_optimization": {
+      "test_name": "优化后",
+      "api_response_time": 12.381792068481445,
+      "memory_usage_mb": 0.0,
+      "storage_size_mb": 0.0001850128173828125,
+      "network_transfer_kb": 0.189453125,
+      "cpu_usage_percent": 0.55,
+      "timestamp": "2025-09-29T06:09:39.266955",
+      "fields_count": 9,
+      "response_size_bytes": 194,
+      "processing_time_ms": 12.381792068481445
+    },
+    "improvement_percentage": {
+      "response_size": 24.5136186770428,
+      "network_transfer": 24.5136186770428,
+      "fields_count": 25.0,
+      "processing_time": -5.366417789319915,
+      "memory_usage": 0.0
+    },
+    "summary": "PC28系统字段优化性能对比报告\n=====================================\n\n优化前指标:\n- 响应大小: 257 bytes\n- 网络传输: 0.25 KB\n- 字段数量: 12\n- 处理时间: 11.75 ms\n\n优化后指标:\n- 响应大小: 194 bytes\n- 网络传输: 0.19 KB\n- 字段数量: 9\n- 处理时间: 12.38 ms\n\n性能改进:\n- 响应大小减少: 24.5%\n- 网络传输减少: 24.5%\n- 字段数量减少: 25.0%\n- 处理时间减少: -5.4%\n\n总结: 通过移除未使用字段(curtime, short_issue, intervalM)，\n系统在响应大小和网络传输方面获得了显著改进。"
+  },
+  "timestamp": "2025-09-29T06:09:39.275977"
+}

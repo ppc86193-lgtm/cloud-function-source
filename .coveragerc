@@ -1,0 +1,76 @@
+[run]
+# 源代码目录
+source = .
+
+# 包含的文件模式
+include = 
+    local_system/*.py
+    test_suite/*.py
+    python/*.py
+    *.py
+
+# 排除的文件模式
+omit = 
+    */venv/*
+    */env/*
+    */.venv/*
+    */site-packages/*
+    */tests/*
+    */test_*
+    */__pycache__/*
+    */migrations/*
+    */node_modules/*
+    setup.py
+    conftest.py
+    */conftest.py
+
+# 并行处理
+parallel = true
+
+# 分支覆盖
+branch = true
+
+[report]
+# 报告精度
+precision = 2
+
+# 显示缺失的行
+show_missing = true
+
+# 跳过覆盖的文件
+skip_covered = false
+
+# 排序方式
+sort = Cover
+
+# 排除的行
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
+    if settings.DEBUG
+    raise AssertionError
+    raise NotImplementedError
+    if 0:
+    if __name__ == .__main__.:
+    class .*\bProtocol\):
+    @(abc\.)?abstractmethod
+
+[html]
+# HTML报告目录
+directory = htmlcov
+
+# 额外的CSS
+extra_css = 
+
+# 标题
+title = PC28 System Coverage Report
+
+[xml]
+# XML报告文件
+output = coverage.xml
+
+[json]
+# JSON报告文件
+output = coverage.json
+pretty_print = true

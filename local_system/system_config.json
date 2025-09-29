@@ -1,0 +1,46 @@
+{
+  "system": {
+    "name": "PC28自愈系统",
+    "version": "1.0.0",
+    "auto_start": true,
+    "health_check_interval_seconds": 300,
+    "auto_repair_enabled": true,
+    "monitoring_enabled": true,
+    "sync_enabled": true
+  },
+  "data_collection": {
+    "enabled": true,
+    "interval_seconds": 300,
+    "retry_attempts": 3,
+    "timeout_seconds": 30
+  },
+  "auto_repair": {
+    "enabled": true,
+    "max_repair_attempts": 3,
+    "repair_cooldown_minutes": 15,
+    "critical_issues_only": false
+  },
+  "monitoring": {
+    "enabled": true,
+    "alert_threshold": {
+      "data_age_hours": 2,
+      "error_rate_percent": 5,
+      "memory_usage_percent": 85
+    }
+  },
+  "sync": {
+    "enabled": true,
+    "auto_sync_interval_minutes": 30,
+    "sync_on_repair": true,
+    "bidirectional_tables": [
+      "runtime_params",
+      "cloud_pred_today_norm"
+    ]
+  },
+  "logging": {
+    "level": "INFO",
+    "file_path": "/Users/a606/cloud_function_source/local_system/logs/system.log",
+    "max_file_size_mb": 100,
+    "backup_count": 5
+  }
+}

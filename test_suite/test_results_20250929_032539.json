@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-09-29T03:25:39.410687",
+  "total_tests": 8,
+  "passed": 0,
+  "failed": 8,
+  "skipped": 0,
+  "success_rate": 0.0,
+  "total_execution_time": 23.653444051742554,
+  "test_results": [
+    {
+      "test_name": "原始数据可用性测试",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.6911680698394775,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "预测视图测试: p_cloud_today_v",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.5415120124816895,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "预测视图测试: p_map_today_v",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.9399800300598145,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "预测视图测试: p_size_today_v",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.578809976577759,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "标准化视图测试: p_map_today_canon_v",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.1714046001434326,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "标准化视图测试: p_size_today_canon_v",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 2.571887731552124,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "信号池生成测试",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 3.1256091594696045,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    },
+    {
+      "test_name": "决策管道测试",
+      "status": "fail",
+      "message": "测试执行异常",
+      "execution_time": 5.0325608253479,
+      "data_count": null,
+      "error_details": "'>' not supported between instances of 'str' and 'int'"
+    }
+  ]
+}

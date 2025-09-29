@@ -1,0 +1,145 @@
+{
+  "quality_rules": {
+    "pc28_realtime_data": {
+      "description": "PC28实时数据质量规则",
+      "required_fields": ["period_id", "draw_time", "numbers", "sum_value"],
+      "field_types": {
+        "period_id": "string",
+        "draw_time": "timestamp",
+        "numbers": "string",
+        "sum_value": "integer"
+      },
+      "constraints": {
+        "sum_value": {
+          "min": 0,
+          "max": 27,
+          "description": "PC28游戏和值范围0-27"
+        },
+        "numbers": {
+          "pattern": "^\\d+,\\d+,\\d+$",
+          "description": "三个数字用逗号分隔的格式"
+        },
+        "period_id": {
+          "pattern": "^\\d{8}-\\d{4}$",
+          "description": "期号格式：YYYYMMDD-NNNN"
+        }
+      },
+      "freshness_hours": 1,
+      "completeness_threshold": {
+        "null_percentage_warning": 5.0,
+        "null_percentage_critical": 20.0
+      },
+      "accuracy_checks": {
+        "duplicate_tolerance": 0,
+        "logic_consistency": true
+      }
+    },
+    "pc28_historical_data": {
+      "description": "PC28历史数据质量规则",
+      "required_fields": ["period_id", "draw_time", "numbers", "sum_value"],
+      "field_types": {
+        "period_id": "string",
+        "draw_time": "timestamp",
+        "numbers": "string",
+        "sum_value": "integer"
+      },
+      "constraints": {
+        "sum_value": {
+          "min": 0,
+          "max": 27,
+          "description": "PC28游戏和值范围0-27"
+        },
+        "numbers": {
+          "pattern": "^\\d+,\\d+,\\d+$",
+          "description": "三个数字用逗号分隔的格式"
+        },
+        "period_id": {
+          "pattern": "^\\d{8}-\\d{4}$",
+          "description": "期号格式：YYYYMMDD-NNNN"
+        }
+      },
+      "freshness_hours": 24,
+      "completeness_threshold": {
+        "null_percentage_warning": 2.0,
+        "null_percentage_critical": 10.0
+      },
+      "accuracy_checks": {
+        "duplicate_tolerance": 0,
+        "logic_consistency": true
+      }
+    },
+    "api_logs": {
+      "description": "API日志数据质量规则",
+      "required_fields": ["timestamp", "endpoint", "status_code", "response_time"],
+      "field_types": {
+        "timestamp": "timestamp",
+        "endpoint": "string",
+        "status_code": "integer",
+        "response_time": "float"
+      },
+      "constraints": {
+        "status_code": {
+          "min": 100,
+          "max": 599,
+          "description": "HTTP状态码范围"
+        },
+        "response_time": {
+          "min": 0,
+          "max": 30000,
+          "description": "响应时间毫秒数"
+        }
+      },
+      "freshness_hours": 1,
+      "completeness_threshold": {
+        "null_percentage_warning": 1.0,
+        "null_percentage_critical": 5.0
+      }
+    }
+  },
+  "cross_table_rules": {
+    "realtime_historical_consistency": {
+      "description": "实时数据与历史数据一致性检查",
+      "tables": ["pc28_realtime_data", "pc28_historical_data"],
+      "join_fields": ["period_id"],
+      "compare_fields": ["numbers", "sum_value", "draw_time"],
+      "tolerance_percentage": 0.1
+    }
+  },
+  "alert_thresholds": {
+    "realtime_check": {
+      "critical_issues": 0,
+      "warning_issues": 5,
+      "null_percentage": 10.0,
+      "duplicate_count": 1
+    },
+    "daily_check": {
+      "critical_issues": 0,
+      "warning_issues": 10,
+      "null_percentage": 5.0,
+      "duplicate_count": 5
+    },
+    "weekly_check": {
+      "critical_issues": 1,
+      "warning_issues": 20,
+      "null_percentage": 2.0,
+      "duplicate_count": 10
+    }
+  },
+  "notification_settings": {
+    "email_enabled": true,
+    "slack_enabled": false,
+    "webhook_enabled": true,
+    "notification_intervals": {
+      "critical": 0,
+      "warning": 3600,
+      "info": 86400
+    }
+  },
+  "report_settings": {
+    "auto_save": true,
+    "retention_days": 30,
+    "export_formats": ["json", "txt", "csv"],
+    "include_sample_data": true,
+    "max_sample_size": 10
+  }
+}

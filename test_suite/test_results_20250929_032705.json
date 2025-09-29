@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-09-29T03:27:05.146184",
+  "total_tests": 8,
+  "passed": 1,
+  "failed": 7,
+  "skipped": 0,
+  "success_rate": 0.125,
+  "total_execution_time": 21.766183137893677,
+  "test_results": [
+    {
+      "test_name": "原始数据可用性测试",
+      "status": "pass",
+      "message": "cloud_pred_today_norm表有383行数据",
+      "execution_time": 2.3321001529693604,
+      "data_count": 383,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_cloud_today_v",
+      "status": "fail",
+      "message": "p_cloud_today_v视图无数据",
+      "execution_time": 2.592529058456421,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_map_today_v",
+      "status": "fail",
+      "message": "p_map_today_v视图无数据",
+      "execution_time": 2.905637264251709,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "预测视图测试: p_size_today_v",
+      "status": "fail",
+      "message": "p_size_today_v视图无数据",
+      "execution_time": 2.2963762283325195,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_map_today_canon_v",
+      "status": "fail",
+      "message": "p_map_today_canon_v视图无数据",
+      "execution_time": 1.8824691772460938,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "标准化视图测试: p_size_today_canon_v",
+      "status": "fail",
+      "message": "p_size_today_canon_v视图无数据",
+      "execution_time": 2.7035040855407715,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "信号池生成测试",
+      "status": "fail",
+      "message": "signal_pool_union_v3无数据，需要检查上游视图",
+      "execution_time": 3.1355698108673096,
+      "data_count": 0,
+      "error_details": null
+    },
+    {
+      "test_name": "决策管道测试",
+      "status": "fail",
+      "message": "lab_push_candidates_v2无候选决策",
+      "execution_time": 3.9174718856811523,
+      "data_count": 0,
+      "error_details": null
+    }
+  ]
+}

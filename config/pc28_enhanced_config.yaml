@@ -1,0 +1,84 @@
+meta:
+  tz: "Asia/Shanghai"
+  channels: ["oe","size"]
+  respect_guard_lock: true
+  kelly_cap: 0.05
+  only_ev_positive: true
+  run_mode: "balanced"
+
+data:
+  project: "${PROJECT:-wprojectl}"
+  ds_lab:  "${DS_LAB:-pc28_lab}"
+  ds_draw: "${DS_DRAW:-pc28}"
+  bqloc:   "${BQLOC:-us-central1}"
+  views:
+    ledger_prod_v: "score_ledger_prod_v"
+    draws_view:    "draws_14w_dedup_v"
+    candidates_v:  "lab_push_candidates_v2"
+
+voting:
+  weights_init: {cloud: 0.50, map: 0.30, size: 0.20}
+  weight_floor: 0.10
+  weight_ceiling: 0.70
+  weight_eta: 0.02
+  extreme_gate:
+    enable: true
+    hi: 0.85
+    lo: 0.15
+  buckets: [0.50, 0.67, 1.00]
+  accept_floor: 0.50
+
+calibration:
+  enable: true
+  method: "hybrid"
+  segments:
+    - key: "session"
+    - key: "tail"
+  min_samples: 200
+  max_lookback_days: 14
+
+controller:
+  targets:
+    cov: 0.50
+    acc: 0.80
+  errors_window_min: 60
+  conservative:   {k_cov: 0.10, k_acc_up: 0.10, k_acc_dn: 0.30}
+  balanced:       {k_cov: 0.20, k_acc_up: 0.15, k_acc_dn: 0.35}
+  aggressive:     {k_cov: 0.35, k_acc_up: 0.20, k_acc_dn: 0.40}
+  knobs_bounds:
+    min_accept: 0.33
+    max_accept: 0.67
+
+risk:
+  kelly_cap: 0.05
+  bankroll_u: 10000
+  unit_u: 50
+  dd_guard:
+    window: 200
+    max_drawdown_pct: 0.15
+    cool_off_min: 30
+
+autoswitch:
+  enable: true
+  cov_lo: 0.42
+  cov_hi: 0.50
+  acc_guard: 0.80
+  acc_abort: 0.60
+  min_settled: 40
+  dwell_min: 10
+  boost:
+    ttl_min: 15
+    floor: 0.33
+
+paths:
+  state_dir: "~/.pc28_state"
+  lock_file: "/var/run/pc28.lock"
+  request_files:
+    bucket_floor: "bucket_floor_request.json"
+    param_tweak:  "param_tweak_request.json"
+    mode_switch:  "mode_switch_request.json"
+
+telegram:
+  enable: true
+  post_samples: 3
+  show_controller_state: true

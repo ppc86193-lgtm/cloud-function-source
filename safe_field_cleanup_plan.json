@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-29T06:03:05.547063",
+    "plan_version": "1.0",
+    "based_on_analysis": "data_flow_analysis_report.json"
+  },
+  "cleanup_phases": {
+    "phase_1_archive": [
+      {
+        "table": "score_ledger",
+        "field": "result_digits",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 score_ledger_result_digits_archive 表",
+          "2. 迁移 result_digits 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 result_digits 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 15.2,
+          "index_savings_mb": 7.6,
+          "total_savings_mb": 22.799999999999997,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "score_ledger",
+        "field": "source",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 score_ledger_source_archive 表",
+          "2. 迁移 source 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 source 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 8.5,
+          "index_savings_mb": 4.2,
+          "total_savings_mb": 12.7,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "draws_14w_dedup_v",
+        "field": "ts_utc",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 draws_14w_dedup_v_ts_utc_archive 表",
+          "2. 迁移 ts_utc 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 ts_utc 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 12.8,
+          "index_savings_mb": 6.4,
+          "total_savings_mb": 19.200000000000003,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "draws_14w_dedup_v",
+        "field": "legacy_format",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 draws_14w_dedup_v_legacy_format_archive 表",
+          "2. 迁移 legacy_format 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 legacy_format 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 25.3,
+          "index_savings_mb": 0,
+          "total_savings_mb": 25.3,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "draws_14w_dedup_v",
+        "field": "data_source",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 draws_14w_dedup_v_data_source_archive 表",
+          "2. 迁移 data_source 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 data_source 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 18.7,
+          "index_savings_mb": 9.3,
+          "total_savings_mb": 28.0,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "p_size_clean_merged_dedup_v",
+        "field": "model_version",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 p_size_clean_merged_dedup_v_model_version_archive 表",
+          "2. 迁移 model_version 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 model_version 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 6.4,
+          "index_savings_mb": 3.2,
+          "total_savings_mb": 9.600000000000001,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "p_size_clean_merged_dedup_v",
+        "field": "raw_features",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 p_size_clean_merged_dedup_v_raw_features_archive 表",
+          "2. 迁移 raw_features 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 raw_features 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 128.5,
+          "index_savings_mb": 0,
+          "total_savings_mb": 128.5,
+          "query_performance_improvement": "5-10%"
+        }
+      },
+      {
+        "table": "p_size_clean_merged_dedup_v",
+        "field": "processing_time",
+        "action": "archive_then_drop",
+        "risk_level": "low",
+        "timeline": "2周归档期 + 1周监控期",
+        "steps": [
+          "1. 创建 p_size_clean_merged_dedup_v_processing_time_archive 表",
+          "2. 迁移 processing_time 数据到归档表",
+          "3. 监控1周确保无业务影响",
+          "4. 删除原字段"
+        ],
+        "rollback_plan": "从归档表恢复 processing_time 字段",
+        "estimated_savings": {
+          "storage_savings_mb": 7.9,
+          "index_savings_mb": 3.9,
+          "total_savings_mb": 11.8,
+          "query_performance_improvement": "5-10%"
+        }
+      }
+    ],
+    "phase_2_monitor": [],
+    "phase_3_optimize": [
+      {
+        "field": "curtime",
+        "api_type": "realtime",
+        "action": "remove_from_api_response",
+        "risk_level": "low",
+        "timeline": "1周测试期",
+        "steps": [
+          "1. 修改API响应模板，移除 curtime",
+          "2. 更新API文档",
+          "3. 通知下游系统（如有）",
+          "4. 监控API调用无异常"
+        ],
+        "rollback_plan": "恢复 curtime 到API响应",
+        "estimated_savings": {
+          "network_transfer": "5-10%",
+          "response_size": "15%"
+        }
+      },
+      {
+        "field": "short_issue",
+        "api_type": "realtime",
+        "action": "remove_from_api_response",
+        "risk_level": "low",
+        "timeline": "1周测试期",
+        "steps": [
+          "1. 修改API响应模板，移除 short_issue",
+          "2. 更新API文档",
+          "3. 通知下游系统（如有）",
+          "4. 监控API调用无异常"
+        ],
+        "rollback_plan": "恢复 short_issue 到API响应",
+        "estimated_savings": {
+          "network_transfer": "5-10%",
+          "response_size": "15%"
+        }
+      },
+      {
+        "field": "intervalM",
+        "api_type": "realtime",
+        "action": "remove_from_api_response",
+        "risk_level": "low",
+        "timeline": "1周测试期",
+        "steps": [
+          "1. 修改API响应模板，移除 intervalM",
+          "2. 更新API文档",
+          "3. 通知下游系统（如有）",
+          "4. 监控API调用无异常"
+        ],
+        "rollback_plan": "恢复 intervalM 到API响应",
+        "estimated_savings": {
+          "network_transfer": "5-10%",
+          "response_size": "15%"
+        }
+      }
+    ],
+    "phase_4_maintain": []
+  },
+  "implementation_timeline": {
+    "phase_1_archive": "第1-2周：字段归档",
+    "phase_2_monitor": "第3周：监控期",
+    "phase_3_optimize": "第4周：API优化",
+    "phase_4_maintain": "持续：维护监控"
+  },
+  "expected_benefits": {
+    "storage_savings_mb": 223.3,
+    "index_savings_mb": 117.3,
+    "total_savings_mb": 340.6,
+    "performance_improvement": "10-15%",
+    "maintenance_cost_reduction": "20-30%"
+  }
+}

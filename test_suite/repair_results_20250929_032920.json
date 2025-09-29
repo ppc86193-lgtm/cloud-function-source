@@ -1,0 +1,64 @@
+{
+  "timestamp": "2025-09-29T03:29:20.126815",
+  "total_issues": 7,
+  "completed": 3,
+  "failed": 4,
+  "success_rate": 0.42857142857142855,
+  "execution_time": 30.511208057403564,
+  "completed_tasks": [
+    {
+      "task_id": "time_issue_1759087732",
+      "task_name": "数据时效性问题",
+      "priority": "high",
+      "description": "数据日期(2025-09-17)与当前日期(2025-09-29)不匹配",
+      "repair_action": "update_data_date_filter",
+      "completed_at": "2025-09-29T03:29:15.862476"
+    },
+    {
+      "task_id": "view_issue_p_map_today_v_1759087737",
+      "task_name": "视图无数据: p_map_today_v",
+      "priority": "medium",
+      "description": "p_map_today_v视图返回0行数据",
+      "repair_action": "repair_view_p_map_today_v",
+      "completed_at": "2025-09-29T03:29:17.968371"
+    },
+    {
+      "task_id": "view_issue_p_map_today_canon_v_1759087743",
+      "task_name": "视图无数据: p_map_today_canon_v",
+      "priority": "medium",
+      "description": "p_map_today_canon_v视图返回0行数据",
+      "repair_action": "repair_view_p_map_today_canon_v",
+      "completed_at": "2025-09-29T03:29:20.126730"
+    }
+  ],
+  "failed_tasks": [
+    {
+      "task_id": "view_issue_signal_pool_union_v3_1759087751",
+      "task_name": "视图无数据: signal_pool_union_v3",
+      "priority": "high",
+      "description": "signal_pool_union_v3视图返回0行数据",
+      "error_message": "修复操作失败"
+    },
+    {
+      "task_id": "view_issue_p_cloud_today_v_1759087735",
+      "task_name": "视图无数据: p_cloud_today_v",
+      "priority": "medium",
+      "description": "p_cloud_today_v视图返回0行数据",
+      "error_message": "修复操作失败"
+    },
+    {
+      "task_id": "view_issue_p_size_today_v_1759087740",
+      "task_name": "视图无数据: p_size_today_v",
+      "priority": "medium",
+      "description": "p_size_today_v视图返回0行数据",
+      "error_message": "修复操作失败"
+    },
+    {
+      "task_id": "view_issue_p_size_today_canon_v_1759087748",
+      "task_name": "视图无数据: p_size_today_canon_v",
+      "priority": "medium",
+      "description": "p_size_today_canon_v视图返回0行数据",
+      "error_message": "修复操作失败"
+    }
+  ]
+}

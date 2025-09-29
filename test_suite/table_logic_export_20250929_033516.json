@@ -1,0 +1,1004 @@
+{
+  "export_time": "2025-09-29T03:35:07.461936",
+  "project_id": "wprojectl",
+  "dataset_id": "pc28_lab",
+  "tables": {
+    "cloud_pred_today_norm": {
+      "table_name": "cloud_pred_today_norm",
+      "export_time": "2025-09-29T03:35:07.461981",
+      "schema": {
+        "table_name": "cloud_pred_today_norm",
+        "table_type": "TABLE",
+        "created": "2025-09-17T07:06:48.632000+00:00",
+        "modified": "2025-09-17T07:06:48.633000+00:00",
+        "num_rows": 383,
+        "num_bytes": 16852,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_even",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "src",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_cloud_clean_merged_dedup_v": {
+      "table_name": "p_cloud_clean_merged_dedup_v",
+      "export_time": "2025-09-29T03:35:08.607779",
+      "schema": {
+        "table_name": "p_cloud_clean_merged_dedup_v",
+        "table_type": "VIEW",
+        "created": "2025-09-15T17:08:34.294000+00:00",
+        "modified": "2025-09-15T17:08:34.294000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_even",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "src",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_cloud_today_v": {
+      "table_name": "p_cloud_today_v",
+      "export_time": "2025-09-29T03:35:09.442283",
+      "schema": {
+        "table_name": "p_cloud_today_v",
+        "table_type": "VIEW",
+        "created": "2025-09-28T19:29:15.577000+00:00",
+        "modified": "2025-09-28T19:29:15.577000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_even",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "src",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "n_src",
+            "field_type": "INTEGER",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_map_today_v": {
+      "table_name": "p_map_today_v",
+      "export_time": "2025-09-29T03:35:10.176657",
+      "schema": {
+        "table_name": "p_map_today_v",
+        "table_type": "VIEW",
+        "created": "2025-09-28T19:29:17.672000+00:00",
+        "modified": "2025-09-28T19:29:17.672000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_even",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "src",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "n_src",
+            "field_type": "INTEGER",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_size_today_v": {
+      "table_name": "p_size_today_v",
+      "export_time": "2025-09-29T03:35:11.021246",
+      "schema": {
+        "table_name": "p_size_today_v",
+        "table_type": "VIEW",
+        "created": "2025-09-28T19:09:55.692000+00:00",
+        "modified": "2025-09-28T19:09:55.692000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "timestamp",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_even",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_big",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "src",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "n_src",
+            "field_type": "INTEGER",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_ensemble_today_canon_v": {
+      "table_name": "p_ensemble_today_canon_v",
+      "export_time": "2025-09-29T03:35:11.852542",
+      "schema": null,
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": [
+        "无法获取表结构"
+      ]
+    },
+    "p_map_today_canon_v": {
+      "table_name": "p_map_today_canon_v",
+      "export_time": "2025-09-29T03:35:12.535011",
+      "schema": {
+        "table_name": "p_map_today_canon_v",
+        "table_type": "VIEW",
+        "created": "2025-09-28T19:29:19.852000+00:00",
+        "modified": "2025-09-28T19:29:19.852000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "market",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_win",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "source",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "p_size_today_canon_v": {
+      "table_name": "p_size_today_canon_v",
+      "export_time": "2025-09-29T03:35:13.288487",
+      "schema": {
+        "table_name": "p_size_today_canon_v",
+        "table_type": "VIEW",
+        "created": "2025-09-28T19:10:05.977000+00:00",
+        "modified": "2025-09-28T19:10:05.977000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "market",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_win",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "source",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "signal_pool": {
+      "table_name": "signal_pool",
+      "export_time": "2025-09-29T03:35:13.983060",
+      "schema": {
+        "table_name": "signal_pool",
+        "table_type": "TABLE",
+        "created": "2025-09-14T07:58:13.263000+00:00",
+        "modified": "2025-09-28T17:20:20.643000+00:00",
+        "num_rows": 502,
+        "num_bytes": 42499,
+        "fields": [
+          {
+            "name": "id",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "created_at",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "market",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_win",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "source",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "vote_ratio",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "params",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "features",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "notes",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "signal_pool_union_v3": {
+      "table_name": "signal_pool_union_v3",
+      "export_time": "2025-09-29T03:35:14.687464",
+      "schema": {
+        "table_name": "signal_pool_union_v3",
+        "table_type": "VIEW",
+        "created": "2025-09-27T14:12:40.805000+00:00",
+        "modified": "2025-09-27T14:12:40.805000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "id",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "created_at",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "market",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_win",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "source",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "vote_ratio",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "params",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "features",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "notes",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    },
+    "lab_push_candidates_v2": {
+      "table_name": "lab_push_candidates_v2",
+      "export_time": "2025-09-29T03:35:15.430513",
+      "schema": {
+        "table_name": "lab_push_candidates_v2",
+        "table_type": "VIEW",
+        "created": "2025-09-27T14:13:46.678000+00:00",
+        "modified": "2025-09-27T14:13:46.678000+00:00",
+        "num_rows": 0,
+        "num_bytes": 0,
+        "fields": [
+          {
+            "name": "id",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "created_at",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ts_utc",
+            "field_type": "TIMESTAMP",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "period",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "market",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "p_win",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "ev",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "kelly_frac",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "source",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "vote_ratio",
+            "field_type": "FLOAT",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "pick_zh",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "day_id_cst",
+            "field_type": "DATE",
+            "mode": "NULLABLE",
+            "description": null
+          },
+          {
+            "name": "draw_id",
+            "field_type": "STRING",
+            "mode": "NULLABLE",
+            "description": null
+          }
+        ]
+      },
+      "view_definition": null,
+      "dependencies": [],
+      "field_mappings": {},
+      "issues": []
+    }
+  },
+  "dependency_graph": {},
+  "field_compatibility": {
+    "common_fields": {
+      "period": {
+        "cloud_pred_today_norm": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_clean_merged_dedup_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "ts_utc": {
+        "cloud_pred_today_norm": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_clean_merged_dedup_v": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_today_v": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_v": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_canon_v": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        }
+      },
+      "p_even": {
+        "cloud_pred_today_norm": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_clean_merged_dedup_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_today_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        }
+      },
+      "src": {
+        "cloud_pred_today_norm": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_clean_merged_dedup_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_cloud_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "n_src": {
+        "p_cloud_today_v": {
+          "type": "INTEGER",
+          "mode": "NULLABLE"
+        },
+        "p_map_today_v": {
+          "type": "INTEGER",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_v": {
+          "type": "INTEGER",
+          "mode": "NULLABLE"
+        }
+      },
+      "market": {
+        "p_map_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "pick": {
+        "p_map_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "p_win": {
+        "p_map_today_canon_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        }
+      },
+      "source": {
+        "p_map_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "p_size_today_canon_v": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "id": {
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "created_at": {
+        "signal_pool": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "TIMESTAMP",
+          "mode": "NULLABLE"
+        }
+      },
+      "vote_ratio": {
+        "signal_pool": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        },
+        "lab_push_candidates_v2": {
+          "type": "FLOAT",
+          "mode": "NULLABLE"
+        }
+      },
+      "params": {
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "features": {
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      },
+      "notes": {
+        "signal_pool": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+        "signal_pool_union_v3": {
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+      }
+    },
+    "missing_fields": {},
+    "type_mismatches": {},
+    "naming_inconsistencies": []
+  },
+  "issues_summary": [
+    {
+      "table": "p_cloud_clean_merged_dedup_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_cloud_clean_merged_dedup_v 为空"
+    },
+    {
+      "table": "p_cloud_today_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_cloud_today_v 为空"
+    },
+    {
+      "table": "p_map_today_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_map_today_v 为空"
+    },
+    {
+      "table": "p_size_today_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_size_today_v 为空"
+    },
+    {
+      "table": "p_ensemble_today_canon_v",
+      "type": "table_access",
+      "severity": "high",
+      "description": "无法获取表结构"
+    },
+    {
+      "table": "p_map_today_canon_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_map_today_canon_v 为空"
+    },
+    {
+      "table": "p_size_today_canon_v",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 p_size_today_canon_v 为空"
+    },
+    {
+      "table": "signal_pool_union_v3",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 signal_pool_union_v3 为空"
+    },
+    {
+      "table": "lab_push_candidates_v2",
+      "type": "empty_table",
+      "severity": "medium",
+      "description": "表 lab_push_candidates_v2 为空"
+    }
+  ]
+}
