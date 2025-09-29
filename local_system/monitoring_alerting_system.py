@@ -212,7 +212,6 @@ class MonitoringAlertingSystem:
             
             # API健康状态
             try:
-                from local_api_collector import LocalAPICollector
                 collector = LocalAPICollector()
                 api_healthy = collector.test_api_connection()
                 metrics['api_health_status'] = 1.0 if api_healthy else 0.0

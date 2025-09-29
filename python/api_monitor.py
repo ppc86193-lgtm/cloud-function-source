@@ -8,7 +8,6 @@ import logging
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
-from pc28_upstream_api import PC28UpstreamAPI
 
 @dataclass
 class APIHealthStatus:

@@ -18,7 +18,6 @@ from enum import Enum
 from dataclasses import dataclass, asdict
 
 from local_database import get_local_db
-from local_api_collector import LocalAPICollector
 from local_sql_engine import LocalSQLEngine
 
 logging.basicConfig(level=logging.INFO)

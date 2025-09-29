@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "pull_interval_minutes": 30,
+  "tables_to_sync": [
+    "pc28_lab.draws_14w_clean",
+    "pc28_lab.cloud_pred_today_norm",
+    "pc28_lab.lab_push_candidates_v2"
+  ],
+  "max_records_per_sync": 5000,
+  "auto_repair": true
+}

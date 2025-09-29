@@ -71,8 +71,13 @@ class MockBettingService:
         
     def check_balance(self, user_id: str, amount: Decimal) -> bool:
         """检查余额"""
-        # 模拟余额检查，假设用户有足够余额
-        return amount <= Decimal('1000.00')
+        # 获取用户实际余额
+        user_balance = Decimal('1000.00')  # 模拟用户余额
+        
+        # 检查余额是否充足
+        if amount > user_balance:
+            return False  # 余额不足
+        return True  # 余额充足
         
     def validate_period(self, period: str) -> bool:
         """验证期次"""
@@ -126,7 +131,8 @@ class MockRiskService:
     def check_daily_limit(self, user_id: str, limit: Decimal) -> bool:
         """检查日限额"""
         daily_amount = self.get_daily_bet_amount(user_id)
-        return daily_amount < limit
+        # 修复逻辑：当前投注金额超过限额时返回False
+        return daily_amount <= limit
         
     def detect_suspicious_activity(self, user_id: str, pattern: Dict) -> bool:
         """检测可疑活动"""

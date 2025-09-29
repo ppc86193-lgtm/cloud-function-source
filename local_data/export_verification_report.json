@@ -1,0 +1,416 @@
+{
+  "verification_time": "2025-09-29T17:02:29.795072",
+  "total_tables": 6,
+  "passed_tables": 0,
+  "warning_tables": 1,
+  "failed_tables": 5,
+  "overall_status": "poor",
+  "table_results": [
+    {
+      "table_name": "p_cloud_today_canon_v",
+      "verification_time": "2025-09-29T17:02:29.795421",
+      "verification_status": "failed",
+      "cloud_info": null,
+      "local_info": null,
+      "schema_compatibility": null,
+      "data_quality_score": 0.0,
+      "issues": [
+        "无法获取云端表信息"
+      ],
+      "recommendations": [
+        "检查表名和权限设置"
+      ]
+    },
+    {
+      "table_name": "p_map_today_canon_v",
+      "verification_time": "2025-09-29T17:02:29.796304",
+      "verification_status": "failed",
+      "cloud_info": {
+        "table_name": "p_map_today_canon_v",
+        "row_count": 838,
+        "schema": [
+          {
+            "name": "draw_id",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_utc",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "period",
+            "type": "INTEGER",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "market",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "pick",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_win",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "source",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "vote_ratio",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "pick_zh",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "day_id_cst",
+            "type": "DATE",
+            "mode": "NULLABLE"
+          }
+        ],
+        "latest_timestamp": "2025-09-29T23:53:00+00:00",
+        "table_size_bytes": 0,
+        "created": "2025-09-28T22:54:52.649000+00:00",
+        "modified": "2025-09-28T22:54:52.649000+00:00"
+      },
+      "local_info": null,
+      "schema_compatibility": null,
+      "data_quality_score": 0.0,
+      "issues": [
+        "本地导出文件不存在"
+      ],
+      "recommendations": [
+        "运行数据导出程序"
+      ]
+    },
+    {
+      "table_name": "p_size_today_canon_v",
+      "verification_time": "2025-09-29T17:02:29.796456",
+      "verification_status": "failed",
+      "cloud_info": {
+        "table_name": "p_size_today_canon_v",
+        "row_count": 838,
+        "schema": [
+          {
+            "name": "draw_id",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_utc",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "period",
+            "type": "INTEGER",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "market",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "pick",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_win",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "source",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "vote_ratio",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "pick_zh",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "day_id_cst",
+            "type": "DATE",
+            "mode": "NULLABLE"
+          }
+        ],
+        "latest_timestamp": "2025-09-29T23:53:00+00:00",
+        "table_size_bytes": 0,
+        "created": "2025-09-28T22:54:54.621000+00:00",
+        "modified": "2025-09-28T22:54:54.621000+00:00"
+      },
+      "local_info": null,
+      "schema_compatibility": null,
+      "data_quality_score": 0.0,
+      "issues": [
+        "本地导出文件不存在"
+      ],
+      "recommendations": [
+        "运行数据导出程序"
+      ]
+    },
+    {
+      "table_name": "combo_based_predictions",
+      "verification_time": "2025-09-29T17:02:34.035396",
+      "verification_status": "failed",
+      "cloud_info": null,
+      "local_info": null,
+      "schema_compatibility": null,
+      "data_quality_score": 0.0,
+      "issues": [
+        "无法获取云端表信息"
+      ],
+      "recommendations": [
+        "检查表名和权限设置"
+      ]
+    },
+    {
+      "table_name": "p_ensemble_today_norm_v5",
+      "verification_time": "2025-09-29T17:02:31.159574",
+      "verification_status": "warning",
+      "cloud_info": {
+        "table_name": "p_ensemble_today_norm_v5",
+        "row_count": 409600,
+        "schema": [
+          {
+            "name": "period",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_utc",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_cst",
+            "type": "DATETIME",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_cloud",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_cloud",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_map",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_map",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_size",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_size",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_combo",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_combo",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_hit",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_hit",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_star_ens",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "vote_ratio",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "cooling_status",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ],
+        "latest_timestamp": "2025-09-29T08:54:00+00:00",
+        "table_size_bytes": 0,
+        "created": "2025-09-29T08:53:15.503000+00:00",
+        "modified": "2025-09-29T08:53:15.503000+00:00"
+      },
+      "local_info": {
+        "file_path": "/Users/a606/cloud_function_source/local_data/p_ensemble_today_norm_v5.json",
+        "file_size_bytes": 4774109,
+        "file_size_mb": 4.552945137023926,
+        "last_modified": "2025-09-29T16:53:25.331494",
+        "row_count": 10000,
+        "schema": [
+          {
+            "name": "period",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_utc",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ts_cst",
+            "type": "DATETIME",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_cloud",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_cloud",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_map",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_map",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_size",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_size",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_combo",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_combo",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_hit",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "conf_hit",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "p_star_ens",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "vote_ratio",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "cooling_status",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ],
+        "export_time": "2025-09-29T16:53:25.232680",
+        "data_freshness_hours": 0.1529550380176968
+      },
+      "schema_compatibility": {
+        "is_compatible": true,
+        "missing_in_local": [],
+        "extra_in_local": [],
+        "type_mismatches": [],
+        "compatibility_score": 1.0
+      },
+      "data_quality_score": 1.0,
+      "issues": [
+        "行数差异过大: 云端409600, 本地10000"
+      ],
+      "recommendations": [
+        "重新运行完整导出"
+      ]
+    },
+    {
+      "table_name": "cloud_pred_today_norm",
+      "verification_time": "2025-09-29T17:02:33.991588",
+      "verification_status": "failed",
+      "cloud_info": null,
+      "local_info": null,
+      "schema_compatibility": null,
+      "data_quality_score": 0.0,
+      "issues": [
+        "无法获取云端表信息"
+      ],
+      "recommendations": [
+        "检查表名和权限设置"
+      ]
+    }
+  ],
+  "stability_test": {
+    "success_rate": 0.6666666666666666,
+    "avg_response_time_ms": 1586.8891307285853,
+    "total_operations": 42,
+    "successful_operations": 28,
+    "failed_operations": 14,
+    "error_count": 14
+  },
+  "recommendations": [
+    "修复失败的表导出问题",
+    "提高系统稳定性，检查网络和服务配置",
+    "处理警告状态的表，优化数据质量"
+  ]
+}

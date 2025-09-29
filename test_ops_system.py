@@ -112,7 +112,6 @@ class PC28OpsSystemTest:
             config = json.load(f)
         
         # 验证必要的配置项
-        required_sections = ['monitoring', 'upstream_api']
         for section in required_sections:
             if section not in config:
                 raise ValueError(f"配置文件缺少必要部分: {section}")
@@ -150,7 +149,6 @@ class PC28OpsSystemTest:
         # 测试系统健康检查（不执行实际检查）
         health_status = {
             'overall_status': 'healthy',
-            'api_status': {'pc28_upstream': 'healthy'},
             'data_quality_status': {'lottery_data': 'good'},
             'performance_metrics': {
                 'avg_api_response_time': 150,
@@ -269,7 +267,7 @@ class PC28OpsSystemTest:
             },
             'shared_resources': {
                 'database_config': config.get('database', {}) != {},
-                'api_config': config.get('upstream_api', {}) != {},
+                'api_config': config.get('disabled_upstream_api', {}) != {},
                 'monitoring_config': config.get('monitoring', {}) != {}
             }
         }

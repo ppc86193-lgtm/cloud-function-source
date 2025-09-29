@@ -16,7 +16,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from local_database import LocalDatabase
-from local_api_collector import LocalAPICollector
 from local_sql_engine import LocalSQLEngine
 from auto_repair_system import AutoRepairSystem
 from cloud_sync_manager import CloudSyncManager

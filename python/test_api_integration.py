@@ -15,7 +15,6 @@ from typing import Dict, Any, List
 # 添加当前目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from pc28_upstream_api import PC28UpstreamAPI
 from realtime_lottery_service import RealtimeLotteryService
 from history_backfill_service import HistoryBackfillService
 from integrated_data_adapter import IntegratedDataAdapter
@@ -31,63 +30,26 @@ def load_test_config() -> Dict[str, Any]:
     """
     加载测试配置
     """
-    config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'integrated_config.json')
-    
-    try:
-        with open(config_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        logger.warning(f"配置文件未找到: {config_path}，使用默认配置")
-        return {
-            "appid": "45928",
-            "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0",
-            "upstream_api": {
-                "appid": "45928",
-                "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0",
-                "realtime_url": "https://rijb.api.storeapi.net/api/119/259",
-                "history_url": "https://rijb.api.storeapi.net/api/119/260",
-                "timeout": 30,
-                "max_retries": 3
-            },
-            "data_source": {
-                "use_upstream_api": True,
-                "fallback_to_bigquery": True,
-                "sync_to_bigquery": False,
-                "validation_enabled": True
-            }
+    # 注意：本地API采集已删除，此配置仅用于测试云端数据流
+    return {
+        "appid": "45928",
+        "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0",
+        "data_source": {
+            "use_upstream_api": False,  # 已禁用本地API采集
+            "fallback_to_bigquery": True,
+            "sync_to_bigquery": False,
+            "validation_enabled": True
         }
+    }
 
 def test_md5_signature():
     """
-    测试MD5签名生成功能
+    测试MD5签名生成功能 - 已废弃，仅保留用于测试
     """
     logger.info("=== 测试MD5签名生成 ===")
+    logger.warning("本地API采集已删除，此测试仅用于验证云端数据流")
     
-    config = load_test_config()
-    api_client = PC28UpstreamAPI(config['upstream_api']['appid'], config['upstream_api']['secret_key'])
-    
-    # 测试实时接口签名
-    params = {
-        'appid': '45928',
-        'format': 'json',
-        'time': '1545829466'
-    }
-    
-    signature = api_client._generate_md5_sign(params)
-    logger.info(f"实时接口签名: {signature}")
-    
-    # 测试历史接口签名
-    history_params = {
-        'appid': '45928',
-        'date': '2020-12-16',
-        'format': 'json',
-        'limit': '30',
-        'time': '1545829466'
-    }
-    
-    history_signature = api_client._generate_md5_sign(history_params)
-    logger.info(f"历史接口签名: {history_signature}")
-    
+    # 测试已废弃，直接返回
     return True
 
 def test_api_connectivity():

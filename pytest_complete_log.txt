@@ -1,0 +1,50 @@
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:contract_compliance_logger:已加载现有密钥对
+INFO:contract_compliance_logger:合约合规性数据库初始化完成 - 已集成pytest验证
+INFO:contract_compliance_logger:🔒 智能合约合规性日志系统已初始化 - 版本 3.0
+INFO:contract_compliance_logger:✅ 严格模式：只认可pytest生成的自动化日志
+INFO:pytest_compliance_plugin:✅ pytest合规性插件已激活 - 只认可pytest自动化日志
+INFO:conftest:✅ pytest合规性配置完成 - 只认可pytest自动化日志
+INFO:conftest:✅ pytest会话已开始 - 合规性验证通过
+
+---------------------------- live log sessionstart -----------------------------
+INFO     conftest:conftest.py:61 ✅ pytest会话已开始 - 合规性验证通过
+============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /Users/a606/Documents/9999/deploy_package/venv/bin/python3.13
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.7', 'Platform': 'macOS-14.5-arm64-arm-64bit-Mach-O', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'mock': '3.15.1', 'asyncio': '1.2.0', 'anyio': '4.11.0', 'html': '4.1.1', 'xdist': '3.8.0', 'json-report': '1.5.0', 'timeout': '2.4.0', 'metadata': '3.1.1', 'cov': '7.0.0'}}
+rootdir: /Users/a606/cloud_function_source
+configfile: pytest.ini
+plugins: mock-3.15.1, asyncio-1.2.0, anyio-4.11.0, html-4.1.1, xdist-3.8.0, json-report-1.5.0, timeout-2.4.0, metadata-3.1.1, cov-7.0.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... INFO:pytest_compliance_plugin:✅ pytest会话完成 - 总计 0 个测试
+collected 0 items / 1 error
+---------------------------- live log sessionfinish ----------------------------
+INFO     pytest_compliance_plugin:pytest_compliance_plugin.py:157 ✅ pytest会话完成 - 总计 0 个测试
+INFO:conftest:✅ pytest会话结束 - 合规性报告已生成
+INFO     conftest:conftest.py:122 ✅ pytest会话结束 - 合规性报告已生成
+
+==================================== ERRORS ====================================
+_ ERROR collecting CHANGESETS/BACKUPS/final_cleanup_20250929_162103/test_data_sync.py _
+ImportError while importing test module '/Users/a606/cloud_function_source/CHANGESETS/BACKUPS/final_cleanup_20250929_162103/test_data_sync.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+CHANGESETS/BACKUPS/final_cleanup_20250929_162103/test_data_sync.py:13: in <module>
+    from integrated_data_adapter import IntegratedDataAdapter
+CHANGESETS/BACKUPS/final_cleanup_20250929_162103/python/integrated_data_adapter.py:13: in <module>
+    from bigquery_data_adapter import BQ
+E   ModuleNotFoundError: No module named 'bigquery_data_adapter'
+=========================== short test summary info ============================
+ERROR CHANGESETS/BACKUPS/final_cleanup_20250929_162103/test_data_sync.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.05s ===============================

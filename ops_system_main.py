@@ -157,7 +157,6 @@ class OpsSystemManager:
                 else:
                     # 使用默认配置
                     dashboard_config = {
-                        "upstream_api": {
                             "appid": "test_app",
                             "secret_key": "test_secret"
                         },
@@ -200,7 +199,6 @@ class OpsSystemManager:
                 else:
                     # 使用默认配置
                     default_api_config = {
-                        "upstream_api": {
                             "appid": "test_app",
                             "secret_key": "test_secret"
                         },

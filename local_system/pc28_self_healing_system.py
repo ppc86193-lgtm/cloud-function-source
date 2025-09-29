@@ -19,7 +19,6 @@ import argparse
 
 # 导入本地系统组件
 from local_database import LocalDatabase, get_local_db
-from local_api_collector import LocalAPICollector
 from local_sql_engine import LocalSQLEngine
 from auto_repair_system import AutoRepairSystem
 from cloud_sync_manager import CloudSyncManager

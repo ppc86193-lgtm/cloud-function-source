@@ -24,9 +24,6 @@ class TestFieldUsageAnalyzer:
     @pytest.fixture
     def analyzer(self):
         """创建分析器实例"""
-        with patch('field_usage_analysis.PC28UpstreamAPI'), \
-             patch('field_usage_analysis.RealtimeLotteryService'), \
-             patch('field_usage_analysis.HistoryBackfillService'):
             return FieldUsageAnalyzer()
     
     @pytest.fixture

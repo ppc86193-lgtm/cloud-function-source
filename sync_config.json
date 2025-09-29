@@ -1,0 +1,27 @@
+{
+  "sync_interval_minutes": 30,
+  "max_concurrent_syncs": 5,
+  "priority_tables": [
+    "p_ensemble_today_norm_v5",
+    "p_cloud_today_canon_v",
+    "p_map_today_canon_v",
+    "p_size_today_canon_v",
+    "combo_based_predictions"
+  ],
+  "sync_strategies": {
+    "full_sync_tables": [
+      "combo_based_predictions"
+    ],
+    "incremental_sync_tables": [
+      "p_ensemble_today_norm_v5"
+    ],
+    "daily_sync_tables": [
+      "p_cloud_today_canon_v",
+      "p_map_today_canon_v",
+      "p_size_today_canon_v"
+    ]
+  },
+  "data_retention_days": 7,
+  "enable_consistency_check": true,
+  "enable_auto_repair": true
+}

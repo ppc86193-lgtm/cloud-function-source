@@ -55,9 +55,5 @@
     "metrics_retention_hours": 24
   },
   "api_config": {
-    "upstream_api": {
-      "appid": "45928",
-      "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0"
     }
-  }
 }

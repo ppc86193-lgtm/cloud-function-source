@@ -572,7 +572,6 @@ def main():
             "draw_id": "20241201001",
             "numbers": [1, 3, 7, 2, 8],  # 相对随机
             "timestamp": "2024-12-01T10:00:00Z",
-            "source": "real_api"
         },
         {
             "draw_id": "20241201002", 
@@ -590,7 +589,6 @@ def main():
             "draw_id": "20241201004",
             "numbers": [9, 2, 5, 1, 7],  # 相对随机
             "timestamp": "2024-12-01T10:15:00Z",
-            "source": "real_api"
         }
     ]
     

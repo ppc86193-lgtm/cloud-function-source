@@ -17,7 +17,6 @@ import statistics
 from collections import defaultdict, Counter
 
 # 导入相关系统
-from real_api_data_system import RealAPIDataSystem, APIConfig, LotteryRecord
 from data_deduplication_system import DataDeduplicationSystem
 
 # 配置日志
@@ -80,8 +79,9 @@ class OnlineDataValidator:
         self.db_path = db_path
         self.lock = threading.RLock()
         
-        # 初始化数据系统
-        self.data_system = RealAPIDataSystem(api_config)
+        # 初始化数据系统 - 移除RealAPIDataSystem引用，改为使用云端数据源
+        # self.data_system = RealAPIDataSystem(api_config)
+        self.data_system = None  # 使用云端数据源
         
         # 验证规则
         self.validation_rules = self._init_validation_rules()

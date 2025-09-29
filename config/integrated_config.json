@@ -6,17 +6,7 @@
     "location": "US",
     "timezone": "Asia/Shanghai"
   },
-  "upstream_api": {
-    "appid": "45928",
-    "secret_key": "ca9edbfee35c22a0d6c4cf6722506af0",
-    "realtime_url": "https://rijb.api.storeapi.net/api/119/259",
-    "history_url": "https://rijb.api.storeapi.net/api/119/260",
-    "timeout": 30,
-    "retry_attempts": 3,
-    "retry_delay": 1
-  },
   "data_source": {
-    "use_upstream_api": true,
     "fallback_to_bigquery": true,
     "sync_to_bigquery": true,
     "validation_enabled": true

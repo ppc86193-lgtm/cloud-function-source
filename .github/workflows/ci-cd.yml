@@ -5,37 +5,61 @@ on:
     branches: [ main, develop ]
   pull_request:
     branches: [ main ]
-  schedule:
-    # 每天凌晨 2 点运行定期检查
-    - cron: '0 2 * * *'
 
 env:
-  PYTHON_VERSION: '3.9'
-  NODE_VERSION: '18'
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
 jobs:
-  # 代码质量检查
-  code-quality:
+  test:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
     
-    - name: Set up Python
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ env.PYTHON_VERSION }}
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=. --cov-report=xml --cov-report=html
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8 black isort mypy
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
     - name: Lint with flake8
       run: |
-        # 停止构建如果有 Python 语法错误或未定义的名称
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # 退出零处理所有错误作为警告。GitHub 编辑器宽度为 127 个字符
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     
     - name: Check code formatting with black
@@ -45,227 +69,142 @@ jobs:
       run: isort --check-only .
     
     - name: Type checking with mypy
-      run: mypy . --ignore-missing-imports || true
+      run: mypy . --ignore-missing-imports
 
-  # 安全扫描
-  security-scan:
+  security-audit:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Run Bandit Security Scan
-      uses: securecodewarrior/github-action-bandit@v1
-      with:
-        config_file: .bandit
-        exit_zero: true
-    
-    - name: Run Safety Check
-      run: |
-        pip install safety
-        safety check --json || true
-
-  # 测试执行
-  test:
-    runs-on: ubuntu-latest
-    needs: [code-quality]
-    strategy:
-      matrix:
-        python-version: ['3.8', '3.9', '3.10']
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.9
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-cov pytest-html pytest-json-report
+        pip install safety bandit
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: Create test directories
-      run: |
-        mkdir -p pytest_execution_reports
-        mkdir -p test_reports
+    - name: Run safety check
+      run: safety check
     
-    - name: Run tests with pytest
-      run: |
-        pytest \
-          --cov=. \
-          --cov-report=html:htmlcov \
-          --cov-report=xml:coverage.xml \
-          --html=pytest_execution_reports/report.html \
-          --self-contained-html \
-          --json-report \
-          --json-report-file=pytest_execution_reports/report.json \
-          -v
+    - name: Run bandit security check
+      run: bandit -r . -f json -o bandit-report.json
     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-    
-    - name: Archive test results
+    - name: Upload security report
       uses: actions/upload-artifact@v3
-      if: always()
       with:
-        name: test-results-${{ matrix.python-version }}
-        path: |
-          pytest_execution_reports/
-          htmlcov/
-          coverage.xml
+        name: security-report
+        path: bandit-report.json
 
-  # Supabase 数据库迁移
-  database-migration:
+  deploy-to-supabase:
+    needs: [test, code-quality, security-audit]
     runs-on: ubuntu-latest
-    needs: [test]
     if: github.ref == 'refs/heads/main'
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     
-    - name: Setup Supabase CLI
+    - name: Set up Supabase CLI
       uses: supabase/setup-cli@v1
       with:
         version: latest
     
-    - name: Run database migrations
-      env:
-        SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-        SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+    - name: Deploy database migrations
       run: |
-        supabase link --project-ref $SUPABASE_PROJECT_ID
-        supabase db push
+        supabase db push --db-url "${{ secrets.SUPABASE_DB_URL }}"
     
-    - name: Verify migration
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    - name: Sync database schema
       run: |
-        python -c "
-        import os
-        from supabase import create_client, Client
-        
-        url = os.environ.get('SUPABASE_URL')
-        key = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
-        
-        if url and key:
-            supabase: Client = create_client(url, key)
-            # 验证连接
-            result = supabase.table('lab_push_candidates_v2').select('*').limit(1).execute()
-            print('Database connection verified')
-        else:
-            print('Supabase credentials not configured')
-        "
+        supabase gen types typescript --db-url "${{ secrets.SUPABASE_DB_URL }}" > types/database.types.ts
+    
+    - name: Deploy functions
+      run: |
+        supabase functions deploy --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
 
-  # 数据同步验证
-  data-sync-validation:
+  technical-audit:
     runs-on: ubuntu-latest
-    needs: [database-migration]
-    if: github.ref == 'refs/heads/main'
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     
-    - name: Set up Python
+    - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ env.PYTHON_VERSION }}
+        python-version: 3.9
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: Run data sync validation
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        BIGQUERY_PROJECT_ID: ${{ secrets.BIGQUERY_PROJECT_ID }}
+    - name: Run technical audit
+      run: |
+        python automated_compliance_checker.py --output-format json > audit-report.json
+    
+    - name: Validate technical claims
       run: |
         python -c "
+        import json
         import sys
-        import os
-        sys.path.append('.')
         
-        # 这里会运行数据同步验证脚本
-        print('Data sync validation completed')
+        with open('audit-report.json', 'r') as f:
+            report = json.load(f)
+        
+        # 检查关键指标
+        critical_checks = [
+            'data_flow_collection_status',
+            'backfill_optimization_status', 
+            'lottery_optimization_status'
+        ]
+        
+        failed_checks = []
+        for check in critical_checks:
+            if check in report and not report[check].get('passed', False):
+                failed_checks.append(check)
+        
+        if failed_checks:
+            print(f'技术审计失败: {failed_checks}')
+            sys.exit(1)
+        else:
+            print('技术审计通过')
         "
-    
-    - name: Generate sync report
-      run: |
-        echo '# Data Sync Report' > sync_report.md
-        echo '## Timestamp: $(date)' >> sync_report.md
-        echo '## Status: Success' >> sync_report.md
-    
-    - name: Upload sync report
-      uses: actions/upload-artifact@v3
-      with:
-        name: sync-report
-        path: sync_report.md
-
-  # 部署通知
-  notify:
-    runs-on: ubuntu-latest
-    needs: [data-sync-validation]
-    if: always()
-    
-    steps:
-    - name: Notify deployment status
-      uses: 8398a7/action-slack@v3
-      if: always()
-      with:
-        status: ${{ job.status }}
-        text: |
-          PC28 System Deployment Status: ${{ job.status }}
-          Branch: ${{ github.ref }}
-          Commit: ${{ github.sha }}
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  # 定期审计任务
-  audit:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
-    - name: Run system audit
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      run: |
-        python -c "
-        import datetime
-        print(f'System audit started at {datetime.datetime.now()}')
-        # 这里会运行系统审计脚本
-        print('System audit completed successfully')
-        "
-    
-    - name: Generate audit report
-      run: |
-        echo '# System Audit Report' > audit_report.md
-        echo '## Date: $(date)' >> audit_report.md
-        echo '## Status: Completed' >> audit_report.md
     
     - name: Upload audit report
       uses: actions/upload-artifact@v3
       with:
-        name: audit-report-$(date +%Y%m%d)
-        path: audit_report.md
+        name: technical-audit-report
+        path: audit-report.json
+
+  performance-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Run performance tests
+      run: |
+        python -m pytest tests/performance/ -v --tb=short
+    
+    - name: Generate performance report
+      run: |
+        python performance_benchmark.py --output performance-report.json
+    
+    - name: Upload performance report
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-report
+        path: performance-report.json

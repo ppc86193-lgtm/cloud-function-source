@@ -102,6 +102,7 @@ class SmartRealtimeOptimizer:
         self.is_running = False
         self.current_mode = PollingMode.NORMAL
         self.current_prediction = None
+        self.last_prediction = None  # 添加缺失的last_prediction属性
         self.last_draw_data = None
         
         # 缓存管理
@@ -114,6 +115,7 @@ class SmartRealtimeOptimizer:
         self.metrics = OptimizationMetrics()
         self.performance_alerts = []
         self.last_performance_check = datetime.now()
+        self.metrics_lock = threading.Lock()  # 添加缺失的metrics_lock
         
         # 线程管理
         self.optimization_thread = None
@@ -140,13 +142,15 @@ class SmartRealtimeOptimizer:
             
             # 启动各个监控线程
             self.optimization_thread = threading.Thread(target=self._optimization_loop, daemon=True)
-            self.prediction_thread = threading.Thread(target=self._prediction_loop, daemon=True)
-            self.cache_cleanup_thread = threading.Thread(target=self._cache_cleanup_loop, daemon=True)
+            # 暂时注释掉不存在的方法
+            # self.prediction_thread = threading.Thread(target=self._prediction_loop, daemon=True)
+            # self.cache_cleanup_thread = threading.Thread(target=self._cache_cleanup_loop, daemon=True)
             self.performance_monitor_thread = threading.Thread(target=self._performance_monitor_loop, daemon=True)
             
             self.optimization_thread.start()
-            self.prediction_thread.start()
-            self.cache_cleanup_thread.start()
+            # 暂时注释掉不存在的方法
+            # self.prediction_thread.start()
+            # self.cache_cleanup_thread.start()
             self.performance_monitor_thread.start()
             
             logger.info("智能实时优化器启动成功")
@@ -178,8 +182,8 @@ class SmartRealtimeOptimizer:
             try:
                 start_time = time.time()
                 
-                # 获取优化数据
-                data = self._fetch_optimized_data()
+                # 获取优化数据 - 使用实际存在的API方法
+                data = self.api_system.get_current_lottery_data()
                 
                 if data:
                     self._process_new_data(data)
@@ -350,7 +354,7 @@ class SmartRealtimeOptimizer:
         elif countdown > self.config.critical_threshold:
             self.current_mode = PollingMode.APPROACHING
             return self.config.approaching_interval
-        elif countdown > self.config.immediate_threshold:
+        elif countdown >= self.config.immediate_threshold:
             self.current_mode = PollingMode.CRITICAL
             return self.config.critical_interval
         else:
@@ -454,21 +458,17 @@ class SmartRealtimeOptimizer:
                 
             countdown = self.last_prediction.countdown_seconds
             
-            # 根据倒计时调整模式
-            if countdown <= self.config.pre_draw_threshold:
-                if countdown <= 10:  # 开奖时间窗口
-                    self.current_mode = PollingMode.DRAW_TIME
-                else:
-                    self.current_mode = PollingMode.PRE_DRAW
-            elif self.last_draw_time:
-                # 检查是否在开奖后阶段
-                time_since_draw = (datetime.now() - self.last_draw_time).total_seconds()
-                if time_since_draw <= self.config.post_draw_duration:
-                    self.current_mode = PollingMode.POST_DRAW
-                else:
-                    self.current_mode = PollingMode.NORMAL
-            else:
+            # 根据倒计时调整模式 - 修正阈值逻辑
+            if countdown > self.config.idle_threshold:
+                self.current_mode = PollingMode.IDLE
+            elif countdown > self.config.approaching_threshold:
                 self.current_mode = PollingMode.NORMAL
+            elif countdown > self.config.critical_threshold:
+                self.current_mode = PollingMode.APPROACHING
+            elif countdown >= self.config.immediate_threshold:  # 修改为>=，30秒时应该是CRITICAL
+                self.current_mode = PollingMode.CRITICAL
+            else:
+                self.current_mode = PollingMode.IMMEDIATE
                 
             logger.debug(f"轮询模式调整为: {self.current_mode.value}")
             
@@ -543,14 +543,13 @@ class SmartRealtimeOptimizer:
 
 # 使用示例
 if __name__ == "__main__":
-    from real_api_data_system import RealAPIDataSystem, APIConfig
     
-    # 创建API系统
-    api_config = APIConfig()
-    api_system = RealAPIDataSystem(api_config)
+    # 创建API系统 - 移除RealAPIDataSystem引用，改为使用云端数据源
+    # api_config = APIConfig()
+    # api_system = RealAPIDataSystem(api_config)
     
     # 创建优化器
-    optimizer = SmartRealtimeOptimizer(api_system)
+    optimizer = SmartRealtimeOptimizer()  # 使用默认初始化
     
     # 添加回调函数
     def on_new_draw(data):

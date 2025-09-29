@@ -1,0 +1,473 @@
+{
+  "overall_status": "warning",
+  "check_count": 5,
+  "healthy_checks": 2,
+  "warning_checks": 3,
+  "critical_checks": 0,
+  "results": [
+    {
+      "check_name": "process_status",
+      "status": "warning",
+      "message": "未发现相关Python进程运行",
+      "details": {
+        "processes": []
+      },
+      "timestamp": "2025-09-29T17:20:46.765430"
+    },
+    {
+      "check_name": "database_status",
+      "status": "healthy",
+      "message": "发现 31 个数据库文件，总大小 89.45 MB",
+      "details": {
+        "databases": [
+          {
+            "file": "optimized_lottery.db",
+            "size_mb": 0.05,
+            "tables": 6,
+            "table_names": [
+              "lottery_data",
+              "sqlite_sequence",
+              "performance_logs",
+              "lottery_records",
+              "optimized_draws"
+            ]
+          },
+          {
+            "file": "consumer_protection.db",
+            "size_mb": 0.06,
+            "tables": 6,
+            "table_names": [
+              "user_rights",
+              "sqlite_sequence",
+              "refund_requests",
+              "service_quality_reports",
+              "protection_actions"
+            ]
+          },
+          {
+            "file": "system_integration.db",
+            "size_mb": 0.02,
+            "tables": 5,
+            "table_names": [
+              "system_metrics",
+              "sqlite_sequence",
+              "service_health",
+              "system_events",
+              "alert_log"
+            ]
+          },
+          {
+            "file": "test_performance.db",
+            "size_mb": 0.03,
+            "tables": 5,
+            "table_names": [
+              "complexity_metrics",
+              "sqlite_sequence",
+              "performance_profiles",
+              "optimization_suggestions",
+              "risk_assessments"
+            ]
+          },
+          {
+            "file": "contract_compliance.db",
+            "size_mb": 37.02,
+            "tables": 7,
+            "table_names": [
+              "contract_violations",
+              "pytest_logs",
+              "sqlite_sequence",
+              "compensation_records",
+              "contract_status"
+            ]
+          },
+          {
+            "file": "test_execution_logs.db",
+            "size_mb": 32.1,
+            "tables": 4,
+            "table_names": [
+              "test_execution_logs",
+              "sqlite_sequence",
+              "test_execution_sessions",
+              "comprehensive_test_executions"
+            ]
+          },
+          {
+            "file": "performance_test.db",
+            "size_mb": 0.35,
+            "tables": 2,
+            "table_names": [
+              "test_draws",
+              "test_draws_optimized"
+            ]
+          },
+          {
+            "file": "local_cloud_mirror.db",
+            "size_mb": 0.0,
+            "tables": 0,
+            "table_names": []
+          },
+          {
+            "file": "pc28_logic_protection.db",
+            "size_mb": 0.03,
+            "tables": 4,
+            "table_names": [
+              "business_logic_rules",
+              "logic_test_results",
+              "sqlite_sequence",
+              "logic_change_history"
+            ]
+          },
+          {
+            "file": "validation.db",
+            "size_mb": 0.04,
+            "tables": 4,
+            "table_names": [
+              "validation_reports",
+              "sqlite_sequence",
+              "validation_issues",
+              "quality_metrics"
+            ]
+          },
+          {
+            "file": "data_quality.db",
+            "size_mb": 0.73,
+            "tables": 5,
+            "table_names": [
+              "quality_metrics",
+              "sqlite_sequence",
+              "integrity_checks",
+              "quality_reports",
+              "data_profiles"
+            ]
+          },
+          {
+            "file": "performance_optimizer.db",
+            "size_mb": 0.07,
+            "tables": 7,
+            "table_names": [
+              "complexity_metrics",
+              "sqlite_sequence",
+              "performance_profiles",
+              "optimization_suggestions",
+              "risk_assessments"
+            ]
+          },
+          {
+            "file": "signal_pool.db",
+            "size_mb": 0.03,
+            "tables": 4,
+            "table_names": [
+              "signals",
+              "agent_configs",
+              "metrics_history",
+              "sqlite_sequence"
+            ]
+          },
+          {
+            "file": "flow_deduplication.db",
+            "size_mb": 0.03,
+            "tables": 3,
+            "table_names": [
+              "record_hashes",
+              "sqlite_sequence",
+              "duplicate_records"
+            ]
+          },
+          {
+            "file": "pc28_local.db",
+            "size_mb": 0.0,
+            "tables": 0,
+            "table_names": []
+          },
+          {
+            "file": "deduplication.db",
+            "size_mb": 0.03,
+            "tables": 3,
+            "table_names": [
+              "record_hashes",
+              "sqlite_sequence",
+              "duplicate_records"
+            ]
+          },
+          {
+            "file": "integrity_protection.db",
+            "size_mb": 0.02,
+            "tables": 4,
+            "table_names": [
+              "protection_records",
+              "sqlite_sequence",
+              "randomness_tests",
+              "integrity_issues"
+            ]
+          },
+          {
+            "file": "test_monitor.db",
+            "size_mb": 0.06,
+            "tables": 6,
+            "table_names": [
+              "system_metrics",
+              "sqlite_sequence",
+              "database_metrics",
+              "service_metrics",
+              "alert_rules"
+            ]
+          },
+          {
+            "file": "sum_pattern_analysis.db",
+            "size_mb": 0.02,
+            "tables": 4,
+            "table_names": [
+              "sum_analysis",
+              "sqlite_sequence",
+              "historical_sums",
+              "pattern_detections"
+            ]
+          },
+          {
+            "file": "automated_compliance.db",
+            "size_mb": 0.05,
+            "tables": 4,
+            "table_names": [
+              "compliance_violations",
+              "sqlite_sequence",
+              "automated_actions",
+              "monitoring_status"
+            ]
+          },
+          {
+            "file": "realtime_cache.db",
+            "size_mb": 0.02,
+            "tables": 4,
+            "table_names": [
+              "realtime_cache",
+              "notification_log",
+              "sqlite_sequence",
+              "metrics_log"
+            ]
+          },
+          {
+            "file": "automated_compensation_system.db",
+            "size_mb": 0.05,
+            "tables": 6,
+            "table_names": [
+              "compensation_claims",
+              "sqlite_sequence",
+              "compensation_payments",
+              "dispute_records",
+              "compensation_rules"
+            ]
+          },
+          {
+            "file": "component_updater.db",
+            "size_mb": 18.22,
+            "tables": 5,
+            "table_names": [
+              "components",
+              "update_rules",
+              "optimization_tasks",
+              "performance_metrics",
+              "sqlite_sequence"
+            ]
+          },
+          {
+            "file": "backfill_tracking.db",
+            "size_mb": 0.12,
+            "tables": 4,
+            "table_names": [
+              "backfill_tasks",
+              "backfill_records",
+              "sqlite_sequence",
+              "data_gaps"
+            ]
+          },
+          {
+            "file": "digital_signature_system.db",
+            "size_mb": 0.04,
+            "tables": 5,
+            "table_names": [
+              "digital_signatures",
+              "sqlite_sequence",
+              "timestamp_certificates",
+              "identity_verifications",
+              "cryptographic_keys"
+            ]
+          },
+          {
+            "file": "compliance_report.db",
+            "size_mb": 0.03,
+            "tables": 4,
+            "table_names": [
+              "system_components",
+              "sqlite_sequence",
+              "compliance_verifications",
+              "compliance_reports"
+            ]
+          },
+          {
+            "file": "pc28_data.db",
+            "size_mb": 0.13,
+            "tables": 6,
+            "table_names": [
+              "lab_push_candidates_v2",
+              "cloud_pred_today_norm",
+              "signal_pool_union_v3",
+              "p_size_clean_merged_dedup_v",
+              "draws_14w_dedup_v"
+            ]
+          },
+          {
+            "file": "contamination_guard.db",
+            "size_mb": 0.02,
+            "tables": 4,
+            "table_names": [
+              "guard_records",
+              "sqlite_sequence",
+              "threat_statistics",
+              "system_health"
+            ]
+          },
+          {
+            "file": "pc28_system.db",
+            "size_mb": 0.0,
+            "tables": 0,
+            "table_names": []
+          },
+          {
+            "file": "lottery_data.db",
+            "size_mb": 0.03,
+            "tables": 2,
+            "table_names": [
+              "lottery_records",
+              "sqlite_sequence"
+            ]
+          },
+          {
+            "file": "smart_contract_compliance.db",
+            "size_mb": 0.05,
+            "tables": 4,
+            "table_names": [
+              "contract_signatures",
+              "sqlite_sequence",
+              "contract_executions",
+              "service_commitments"
+            ]
+          }
+        ],
+        "total_size_mb": 89.45
+      },
+      "timestamp": "2025-09-29T17:20:46.787380"
+    },
+    {
+      "check_name": "api_cleanup_status",
+      "status": "warning",
+      "message": "发现 0 个相关文件，5 个引用",
+      "details": {
+        "files_found": [],
+        "import_references": [
+          "/Users/a606/cloud_function_source/cleanup_api_references.py",
+          "/Users/a606/cloud_function_source/system_health_checker.py",
+          "/Users/a606/cloud_function_source/system_monitor.py",
+          "/Users/a606/cloud_function_source/final_api_cleanup.py",
+          "/Users/a606/cloud_function_source/tests/test_data_flow_system.py"
+        ]
+      },
+      "timestamp": "2025-09-29T17:20:47.381752"
+    },
+    {
+      "check_name": "cloud_data_status",
+      "status": "healthy",
+      "message": "云数据目录包含 14 个文件，总大小 9.73 MB",
+      "details": {
+        "files": [
+          {
+            "name": "p_ensemble_today_norm_v5.json",
+            "size_mb": 4.55,
+            "modified": "2025-09-29T16:53:25.331494"
+          },
+          {
+            "name": "export_report.md",
+            "size_mb": 0.02,
+            "modified": "2025-09-29T16:29:24.111171"
+          },
+          {
+            "name": "consistency_report.json",
+            "size_mb": 0.0,
+            "modified": "2025-09-29T16:54:59.296346"
+          },
+          {
+            "name": "ai_analysis.db",
+            "size_mb": 0.03,
+            "modified": "2025-09-29T16:56:39.492664"
+          },
+          {
+            "name": "export_verification_report.json",
+            "size_mb": 0.01,
+            "modified": "2025-09-29T17:07:40.994267"
+          },
+          {
+            "name": "consistency_check_report.json",
+            "size_mb": 0.0,
+            "modified": "2025-09-29T16:58:19.438814"
+          },
+          {
+            "name": "ai_optimization_roadmap.json",
+            "size_mb": 0.0,
+            "modified": "2025-09-29T16:56:40.430301"
+          },
+          {
+            "name": "sync_metadata.db",
+            "size_mb": 0.02,
+            "modified": "2025-09-29T16:54:59.295814"
+          },
+          {
+            "name": "export_log.json",
+            "size_mb": 0.03,
+            "modified": "2025-09-29T16:53:25.344593"
+          },
+          {
+            "name": "consistency_checks.db",
+            "size_mb": 0.02,
+            "modified": "2025-09-29T16:58:19.438345"
+          },
+          {
+            "name": "pc28_complete_mirror.db",
+            "size_mb": 5.01,
+            "modified": "2025-09-29T16:29:24.109844"
+          },
+          {
+            "name": "export_verification.db",
+            "size_mb": 0.02,
+            "modified": "2025-09-29T17:07:40.981146"
+          },
+          {
+            "name": "monitoring.db",
+            "size_mb": 0.02,
+            "modified": "2025-09-29T17:00:44.824309"
+          },
+          {
+            "name": "ai_optimization_analysis.json",
+            "size_mb": 0.0,
+            "modified": "2025-09-29T16:56:40.427582"
+          }
+        ],
+        "total_size_mb": 9.73,
+        "file_count": 14
+      },
+      "timestamp": "2025-09-29T17:20:47.382944"
+    },
+    {
+      "check_name": "system_resources",
+      "status": "warning",
+      "message": "内存使用率过高: 84.0%",
+      "details": {
+        "cpu_percent": 38.7,
+        "memory_percent": 84.0,
+        "disk_percent": 46.8,
+        "memory_available_gb": 1.28,
+        "disk_free_gb": 14.12
+      },
+      "timestamp": "2025-09-29T17:20:48.385152"
+    }
+  ],
+  "timestamp": "2025-09-29T17:20:48.385637"
+}

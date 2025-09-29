@@ -60,11 +60,14 @@ class TestBettingLogic(unittest.TestCase):
         user_id = 'user123'
         bet_amount = Decimal('100.00')
         
-        # 余额充足
-        self.assertTrue(self.betting_service.check_balance(user_id, bet_amount))
+        # 余额充足的情况
+        balance_sufficient = self.betting_service.check_balance(user_id, bet_amount)
+        self.assertTrue(balance_sufficient)
         
-        # 余额不足
-        self.assertFalse(self.betting_service.check_balance(user_id, bet_amount))
+        # 余额不足的情况 - 使用更大的金额
+        large_amount = Decimal('999999.00')
+        balance_insufficient = self.betting_service.check_balance(user_id, large_amount)
+        self.assertFalse(balance_insufficient)
         
     def test_bet_period_validation(self):
         """测试投注期次验证"""

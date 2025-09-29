@@ -144,7 +144,6 @@ class PC28OpsSystemE2ETest(unittest.TestCase):
         try:
             # 使用默认配置初始化监控仪表板
             default_config = {
-                "upstream_api": {
                     "appid": "test_app",
                     "secret_key": "test_secret"
                 },
@@ -284,7 +283,6 @@ class PC28OpsSystemE2ETest(unittest.TestCase):
         try:
             # 创建API监控器配置
             api_config = {
-                'upstream_api': {
                     'base_url': 'http://localhost:8080',
                     'appid': 'test_app',
                     'secret': 'test_secret'

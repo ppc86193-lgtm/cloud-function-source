@@ -74,7 +74,6 @@ class PC28SystemDeployer:
         self.logger.info("检查文件结构...")
         
         required_files = [
-            "python/pc28_upstream_api.py",
             "python/enhanced_backfill_service.py",
             "python/enhanced_realtime_service.py",
             "python/system_integration_manager.py",
@@ -118,9 +117,7 @@ class PC28SystemDeployer:
         try:
             # 导入并测试API连接
             sys.path.insert(0, str(self.python_dir))
-            from pc28_upstream_api import PC28UpstreamAPI
             
-            api = PC28UpstreamAPI(
                 appid=self.config.get('appid', ''),
                 secret_key=self.config.get('secret_key', '')
             )

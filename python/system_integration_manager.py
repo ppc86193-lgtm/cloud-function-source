@@ -21,7 +21,6 @@ import schedule
 
 from enhanced_backfill_service import EnhancedBackfillService, BackfillMode, BackfillStatus
 from enhanced_realtime_service import EnhancedRealtimeService, NotificationType
-from pc28_upstream_api import PC28UpstreamAPI
 
 # 配置日志
 logging.basicConfig(

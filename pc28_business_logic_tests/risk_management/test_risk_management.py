@@ -21,15 +21,16 @@ class TestRiskManagement(unittest.TestCase):
     def test_user_betting_limit(self):
         """测试用户投注限制"""
         user_id = 'user123'
-        daily_limit = Decimal('3000.00')  # 设置较小限额以触发限制
         
-        # 未超限
-        current_bet = Decimal('5000.00')
-        self.assertTrue(self.risk_service.check_daily_limit(user_id, daily_limit))
+        # 测试超限情况 - 设置一个很小的限额确保超限
+        small_limit = Decimal('500.00')
+        result_over_limit = self.risk_service.check_daily_limit(user_id, small_limit)
+        self.assertFalse(result_over_limit)
         
-        # 超限
-        over_limit_bet = Decimal('15000.00')
-        self.assertFalse(self.risk_service.check_daily_limit(user_id, daily_limit))
+        # 测试未超限情况 - 设置一个很大的限额确保未超限
+        large_limit = Decimal('10000.00')
+        result_within_limit = self.risk_service.check_daily_limit(user_id, large_limit)
+        self.assertTrue(result_within_limit)
         
     def test_suspicious_activity_detection(self):
         """测试可疑活动检测"""

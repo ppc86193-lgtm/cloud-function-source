@@ -19,7 +19,6 @@ import hashlib
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
-from pc28_upstream_api import PC28UpstreamAPI
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)

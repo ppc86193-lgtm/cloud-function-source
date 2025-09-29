@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "window": {
+    "start_time": "19:00",
+    "end_time": "19:30",
+    "timezone": "Asia/Shanghai"
+  },
+  "actions": [
+    "pause_data_ingestion",
+    "cleanup_temp_tables",
+    "optimize_indexes",
+    "validate_data_integrity"
+  ],
+  "dirty_data_prevention": {
+    "enabled": true,
+    "validation_rules": [
+      "check_duplicate_records",
+      "validate_timestamps",
+      "verify_data_completeness"
+    ]
+  }
+}

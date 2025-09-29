@@ -12,7 +12,6 @@ load_dotenv()
 # 添加模块路径
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'python'))
 
-from python.pc28_upstream_api import PC28UpstreamAPI
 
 def test_api_connection():
     """测试API连接"""

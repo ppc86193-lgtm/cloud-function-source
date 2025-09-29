@@ -15,7 +15,6 @@ from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass, asdict
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
-from pc28_upstream_api import PC28UpstreamAPI
 from api_field_optimization import OptimizedPC28DataProcessor, OptimizedLotteryData
 
 logging.basicConfig(level=logging.INFO)

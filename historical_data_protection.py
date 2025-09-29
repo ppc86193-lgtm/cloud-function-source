@@ -20,7 +20,6 @@ from pathlib import Path
 import gzip
 
 # 导入相关系统
-from real_api_data_system import LotteryRecord
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)

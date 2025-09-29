@@ -11,7 +11,6 @@ import logging
 from typing import Dict, List, Any, Optional, Tuple
 from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass
-from pc28_upstream_api import PC28UpstreamAPI
 from api_field_optimization import OptimizedPC28DataProcessor
 
 logging.basicConfig(level=logging.INFO)

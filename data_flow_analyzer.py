@@ -143,7 +143,6 @@ class DataFlowAnalyzer:
         print("\n=== 分析API数据流转 ===")
         
         api_flow = {
-            'upstream_api': {},
             'internal_processing': {},
             'downstream_usage': {}
         }
@@ -155,11 +154,9 @@ class DataFlowAnalyzer:
             
             # 实时API分析
             realtime_analysis = analyzer.analyze_realtime_api_usage()
-            api_flow['upstream_api']['realtime'] = realtime_analysis
             
             # 历史API分析
             history_analysis = analyzer.analyze_history_api_usage()
-            api_flow['upstream_api']['history'] = history_analysis
             
             print(f"  实时API字段使用率: {realtime_analysis.get('usage_rate', 0):.1f}%")
             print(f"  历史API字段使用率: {history_analysis.get('usage_rate', 0):.1f}%")

@@ -195,7 +195,6 @@ class PC28SystemLauncher:
         logger.info("测试API连接性")
         
         try:
-            from pc28_upstream_api import PC28UpstreamAPI
             
             api = PC28UpstreamAPI(
                 appid=self.config['appid'],

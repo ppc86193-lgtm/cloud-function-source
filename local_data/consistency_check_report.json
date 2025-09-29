@@ -1,0 +1,58 @@
+{
+  "check_time": "2025-09-29T16:58:14.919882",
+  "total_tables": 3,
+  "consistent_tables": 0,
+  "inconsistent_tables": 0,
+  "failed_checks": 3,
+  "auto_repairs_attempted": 0,
+  "auto_repairs_successful": 0,
+  "table_results": [
+    {
+      "table_name": "ai_optimization_analysis",
+      "check_time": "2025-09-29T16:58:14.921082",
+      "is_consistent": false,
+      "inconsistency_type": "cloud_missing",
+      "local_info": {
+        "row_count": 0,
+        "data_hash": "d751713988987e9331980363e24189ce",
+        "last_modified": "2025-09-29T16:56:40.427582",
+        "file_size": 241
+      },
+      "cloud_info": null,
+      "error": "云端数据缺失"
+    },
+    {
+      "table_name": "ai_optimization_roadmap",
+      "check_time": "2025-09-29T16:58:14.920711",
+      "is_consistent": false,
+      "inconsistency_type": "cloud_missing",
+      "local_info": {
+        "row_count": 0,
+        "data_hash": "d751713988987e9331980363e24189ce",
+        "last_modified": "2025-09-29T16:56:40.430301",
+        "file_size": 232
+      },
+      "cloud_info": null,
+      "error": "云端数据缺失"
+    },
+    {
+      "table_name": "p_ensemble_today_norm_v5",
+      "check_time": "2025-09-29T16:58:14.920071",
+      "is_consistent": false,
+      "inconsistency_type": "row_count_mismatch",
+      "local_info": {
+        "row_count": 10000,
+        "data_hash": "53be4bdd3b30c168589ae6931e686a95",
+        "last_modified": "2025-09-29T16:53:25.331494",
+        "file_size": 4774109
+      },
+      "cloud_info": {
+        "row_count": 409600,
+        "data_hash": "c498ff16dd8c8c89ee81bf168223ac32",
+        "sample_size": 1000,
+        "check_time": "2025-09-29T16:58:19.437700"
+      },
+      "error": "行数不匹配: 本地10000, 云端409600"
+    }
+  ]
+}

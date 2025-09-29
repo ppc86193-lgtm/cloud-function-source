@@ -103,26 +103,6 @@ notifications:
     log_name: "pc28-monitoring"
 
 # 上游API配置（从主配置继承，这里作为备份）
-upstream_api:
-  appid: "45928"
-  secret_key: "ca9edbfee35c22a0d6c4cf6722506af0"
-  base_url: "https://rijb.api.storeapi.net/api/119"
-  endpoints:
-    realtime: "/259"
-    historical: "/260"
-  
-  # 请求配置
-  request:
-    timeout: 30
-    retry_attempts: 3
-    retry_delay: 5
-    
-  # 签名配置
-  signature:
-    method: "md5"
-    include_timestamp: true
-
-# BigQuery配置（用于监控数据存储）
 bigquery:
   project_id: "wprojectl"
   dataset_id: "pc28_monitoring"

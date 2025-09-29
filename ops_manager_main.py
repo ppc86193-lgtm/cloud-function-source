@@ -69,7 +69,6 @@ class PC28OpsManager:
     def _load_default_config(self) -> Dict[str, Any]:
         """加载默认配置"""
         return {
-            'upstream_api': {
                 'appid': '45928',
                 'secret_key': 'ca9edbfee35c22a0d6c4cf6722506af0'
             },

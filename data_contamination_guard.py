@@ -68,7 +68,6 @@ class DataContaminationGuard:
         self.sum_detector = SumPatternDetector()
         
         # 创建默认API配置用于数据验证器
-        from real_api_data_system import APIConfig
         default_api_config = APIConfig(
             base_url="https://api.example.com",
             appid="test_app",

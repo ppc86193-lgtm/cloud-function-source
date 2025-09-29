@@ -1,0 +1,182 @@
+{
+  "timestamp": "2025-09-29T16:25:51.865606",
+  "backup_operations": {
+    "table_structure_backup": {
+      "status": "success",
+      "backup_tables_count": 5,
+      "backup_tables": [
+        "draws_14w_clean_backup_20250929_161714",
+        "draws_14w_clean_backup_20250929_161748",
+        "draws_14w_clean_backup_20250929_161804",
+        "runtime_params_backup_20250918_104857",
+        "signal_pool_fallback_today_backup_20250918"
+      ],
+      "message": "发现 5 个备份表"
+    },
+    "data_backup": {
+      "status": "warning",
+      "table_integrity": {
+        "draws_14w_clean": {
+          "original_count": 6997,
+          "backup_count": 0,
+          "status": "missing"
+        },
+        "signal_pool_sample": {
+          "original_count": 0,
+          "backup_count": 0,
+          "status": "missing"
+        },
+        "calibration_params": {
+          "original_count": 30,
+          "backup_count": 0,
+          "status": "missing"
+        }
+      },
+      "message": "数据备份完整性检查完成，状态: warning"
+    },
+    "metadata_backup": {
+      "status": "warning",
+      "export_log_exists": false,
+      "log_entries": 0,
+      "message": "元数据备份状态: 不完整"
+    },
+    "rollback_capability": {
+      "status": "success",
+      "checks": {
+        "backup_tables_accessible": true,
+        "restore_sql_valid": true,
+        "dependency_mapping": true
+      },
+      "message": "回滚能力验证: 完整"
+    }
+  },
+  "field_operations_sequence": {
+    "status": "success",
+    "standard_sequence": [
+      "backup_creation",
+      "dependency_check",
+      "field_analysis",
+      "archive_preparation",
+      "field_archival",
+      "type_optimization",
+      "validation",
+      "cleanup"
+    ],
+    "operation_details": {
+      "backup_creation": {
+        "order": 1,
+        "dependencies": [],
+        "sql_statements": [
+          "CREATE TABLE `{project}.{dataset}.{table}_backup_{timestamp}` AS SELECT * FROM `{project}.{dataset}.{table}`"
+        ],
+        "validation_status": "pending"
+      },
+      "dependency_check": {
+        "order": 2,
+        "dependencies": [
+          "backup_creation"
+        ],
+        "sql_statements": [
+          "SELECT table_name, column_name FROM `{project}.{dataset}.INFORMATION_SCHEMA.COLUMNS` WHERE column_name = '{field}'"
+        ],
+        "validation_status": "pending"
+      },
+      "field_analysis": {
+        "order": 3,
+        "dependencies": [
+          "backup_creation",
+          "dependency_check"
+        ],
+        "sql_statements": [
+          "SELECT {field}, COUNT(*) as count FROM `{project}.{dataset}.{table}` GROUP BY {field}"
+        ],
+        "validation_status": "pending"
+      },
+      "archive_preparation": {
+        "order": 4,
+        "dependencies": [
+          "field_analysis"
+        ],
+        "sql_statements": [
+          "ALTER TABLE `{project}.{dataset}.{table}` ADD COLUMN {field}_archived STRING"
+        ],
+        "validation_status": "pending"
+      },
+      "field_archival": {
+        "order": 5,
+        "dependencies": [
+          "archive_preparation"
+        ],
+        "sql_statements": [
+          "UPDATE `{project}.{dataset}.{table}` SET {field}_archived = CAST({field} AS STRING) WHERE {field} IS NOT NULL"
+        ],
+        "validation_status": "pending"
+      },
+      "type_optimization": {
+        "order": 6,
+        "dependencies": [
+          "field_archival"
+        ],
+        "sql_statements": [
+          "ALTER TABLE `{project}.{dataset}.{table}` DROP COLUMN {field}",
+          "ALTER TABLE `{project}.{dataset}.{table}` RENAME COLUMN {field}_archived TO {field}"
+        ],
+        "validation_status": "pending"
+      },
+      "validation": {
+        "order": 7,
+        "dependencies": [
+          "type_optimization"
+        ],
+        "sql_statements": [
+          "SELECT COUNT(*) FROM `{project}.{dataset}.{table}` WHERE {field} IS NULL"
+        ],
+        "validation_status": "pending"
+      },
+      "cleanup": {
+        "order": 8,
+        "dependencies": [
+          "validation"
+        ],
+        "sql_statements": [
+          "DROP TABLE `{project}.{dataset}.{table}_backup_{timestamp}`"
+        ],
+        "validation_status": "pending"
+      }
+    },
+    "message": "字段操作序列验证完成"
+  },
+  "error_handling": {
+    "status": "warning",
+    "error_scenarios": {
+      "sql_execution_failure": {
+        "status": "error",
+        "message": "错误处理测试失败：应该捕获SQL错误"
+      },
+      "network_timeout": {
+        "status": "success",
+        "message": "网络超时处理机制已配置"
+      },
+      "permission_denied": {
+        "status": "success",
+        "message": "权限错误处理机制已配置"
+      },
+      "data_corruption": {
+        "status": "success",
+        "message": "数据损坏检测机制已配置"
+      },
+      "rollback_mechanism": {
+        "status": "success",
+        "message": "回滚机制已配置"
+      }
+    },
+    "message": "错误处理验证: 需要改进"
+  },
+  "recommendations": [
+    "建议在每个SQL操作前进行依赖关系检查",
+    "建议实施自动化的备份验证机制",
+    "建议增强错误日志记录的详细程度",
+    "建议建立操作回滚的自动化流程",
+    "建议定期进行数据完整性检查"
+  ]
+}

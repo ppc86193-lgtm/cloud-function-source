@@ -17,7 +17,6 @@ from enum import Enum
 import sqlite3
 import os
 
-from pc28_upstream_api import PC28UpstreamAPI
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)

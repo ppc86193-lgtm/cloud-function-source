@@ -15,26 +15,16 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'python'))
 
 try:
-    from python.pc28_upstream_api import PC28UpstreamAPI
-    from python.realtime_lottery_service import RealtimeLotteryService
-    from python.history_backfill_service import HistoryBackfillService
-except ImportError:
+    from python.realtime_lottery_service     from python.history_backfill_service except ImportError:
     # 如果导入失败，尝试直接导入
-    import pc28_upstream_api
     import realtime_lottery_service
     import history_backfill_service
     
-    PC28UpstreamAPI = pc28_upstream_api.PC28UpstreamAPI
-    RealtimeLotteryService = realtime_lottery_service.RealtimeLotteryService
-    HistoryBackfillService = history_backfill_service.HistoryBackfillService
 
 class FieldUsageAnalyzer:
     """字段使用情况分析器"""
     
     def __init__(self):
-        self.api_client = PC28UpstreamAPI()
-        self.realtime_service = RealtimeLotteryService()
-        self.history_service = HistoryBackfillService()
         
         # 上游API字段定义
         self.realtime_api_fields = {

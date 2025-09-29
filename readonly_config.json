@@ -1,0 +1,9 @@
+{
+  "mode": "readonly",
+  "data_collection_enabled": false,
+  "local_db_path": "local_experiment.db",
+  "cloud_sync_enabled": true,
+  "experiment_mode": true,
+  "api_endpoints_disabled": true,
+  "write_operations_blocked": true
+}

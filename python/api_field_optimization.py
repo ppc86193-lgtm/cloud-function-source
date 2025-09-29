@@ -11,7 +11,6 @@ import logging
 from typing import Dict, List, Any, Optional
 from datetime import datetime, timezone
 from dataclasses import dataclass, asdict
-from pc28_upstream_api import PC28UpstreamAPI
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
