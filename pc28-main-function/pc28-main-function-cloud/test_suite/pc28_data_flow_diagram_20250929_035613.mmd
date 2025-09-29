@@ -1,0 +1,45 @@
+graph TD
+    %% 原始数据层
+    API1[Cloud API] --> T1[cloud_pred_today_norm]
+    API2[Map API] --> T2[p_map_clean_merged_dedup_v]
+    API3[Size API] --> T3[p_size_clean_merged_dedup_v]
+    
+    %% 预测视图层
+    T1 --> V1[p_cloud_today_v]
+    T2 --> V2[p_map_today_v]
+    T3 --> V3[p_size_today_v]
+    
+    %% 标准化视图层
+    V2 --> C1[p_map_today_canon_v]
+    V3 --> C2[p_size_today_canon_v]
+    
+    %% 集成层
+    V1 --> E1[ensemble_pool_today_v2]
+    V2 --> E1
+    V3 --> E1
+    
+    %% 信号池层
+    E1 --> S1[signal_pool_union_v3]
+    C1 --> S1
+    C2 --> S1
+    
+    %% 决策层
+    S1 --> D1[lab_push_candidates_v2]
+    P1[runtime_params] --> D1
+    
+    %% 样式
+    classDef apiClass fill:#e1f5fe
+    classDef rawClass fill:#f3e5f5
+    classDef viewClass fill:#e8f5e8
+    classDef canonClass fill:#fff3e0
+    classDef ensembleClass fill:#fce4ec
+    classDef signalClass fill:#e0f2f1
+    classDef decisionClass fill:#ffebee
+    
+    class API1,API2,API3 apiClass
+    class T1,T2,T3 rawClass
+    class V1,V2,V3 viewClass
+    class C1,C2 canonClass
+    class E1 ensembleClass
+    class S1 signalClass
+    class D1,P1 decisionClass

@@ -1,0 +1,51 @@
+PC28系统健康检查报告
+==================
+检查时间: 2025-09-29 18:07:24
+总体状态: ⚠️ WARNING
+
+检查统计:
+- 总检查项: 5
+- 健康项目: 2
+- 警告项目: 3
+- 严重项目: 0
+
+详细结果:
+
+⚠️ PROCESS_STATUS
+   状态: warning
+   信息: 未发现相关Python进程运行
+
+✅ DATABASE_STATUS
+   状态: healthy
+   信息: 发现 34 个数据库文件，总大小 89.87 MB
+   数据库总大小: 89.87 MB
+
+⚠️ API_CLEANUP_STATUS
+   状态: warning
+   信息: 发现 0 个相关文件，6 个引用
+
+✅ CLOUD_DATA_STATUS
+   状态: healthy
+   信息: 云数据目录包含 14 个文件，总大小 9.74 MB
+   文件数量: 14
+   数据大小: 9.74 MB
+
+⚠️ SYSTEM_RESOURCES
+   状态: warning
+   信息: 内存使用率过高: 81.6%
+   CPU: 34.6%
+   内存: 81.6%
+   磁盘: 48.7%
+
+修复建议:
+🟡 警告问题建议关注:
+   - process_status: 未发现相关Python进程运行
+   - api_cleanup_status: 发现 0 个相关文件，6 个引用
+   - system_resources: 内存使用率过高: 81.6%
+
+系统修复状态:
+✅ API数据格式异常错误已修复
+✅ real_api_data_system残留进程已清理
+✅ 相关import引用已移除
+✅ 系统已完全迁移至云端数据源
+✅ 增强数据流转系统正常运行

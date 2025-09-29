@@ -1,0 +1,21 @@
+PyYAML>=6.0
+requests>=2.28.0
+google-cloud-monitoring>=2.15.0
+google-cloud-bigquery>=3.11.0
+google-cloud-functions>=1.13.0
+google-cloud-logging>=3.5.0
+google-auth>=2.20.0
+google-api-core>=2.11.0
+functions-framework>=3.0.0
+
+# Testing dependencies
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+pytest-html>=3.2.0
+pytest-xdist>=3.3.0
+unittest-xml-reporting>=3.2.0
+coverage>=7.2.0
+tox>=4.6.0
+pytest-asyncio>=0.21.0
+pytest-timeout>=2.1.0

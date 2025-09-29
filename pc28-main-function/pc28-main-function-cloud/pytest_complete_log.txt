@@ -1,0 +1,540 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /Users/a606/Documents/9999/deploy_package/venv/bin/python3.13
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.7', 'Platform': 'macOS-14.5-arm64-arm-64bit-Mach-O', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'mock': '3.15.1', 'asyncio': '1.2.0', 'anyio': '4.11.0', 'html': '4.1.1', 'xdist': '3.8.0', 'json-report': '1.5.0', 'timeout': '2.4.0', 'metadata': '3.1.1', 'cov': '7.0.0'}}
+rootdir: /Users/a606/cloud_function_source
+configfile: pytest.ini
+plugins: mock-3.15.1, asyncio-1.2.0, anyio-4.11.0, html-4.1.1, xdist-3.8.0, json-report-1.5.0, timeout-2.4.0, metadata-3.1.1, cov-7.0.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 127 items / 2 skipped
+
+local_system/test_system.py::test_database PASSED                        [  0%]
+local_system/test_system.py::test_api_collector PASSED                   [  1%]
+local_system/test_system.py::test_sql_engine PASSED                      [  2%]
+local_system/test_system.py::test_auto_repair PASSED                     [  3%]
+local_system/test_system.py::test_monitoring PASSED                      [  3%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_bet_amount_limits PASSED [  4%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_bet_odds_calculation PASSED [  5%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_bet_period_validation PASSED [  6%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_bet_placement_validation PASSED [  7%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_bet_type_validation PASSED [  7%]
+pc28_business_logic_tests/betting_logic/test_betting_logic.py::TestBettingLogic::test_user_balance_check PASSED [  8%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_data_aggregation PASSED [  9%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_data_cleaning PASSED [ 10%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_data_export PASSED [ 11%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_data_transformation PASSED [ 11%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_data_validation PASSED [ 12%]
+pc28_business_logic_tests/data_processing/test_data_processing.py::TestDataProcessing::test_real_time_processing PASSED [ 13%]
+pc28_business_logic_tests/lottery_logic/test_lottery_logic.py::TestLotteryLogic::test_lottery_draw_generation PASSED [ 14%]
+pc28_business_logic_tests/lottery_logic/test_lottery_logic.py::TestLotteryLogic::test_lottery_draw_timing PASSED [ 14%]
+pc28_business_logic_tests/lottery_logic/test_lottery_logic.py::TestLotteryLogic::test_lottery_draw_validation PASSED [ 15%]
+pc28_business_logic_tests/lottery_logic/test_lottery_logic.py::TestLotteryLogic::test_lottery_period_management PASSED [ 16%]
+pc28_business_logic_tests/lottery_logic/test_lottery_logic.py::TestLotteryLogic::test_lottery_result_calculation PASSED [ 17%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_balance_update PASSED [ 18%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_payout_limits PASSED [ 18%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_payout_processing PASSED [ 19%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_payout_record_creation PASSED [ 20%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_payout_tax_calculation PASSED [ 21%]
+pc28_business_logic_tests/payout_logic/test_payout_logic.py::TestPayoutLogic::test_winning_calculation PASSED [ 22%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_account_security_check PASSED [ 22%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_auto_risk_response PASSED [ 23%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_betting_pattern_analysis PASSED [ 24%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_platform_risk_limits PASSED [ 25%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_suspicious_activity_detection PASSED [ 25%]
+pc28_business_logic_tests/risk_management/test_risk_management.py::TestRiskManagement::test_user_betting_limit PASSED [ 26%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_optimizer_initialization PASSED [ 27%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_polling_mode_adjustment PASSED [ 28%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_draw_time_mode_switching PASSED [ 29%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_interval_calculation PASSED [ 29%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_cache_functionality SKIPPED [ 30%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_optimization_loop_integration PASSED [ 31%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestSmartRealtimeOptimizer::test_prediction_accuracy PASSED [ 32%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_data_record_checksum PASSED [ 33%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_consistency_check_identical_data PASSED [ 33%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_consistency_check_missing_data PASSED [ 34%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_consistency_check_inconsistent_data PASSED [ 35%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_monitoring_loop_integration PASSED [ 36%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestDataConsistencyOptimizer::test_consistency_report_generation PASSED [ 37%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestIntegrationScenarios::test_full_optimization_workflow PASSED [ 37%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestIntegrationScenarios::test_performance_under_load PASSED [ 38%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestIntegrationScenarios::test_realtime_prediction_accuracy PASSED [ 39%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestPerformanceBenchmarks::test_api_call_performance SKIPPED [ 40%]
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py::TestPerformanceBenchmarks::test_consistency_check_performance SKIPPED [ 40%]
+test_api.py::test_api_endpoint SKIPPED (API服务器未运行，跳过API测试)    [ 41%]
+test_api_compliance.py::TestAPICompliance::test_api_request_logging PASSED [ 42%]
+test_api_compliance.py::TestAPICompliance::test_api_response_compliance PASSED [ 43%]
+test_api_compliance.py::TestAPICompliance::test_api_security_compliance PASSED [ 44%]
+test_api_connection.py::test_api_connection PASSED                       [ 44%]
+test_data_sync.py::test_api_data_sync PASSED                             [ 45%]
+test_data_sync_compliance.py::TestDataSyncCompliance::test_supabase_sync_logging PASSED [ 46%]
+test_data_sync_compliance.py::TestDataSyncCompliance::test_data_sync_audit_trail PASSED [ 47%]
+test_data_sync_compliance.py::TestDataSyncCompliance::test_sync_operation_compliance PASSED [ 48%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_sync_manager_initialization PASSED [ 48%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_database_connection_validation PASSED [ 49%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_table_structure_compliance PASSED [ 50%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_data_sync_configuration PASSED [ 51%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_sync_process_simulation PASSED [ 51%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_error_handling_compliance PASSED [ 52%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_performance_metrics_logging PASSED [ 53%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_data_integrity_validation PASSED [ 54%]
+test_data_sync_system_compliance.py::TestDataSyncSystemCompliance::test_compliance_report_generation PASSED [ 55%]
+test_database_compliance.py::TestDatabaseCompliance::test_local_database_logging PASSED [ 55%]
+test_database_compliance.py::TestDatabaseCompliance::test_data_integrity_compliance PASSED [ 56%]
+test_database_compliance.py::TestDatabaseCompliance::test_database_audit_trail PASSED [ 57%]
+test_monitoring_compliance.py::TestMonitoringCompliance::test_system_monitoring_logging PASSED [ 58%]
+test_monitoring_compliance.py::TestMonitoringCompliance::test_performance_monitoring_compliance PASSED [ 59%]
+test_monitoring_compliance.py::TestMonitoringCompliance::test_monitoring_audit_trail PASSED [ 59%]
+test_pytest_compliance.py::TestPytestCompliance::test_pytest_context_validation PASSED [ 60%]
+test_pytest_compliance.py::TestPytestCompliance::test_contract_compliance_logger_integration PASSED [ 61%]
+test_pytest_compliance.py::TestPytestCompliance::test_non_pytest_execution_detection PASSED [ 62%]
+test_pytest_compliance.py::TestPytestCompliance::test_pytest_log_validation PASSED [ 62%]
+test_pytest_compliance.py::TestPytestCompliance::test_contract_violation_logging PASSED [ 63%]
+test_pytest_compliance.py::TestPytestCompliance::test_compliance_report_generation PASSED [ 64%]
+test_pytest_compliance.py::TestPytestCompliance::test_digital_signature_verification PASSED [ 65%]
+test_pytest_compliance.py::TestPytestCompliance::test_blockchain_hash_generation PASSED [ 66%]
+test_pytest_compliance.py::TestPytestCompliance::test_timestamp_proof_generation PASSED [ 66%]
+test_pytest_compliance.py::TestPytestOnlyPolicy::test_pytest_only_enforcement PASSED [ 67%]
+test_pytest_compliance.py::TestPytestOnlyPolicy::test_manual_log_rejection PASSED [ 68%]
+test_repair_system_compliance.py::TestRepairSystemCompliance::test_intelligent_repair_logging PASSED [ 69%]
+test_repair_system_compliance.py::TestRepairSystemCompliance::test_data_repair_compliance PASSED [ 70%]
+test_repair_system_compliance.py::TestRepairSystemCompliance::test_repair_workflow_audit PASSED [ 70%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_supabase_config_initialization PASSED [ 71%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_environment_variable_validation PASSED [ 72%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_validation_methods PASSED [ 73%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_security_compliance PASSED [ 74%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_connection_testing PASSED [ 74%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_error_handling PASSED [ 75%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_performance_metrics PASSED [ 76%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_logging_compliance PASSED [ 77%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_config_integration_readiness PASSED [ 77%]
+test_supabase_config_compliance.py::TestSupabaseConfigCompliance::test_compliance_report_generation PASSED [ 78%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_report_directory_structure PASSED [ 79%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_markdown_report_generation PASSED [ 80%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_json_report_generation PASSED [ 81%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_execution_log_generation PASSED [ 81%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_task_summary_generation PASSED [ 82%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_report_data_integrity PASSED [ 83%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_report_timestamp_consistency PASSED [ 84%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_report_file_encoding PASSED [ 85%]
+test_sync_reports_compliance.py::TestSyncReportsCompliance::test_compliance_report_generation PASSED [ 85%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_core_table_creation PASSED [ 86%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_table_structure_validation PASSED [ 87%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_index_creation_compliance PASSED [ 88%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_data_type_compliance PASSED [ 88%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_constraint_enforcement PASSED [ 89%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_migration_compatibility PASSED [ 90%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_performance_optimization PASSED [ 91%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_error_recovery_mechanisms PASSED [ 92%]
+test_table_creation_compliance.py::TestTableCreationCompliance::test_compliance_report_generation PASSED [ 92%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_fetch_latest_data_method_exists PASSED [ 93%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_fetch_historical_data_method_exists PASSED [ 94%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_cloud_data_functionality PASSED [ 95%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_enhanced_data_flow_system_initialization PASSED [ 96%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_smart_realtime_optimizer_initialization PASSED [ 96%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_data_flow_system_database_tables PASSED [ 97%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_data_flow_system_start PASSED [ 98%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_data_collection_methods_exist PASSED [ 99%]
+tests/test_data_flow_system.py::TestDataFlowSystem::test_performance_monitoring_setup PASSED [100%]✅ pytest会话完成 - 总计 125 个测试
+✅ pytest会话结束 - 合规性报告已生成
+
+
+=============================== warnings summary ===============================
+../Documents/9999/deploy_package/venv/lib/python3.13/site-packages/supabase/_sync/client.py:303
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/supabase/_sync/client.py:303: DeprecationWarning: The 'timeout' parameter is deprecated. Please configure it in the http client instead.
+    return SyncPostgrestClient(
+
+../Documents/9999/deploy_package/venv/lib/python3.13/site-packages/supabase/_sync/client.py:303
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/supabase/_sync/client.py:303: DeprecationWarning: The 'verify' parameter is deprecated. Please configure it in the http client instead.
+    return SyncPostgrestClient(
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:81
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:81: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:89
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:89: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:108
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:108: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:126
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:126: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:150
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:150: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:167
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:167: PytestUnknownMarkWarning: Unknown pytest.mark.integration - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.integration
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:181
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:181: PytestUnknownMarkWarning: Unknown pytest.mark.performance - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.performance
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:242
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:242: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:258
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:258: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:285
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:285: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:306
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:306: PytestUnknownMarkWarning: Unknown pytest.mark.unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.unit
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:336
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:336: PytestUnknownMarkWarning: Unknown pytest.mark.integration - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.integration
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:350
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:350: PytestUnknownMarkWarning: Unknown pytest.mark.consistency - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.consistency
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:375
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:375: PytestUnknownMarkWarning: Unknown pytest.mark.integration - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.integration
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:424
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:424: PytestUnknownMarkWarning: Unknown pytest.mark.performance - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.performance
+
+sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:452
+  /Users/a606/cloud_function_source/sync_reports/task_20250929_092438_realtime_optimization/test_realtime_optimization.py:452: PytestUnknownMarkWarning: Unknown pytest.mark.realtime - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.realtime
+
+test_api_compliance.py:43
+  /Users/a606/cloud_function_source/test_api_compliance.py:43: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_api_compliance.py:119
+  /Users/a606/cloud_function_source/test_api_compliance.py:119: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_api_compliance.py:172
+  /Users/a606/cloud_function_source/test_api_compliance.py:172: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:110
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:110: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:134
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:134: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:174
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:174: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:210
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:210: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:264
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:264: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_bigquery_full_repair.py:316
+  /Users/a606/cloud_function_source/test_bigquery_full_repair.py:316: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_compliance.py:44
+  /Users/a606/cloud_function_source/test_data_sync_compliance.py:44: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_compliance.py:107
+  /Users/a606/cloud_function_source/test_data_sync_compliance.py:107: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_compliance.py:161
+  /Users/a606/cloud_function_source/test_data_sync_compliance.py:161: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:112
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:112: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:149
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:149: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:182
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:182: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:225
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:225: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:258
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:258: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:293
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:293: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:328
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:328: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:357
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:357: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_data_sync_system_compliance.py:396
+  /Users/a606/cloud_function_source/test_data_sync_system_compliance.py:396: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_database_compliance.py:43
+  /Users/a606/cloud_function_source/test_database_compliance.py:43: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_database_compliance.py:119
+  /Users/a606/cloud_function_source/test_database_compliance.py:119: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_database_compliance.py:172
+  /Users/a606/cloud_function_source/test_database_compliance.py:172: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_monitoring_compliance.py:43
+  /Users/a606/cloud_function_source/test_monitoring_compliance.py:43: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_monitoring_compliance.py:120
+  /Users/a606/cloud_function_source/test_monitoring_compliance.py:120: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_monitoring_compliance.py:173
+  /Users/a606/cloud_function_source/test_monitoring_compliance.py:173: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:44
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:44: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:66
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:66: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:91
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:91: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:118
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:118: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:151
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:151: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:176
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:176: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:194
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:194: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:215
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:215: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:233
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:233: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:253
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:253: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_pytest_compliance.py:270
+  /Users/a606/cloud_function_source/test_pytest_compliance.py:270: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_repair_system_compliance.py:43
+  /Users/a606/cloud_function_source/test_repair_system_compliance.py:43: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_repair_system_compliance.py:137
+  /Users/a606/cloud_function_source/test_repair_system_compliance.py:137: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_repair_system_compliance.py:190
+  /Users/a606/cloud_function_source/test_repair_system_compliance.py:190: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:40
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:40: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:71
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:71: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:101
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:101: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:134
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:134: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:165
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:165: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:204
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:204: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:243
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:243: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:276
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:276: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:310
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:310: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_supabase_config_compliance.py:346
+  /Users/a606/cloud_function_source/test_supabase_config_compliance.py:346: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:51
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:51: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:78
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:78: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:152
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:152: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:244
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:244: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:353
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:353: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:498
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:498: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:556
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:556: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:620
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:620: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_sync_reports_compliance.py:692
+  /Users/a606/cloud_function_source/test_sync_reports_compliance.py:692: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:51
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:51: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:137
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:137: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:187
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:187: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:229
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:229: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:289
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:289: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:357
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:357: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:413
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:413: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:474
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:474: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+test_table_creation_compliance.py:540
+  /Users/a606/cloud_function_source/test_table_creation_compliance.py:540: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.pytest_compliant
+
+conftest.py:72
+  /Users/a606/cloud_function_source/conftest.py:72: PytestUnknownMarkWarning: Unknown pytest.mark.pytest_compliant - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    item.add_marker(pytest.mark.pytest_compliant)
+
+local_system/test_system.py::test_database
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but local_system/test_system.py::test_database returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+local_system/test_system.py::test_api_collector
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but local_system/test_system.py::test_api_collector returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+local_system/test_system.py::test_sql_engine
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but local_system/test_system.py::test_sql_engine returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+local_system/test_system.py::test_auto_repair
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but local_system/test_system.py::test_auto_repair returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+local_system/test_system.py::test_monitoring
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but local_system/test_system.py::test_monitoring returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+test_api_connection.py::test_api_connection
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but test_api_connection.py::test_api_connection returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+test_data_sync.py::test_api_data_sync
+  /Users/a606/Documents/9999/deploy_package/venv/lib/python3.13/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but test_data_sync.py::test_api_data_sync returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--------------------------------- JSON report ----------------------------------
+report saved to: pytest_report.json
+- Generated html report: file:///Users/a606/cloud_function_source/pytest_report.html -
+============ 123 passed, 6 skipped, 95 warnings in 66.83s (0:01:06) ============

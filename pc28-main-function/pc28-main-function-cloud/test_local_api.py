@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+"""
+本地测试PC28 API采集功能
+"""
+
+import os
+import sys
+import json
+import time
+import hashlib
+import requests
+from datetime import datetime, timezone
+
+# 加载环境变量
+from dotenv import load_dotenv
+load_dotenv()
+
+def generate_signature(params: dict, wapi_key: str) -> str:
+    """生成API签名"""
+    sorted_params = sorted(params.items())
+    param_string = ''.join([f"{k}{v}" for k, v in sorted_params])
+    param_string += wapi_key
+    return hashlib.md5(param_string.encode('utf-8')).hexdigest()
+
+def test_pc28_api():
+    """测试PC28 API"""
+    print("开始测试PC28 API...")
+    
+    # API配置
+    api_url = os.getenv('PC28_API_URL', 'https://rijb.api.storeapi.net/api/119/259')
+    wapi_key = os.getenv('WAPI_KEY', 'ca9edbfee35c22a0d6c4cf6722506af0')
+    wapi_id = os.getenv('WAPI_ID', '45928')
+    
+    print(f"API URL: {api_url}")
+    print(f"WAPI ID: {wapi_id}")
+    print(f"WAPI KEY: {wapi_key[:8]}...")
+    
+    try:
+        current_time = str(int(time.time()))
+        params = {
+            'appid': wapi_id,
+            'format': 'json',
+            'time': current_time
+        }
+        params['sign'] = generate_signature(params, wapi_key)
+        
+        print(f"请求参数: {params}")
+        
+        response = requests.get(api_url, params=params, timeout=30)
+        
+        print(f"响应状态码: {response.status_code}")
+        print(f"响应头: {dict(response.headers)}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            print("API响应成功!")
+            print(f"响应数据: {json.dumps(data, ensure_ascii=False, indent=2)}")
+            
+            # 分析数据结构
+            if 'retdata' in data:
+                retdata = data['retdata']
+                print(f"retdata类型: {type(retdata)}")
+                if isinstance(retdata, dict):
+                    print(f"retdata键: {list(retdata.keys())}")
+                elif isinstance(retdata, list):
+                    print(f"retdata长度: {len(retdata)}")
+                    if retdata:
+                        print(f"第一个元素: {retdata[0]}")
+            
+            return True
+        else:
+            print(f"API请求失败: {response.status_code}")
+            print(f"响应内容: {response.text}")
+            return False
+            
+    except Exception as e:
+        print(f"测试异常: {e}")
+        return False
+
+def test_history_api():
+    """测试历史数据API"""
+    print("\n开始测试历史数据API...")
+    
+    # API配置
+    api_url = os.getenv('PC28_HISTORY_API_URL', 'https://rijb.api.storeapi.net/api/119/260')
+    wapi_key = os.getenv('WAPI_KEY', 'ca9edbfee35c22a0d6c4cf6722506af0')
+    wapi_id = os.getenv('WAPI_ID', '45928')
+    
+    try:
+        current_time = str(int(time.time()))
+        today = datetime.now().strftime('%Y-%m-%d')
+        
+        params = {
+            'appid': wapi_id,
+            'format': 'json',
+            'date': today,
+            'limit': '5',
+            'time': current_time
+        }
+        params['sign'] = generate_signature(params, wapi_key)
+        
+        print(f"请求参数: {params}")
+        
+        response = requests.get(api_url, params=params, timeout=30)
+        
+        print(f"响应状态码: {response.status_code}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            print("历史API响应成功!")
+            print(f"响应数据: {json.dumps(data, ensure_ascii=False, indent=2)}")
+            return True
+        else:
+            print(f"历史API请求失败: {response.status_code}")
+            print(f"响应内容: {response.text}")
+            return False
+            
+    except Exception as e:
+        print(f"历史API测试异常: {e}")
+        return False
+
+def test_local_api_fetch():
+    """测试本地API采集脚本"""
+    print("\n开始测试本地API采集脚本...")
+    
+    try:
+        # 导入本地脚本
+        import api_auto_fetch
+        
+        # 创建采集器实例
+        fetcher = api_auto_fetch.PC28DataFetcher()
+        
+        # 测试API数据获取
+        raw_data = fetcher.fetch_data_from_api()
+        if raw_data:
+            print("API数据获取成功!")
+            print(f"原始数据: {json.dumps(raw_data, ensure_ascii=False, indent=2)}")
+            
+            # 测试数据清洗
+            cleaned_data = fetcher.clean_and_validate_data(raw_data)
+            if cleaned_data:
+                print(f"数据清洗成功，清洗后数据条数: {len(cleaned_data)}")
+                for i, item in enumerate(cleaned_data):
+                    print(f"清洗后数据 {i+1}: {json.dumps(item, ensure_ascii=False, indent=2)}")
+            else:
+                print("数据清洗失败或无有效数据")
+        else:
+            print("API数据获取失败")
+            
+        return True
+        
+    except Exception as e:
+        print(f"本地脚本测试异常: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+def main():
+    """主函数"""
+    print("=" * 60)
+    print("PC28 API本地测试工具")
+    print("=" * 60)
+    
+    # 检查环境变量
+    print("环境变量检查:")
+    print(f"WAPI_KEY: {'已设置' if os.getenv('WAPI_KEY') else '未设置'}")
+    print(f"WAPI_ID: {'已设置' if os.getenv('WAPI_ID') else '未设置'}")
+    print(f"PC28_API_URL: {'已设置' if os.getenv('PC28_API_URL') else '未设置'}")
+    print()
+    
+    # 运行测试
+    results = []
+    
+    # 测试1: 直接API调用
+    results.append(("PC28 实时API", test_pc28_api()))
+    
+    # 测试2: 历史数据API
+    results.append(("PC28 历史API", test_history_api()))
+    
+    # 测试3: 本地采集脚本
+    results.append(("本地采集脚本", test_local_api_fetch()))
+    
+    # 输出测试结果
+    print("\n" + "=" * 60)
+    print("测试结果汇总:")
+    print("=" * 60)
+    for test_name, result in results:
+        status = "✅ 通过" if result else "❌ 失败"
+        print(f"{test_name}: {status}")
+    
+    all_passed = all(result for _, result in results)
+    print(f"\n总体结果: {'✅ 全部通过' if all_passed else '❌ 存在失败'}")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,61 @@
+# .gcloudignore - 排除有问题的文件和目录
+
+# 排除备份和有语法错误的文件
+CHANGESETS/
+sync_reports/
+htmlcov_final/
+pc28_business_logic_tests/
+
+# 排除有语法错误的测试文件
+tests/test_example.py
+tests/e2e/test_e2e.py
+tests/e2e/test_e2e_system.py
+tests/unit/test_field_usage_analysis.py
+
+# 排除有语法错误的Python文件
+automated_test_evidence_2.py
+automated_test_evidence_complete.py
+automated_test_evidence_part2.py
+bigquery_to_supabase_sync.py
+deploy_pc28_system.py
+ops_manager_main.py
+ops_system_main.py
+
+# 排除日志和临时文件
+logs/
+*.log
+*.tmp
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# 排除开发工具文件
+.git/
+.gitignore
+.ai_*
+.rules_cache.json
+.zshrc_ai_rules
+
+# 排除文档和配置文件
+*.md
+*.yml
+*.yaml
+*.json
+!requirements.txt
+!app.yaml
+
+# 排除本地数据
+local_data/
+production_data/
+production_logs/
+contract_keys/
+
+# 排除工具和脚本
+tools/
+bin/
+receipts/
+assets/
+static/
+docs/
